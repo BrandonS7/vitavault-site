@@ -15,301 +15,380 @@
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <style>
     :root {
-      --bg: #0b1220;
-      --bg-soft: #10192d;
-      --card: #111827;
-      --card-2: #172338;
-      --text: #e7edf8;
-      --muted: #9db0ca;
-      --teal: #14b8a6;
-      --teal-2: #0d9488;
-      --purple: #8b5cf6;
-      --stroke: rgba(157, 176, 202, 0.2);
+      --bg: #FFFFFF;
+      --bg-alt: #F0FDFB;
+      --bg-footer: #F1F5F9;
+      --card: #FFFFFF;
+      --text: #1A1A2E;
+      --text-secondary: #475569;
+      --muted: #64748B;
+      --teal: #0D9488;
+      --teal-light: #14B8A6;
+      --teal-bg: rgba(20, 184, 166, 0.08);
+      --teal-border: rgba(20, 184, 166, 0.25);
+      --purple: #8B5CF6;
+      --purple-bg: rgba(139, 92, 246, 0.08);
+      --border: #E2E8F0;
+      --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-lg: 0 4px 24px rgba(0,0,0,0.08);
       --max: 1120px;
       --radius: 18px;
-      --shadow: 0 20px 70px rgba(4, 9, 17, 0.6);
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif;
-      background:
-        radial-gradient(circle at 15% -10%, rgba(20, 184, 166, 0.2), transparent 35%),
-        radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.18), transparent 28%),
-        var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.55;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .container { width: min(var(--max), 92%); margin: 0 auto; }
+    .container { width: min(var(--max), 90%); margin: 0 auto; }
+
+    /* Nav */
     .nav-wrap {
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(157, 176, 202, 0.12);
-      background: rgba(11, 18, 32, 0.86);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
     }
     nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 72px;
+      min-height: 68px;
       gap: 1rem;
     }
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.55rem;
       text-decoration: none;
       font-weight: 700;
+      font-size: 1.15rem;
       color: var(--text);
-      letter-spacing: 0.2px;
     }
-    .brand svg { width: 22px; height: 22px; }
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
+    .brand svg { width: 28px; height: 28px; }
+    .menu { display: flex; align-items: center; gap: 0.25rem; }
     .menu a {
       color: var(--muted);
       text-decoration: none;
-      padding: 0.52rem 0.75rem;
+      padding: 0.5rem 0.75rem;
       border-radius: 10px;
-      font-size: 0.95rem;
-      transition: 0.18s ease;
+      font-size: 0.93rem;
+      font-weight: 500;
+      transition: all 0.2s;
     }
-    .menu a:hover,
-    .menu a.active { color: var(--text); background: rgba(157, 176, 202, 0.1); }
+    .menu a:hover { color: var(--text); background: rgba(0,0,0,0.04); }
+
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.45rem;
-      border-radius: 11px;
-      border: 1px solid transparent;
-      padding: 0.72rem 1rem;
-      font-weight: 650;
+      border-radius: 12px;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.95rem;
       text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s;
     }
     .btn:hover { transform: translateY(-1px); }
     .btn.primary {
-      color: #052622;
-      background: linear-gradient(120deg, #2dd4bf, #14b8a6 55%, #0d9488);
-      box-shadow: 0 12px 24px rgba(13, 148, 136, 0.3);
+      color: #fff;
+      background: linear-gradient(135deg, var(--teal-light), var(--teal));
+      box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3);
     }
-    .btn.primary:hover { box-shadow: 0 14px 28px rgba(13, 148, 136, 0.44); }
+    .btn.primary:hover { box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4); }
     .btn.ghost {
       color: var(--text);
-      border-color: var(--stroke);
-      background: rgba(17, 24, 39, 0.6);
+      background: transparent;
+      border: 1.5px solid var(--border);
     }
+    .btn.ghost:hover { border-color: var(--teal-light); color: var(--teal); }
 
     .mobile-toggle {
       display: none;
       background: transparent;
-      border: 1px solid var(--stroke);
+      border: 1.5px solid var(--border);
       color: var(--text);
       border-radius: 10px;
-      padding: 0.5rem;
+      padding: 0.45rem 0.6rem;
+      font-size: 0.9rem;
+      cursor: pointer;
     }
 
-    section { padding: 4.6rem 0; }
+    /* Hero */
+    section { padding: 5rem 0; }
+    .hero-section {
+      background: linear-gradient(180deg, #F0FDFB 0%, #FFFFFF 100%);
+      padding: 5.5rem 0 4rem;
+    }
     .hero {
-      padding: 5.6rem 0 4.4rem;
       display: grid;
-      gap: 2.2rem;
-      grid-template-columns: 1.12fr 0.88fr;
+      gap: 2.5rem;
+      grid-template-columns: 1.15fr 0.85fr;
       align-items: center;
     }
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      background: rgba(20, 184, 166, 0.14);
-      color: #7ff0e1;
-      border: 1px solid rgba(20, 184, 166, 0.4);
+      gap: 0.4rem;
+      background: var(--teal-bg);
+      color: var(--teal);
+      border: 1px solid var(--teal-border);
       border-radius: 999px;
-      padding: 0.35rem 0.72rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.07em;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.75rem;
       font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
-    h1, h2, h3 { line-height: 1.12; margin: 0; }
-    h1 { font-size: clamp(2rem, 5.8vw, 3.8rem); margin-top: 1rem; letter-spacing: -0.03em; }
-    h2 { font-size: clamp(1.6rem, 3.5vw, 2.55rem); letter-spacing: -0.02em; margin-bottom: 0.9rem; }
-    .lead { color: var(--muted); font-size: clamp(1rem, 1.7vw, 1.2rem); max-width: 62ch; }
-    .hero strong { color: #b5a3ff; }
-    .hero-actions { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      margin-top: 1rem;
+      color: var(--text);
+    }
+    h1 strong { color: var(--teal); }
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .lead {
+      color: var(--text-secondary);
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      max-width: 58ch;
+      margin-top: 1rem;
+      line-height: 1.65;
+    }
+    .hero-actions { margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
 
+    /* Phone Mock */
     .phone-mock {
-      background:
-        radial-gradient(circle at 30% 0%, rgba(139, 92, 246, 0.45), transparent 44%),
-        radial-gradient(circle at 70% 120%, rgba(20, 184, 166, 0.4), transparent 40%),
-        linear-gradient(160deg, #16253f, #10192d 55%, #0e1525);
-      border: 1px solid rgba(157, 176, 202, 0.22);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
-      padding: 1rem;
-      width: min(360px, 100%);
+      background: #111827;
+      border-radius: 32px;
+      padding: 12px;
+      width: min(320px, 100%);
       margin-left: auto;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.08);
     }
     .phone-screen {
-      border-radius: 22px;
-      border: 1px solid rgba(157, 176, 202, 0.2);
-      background: linear-gradient(180deg, rgba(21, 33, 54, 0.9), rgba(13, 23, 40, 0.9));
+      border-radius: 24px;
+      background: #0F172A;
       padding: 1rem;
-      min-height: 460px;
+      min-height: 420px;
       display: grid;
-      gap: 0.7rem;
+      gap: 0.65rem;
     }
     .screen-card {
-      border: 1px solid rgba(157, 176, 202, 0.2);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 14px;
-      padding: 0.75rem;
-      background: rgba(16, 25, 45, 0.8);
+      padding: 0.7rem 0.85rem;
+      background: rgba(255,255,255,0.06);
     }
-    .screen-card.gradient { background: linear-gradient(140deg, rgba(20, 184, 166, 0.22), rgba(139, 92, 246, 0.2)); }
-    .screen-label { font-size: 0.8rem; color: var(--muted); }
-    .screen-value { font-size: 1.35rem; font-weight: 700; margin-top: 0.2rem; }
+    .screen-card.gradient {
+      background: linear-gradient(140deg, rgba(20,184,166,0.2), rgba(139,92,246,0.15));
+      border-color: rgba(20,184,166,0.2);
+    }
+    .screen-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+    .screen-value { font-size: 1.25rem; font-weight: 700; color: #fff; margin-top: 0.15rem; }
 
-    .section-head { margin-bottom: 1.6rem; }
+    /* Sections */
+    .section-head { margin-bottom: 2rem; }
+    .section-head .lead { margin-top: 0.5rem; }
+
+    /* Feature Cards */
     .grid { display: grid; gap: 1rem; }
-    .features { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .features { grid-template-columns: repeat(3, 1fr); }
     .card {
-      background: linear-gradient(180deg, rgba(17, 24, 39, 0.96), rgba(17, 24, 39, 0.7));
-      border: 1px solid var(--stroke);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.1rem;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: all 0.25s;
     }
-    .card h3 { font-size: 1.06rem; margin-bottom: 0.5rem; }
-    .card p { margin: 0; color: var(--muted); }
+    .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.85rem;
+      font-size: 1.3rem;
+    }
+    .card-icon.teal { background: var(--teal-bg); color: var(--teal); }
+    .card-icon.purple { background: var(--purple-bg); color: var(--purple); }
+    .card h3 { font-size: 1.05rem; font-weight: 650; margin-bottom: 0.4rem; }
+    .card p { color: var(--text-secondary); font-size: 0.93rem; line-height: 1.55; }
 
-    .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    /* Steps */
+    .steps-section { background: var(--bg-alt); }
+    .steps { grid-template-columns: repeat(3, 1fr); }
     .step-num {
       display: inline-flex;
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background: rgba(20, 184, 166, 0.12);
-      border: 1px solid rgba(20, 184, 166, 0.45);
-      color: #7ff0e1;
-      margin-bottom: 0.7rem;
+      background: var(--teal-bg);
+      border: 1.5px solid var(--teal-border);
+      color: var(--teal);
       font-weight: 700;
-    }
-    .step-icon {
-      width: 20px;
-      height: 20px;
-      vertical-align: text-bottom;
-      margin-left: 0.35rem;
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
     }
 
-    .pricing { grid-template-columns: 1fr 1fr; }
-    .price-card { position: relative; overflow: hidden; }
-    .price-card.featured::after {
+    /* Pricing */
+    .pricing { grid-template-columns: 1fr 1fr; max-width: 720px; margin: 0 auto; }
+    .price { font-size: 2.2rem; font-weight: 800; margin: 0.5rem 0 0.25rem; color: var(--text); }
+    .price-sub { font-size: 0.85rem; color: var(--muted); }
+    .price-card.featured {
+      border-color: var(--teal-light);
+      box-shadow: 0 0 0 1px var(--teal-light), var(--shadow-lg);
+      position: relative;
+    }
+    .price-card.featured::before {
       content: "BEST VALUE";
       position: absolute;
-      top: 12px;
-      right: -34px;
-      transform: rotate(36deg);
-      background: linear-gradient(120deg, var(--purple), #6d35ef);
-      color: white;
-      font-size: 0.7rem;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--teal-light), var(--teal));
+      color: #fff;
+      font-size: 0.68rem;
       font-weight: 700;
-      padding: 0.25rem 2.6rem;
-      letter-spacing: 0.04em;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
     }
-    .price { font-size: 2rem; font-weight: 800; margin: 0.45rem 0; }
-    .list { padding-left: 1rem; margin: 0.3rem 0 0; color: var(--muted); }
-    .list li { margin: 0.28rem 0; }
+    .list { padding-left: 0; list-style: none; margin: 0.6rem 0 0; }
+    .list li {
+      color: var(--text-secondary);
+      font-size: 0.93rem;
+      padding: 0.3rem 0;
+      padding-left: 1.4rem;
+      position: relative;
+    }
+    .list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 700;
+    }
     .no-sub {
-      margin-top: 1.2rem;
-      border: 1px dashed rgba(20, 184, 166, 0.4);
-      border-radius: 12px;
-      background: rgba(20, 184, 166, 0.08);
-      color: #88f3e5;
-      padding: 0.72rem;
+      margin-top: 1.4rem;
+      border: 1.5px solid var(--teal-border);
+      border-radius: 14px;
+      background: var(--teal-bg);
+      color: var(--teal);
+      padding: 0.85rem;
       font-weight: 600;
       text-align: center;
+      font-size: 0.95rem;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
+    /* CTA */
     .cta {
-      background: linear-gradient(120deg, rgba(20, 184, 166, 0.18), rgba(139, 92, 246, 0.17));
-      border: 1px solid rgba(157, 176, 202, 0.24);
+      background: linear-gradient(135deg, #F0FDFB, #EDE9FE);
+      border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 2rem;
+      padding: 3rem 2rem;
       text-align: center;
     }
-    .cta p { color: #c5d2e5; margin-top: 0.65rem; }
+    .cta p {
+      color: var(--text-secondary);
+      margin: 0.6rem 0 1.4rem;
+      font-size: 1.05rem;
+    }
 
+    /* Footer */
     footer {
-      padding: 2.2rem 0 3rem;
-      border-top: 1px solid rgba(157, 176, 202, 0.15);
+      background: var(--bg-footer);
+      padding: 2.4rem 0 3rem;
       color: var(--muted);
-      font-size: 0.94rem;
+      font-size: 0.9rem;
     }
     .foot {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 0.8rem 1.2rem;
+      gap: 0.8rem 1.5rem;
       align-items: center;
     }
-    .foot-links { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-    .foot a { color: var(--muted); text-decoration: none; }
-    .foot a:hover { color: var(--text); }
+    .foot-links { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .foot a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .foot a:hover { color: var(--teal); }
 
+    /* Responsive */
     @media (max-width: 980px) {
-      .hero { grid-template-columns: 1fr; }
-      .phone-mock { margin: 0; }
-      .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero .lead { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .phone-mock { margin: 0 auto; }
+      .features { grid-template-columns: repeat(2, 1fr); }
       .steps { grid-template-columns: 1fr; }
-      .pricing { grid-template-columns: 1fr; }
+      .pricing { grid-template-columns: 1fr; max-width: 380px; }
     }
-
-    @media (max-width: 760px) {
+    @media (max-width: 640px) {
       .mobile-toggle { display: inline-flex; }
       .menu {
         display: none;
         position: absolute;
-        top: 72px;
-        left: 4%;
-        right: 4%;
+        top: 68px;
+        left: 5%;
+        right: 5%;
         flex-direction: column;
-        align-items: stretch;
-        border: 1px solid var(--stroke);
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--border);
         border-radius: 14px;
-        background: rgba(11, 18, 32, 0.98);
-        padding: 0.65rem;
+        padding: 0.5rem;
+        box-shadow: var(--shadow-lg);
       }
       .menu.open { display: flex; }
-      .menu a { padding: 0.62rem 0.75rem; }
+      .menu a { padding: 0.65rem 0.85rem; }
       .nav-download { display: none; }
-      section { padding: 4rem 0; }
       .features { grid-template-columns: 1fr; }
+      section { padding: 3.5rem 0; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Nav -->
   <div class="nav-wrap">
     <div class="container">
       <nav>
         <a href="#top" class="brand" aria-label="VitaVault Home">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 21s-6.8-4.3-9-8.8C1 8.3 3.6 5 7.2 5c2 0 3.2 1 4.8 2.8C13.6 6 14.8 5 16.8 5 20.4 5 23 8.3 21 12.2 18.8 16.7 12 21 12 21Z" fill="url(#g1)"/>
-            <path d="M7.7 13.2h8.6v4.1H7.7z" fill="#e7edf8" opacity="0.9"/>
-            <path d="M10 10.5h4v2.2h-4z" fill="#0b1220"/>
+            <path d="M12 21s-6.8-4.3-9-8.8C1 8.3 3.6 5 7.2 5c2 0 3.2 1 4.8 2.8C13.6 6 14.8 5 16.8 5 20.4 5 23 8.3 21 12.2 18.8 16.7 12 21 12 21Z" fill="url(#nav-g)"/>
+            <path d="M7.7 13.2h8.6v4.1H7.7z" fill="#fff" opacity="0.9"/>
+            <path d="M10 10.5h4v2.2h-4z" fill="#0D9488"/>
             <defs>
-              <linearGradient id="g1" x1="3" y1="5" x2="21" y2="21" gradientUnits="userSpaceOnUse">
+              <linearGradient id="nav-g" x1="3" y1="5" x2="21" y2="21" gradientUnits="userSpaceOnUse">
                 <stop stop-color="#14B8A6"/>
-                <stop offset="1" stop-color="#8B5CF6"/>
+                <stop offset="1" stop-color="#0D9488"/>
               </linearGradient>
             </defs>
           </svg>
@@ -325,110 +404,126 @@
           <a href="#download">Download</a>
         </div>
 
-        <a class="btn primary nav-download" href="#" aria-label="Download VitaVault on the App Store">Download</a>
+        <a class="btn primary nav-download" href="#" aria-label="Download VitaVault">Download</a>
       </nav>
     </div>
   </div>
 
   <main id="top">
-    <section class="container hero" id="download">
-      <div>
-        <span class="badge">NOW ON THE APP STORE</span>
-        <h1>Your Health Data. <strong>Your AI.</strong> Your Rules.</h1>
-        <p class="lead">Export your Apple Health data in one tap. Use it with ChatGPT, Claude, Gemini — or our built-in AI Coach. Your data never touches our servers.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#">Download on App Store</a>
-          <a class="btn ghost" href="https://github.com/BrandonS7/vitavault-tools">View on GitHub</a>
+
+    <!-- Hero -->
+    <section class="hero-section" id="download">
+      <div class="container hero">
+        <div>
+          <span class="badge">✦ Now on the App Store</span>
+          <h1>Your Health Data.<br><strong>Your AI.</strong> Your Rules.</h1>
+          <p class="lead">Export your Apple Health data in one tap. Use it with ChatGPT, Claude, Gemini — or our built-in AI Coach. Your data never touches our servers.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#">Download on App Store</a>
+            <a class="btn ghost" href="https://github.com/BrandonS7/vitavault-tools">View on GitHub</a>
+          </div>
         </div>
-      </div>
-      <div class="phone-mock" aria-label="VitaVault app preview placeholder">
-        <div class="phone-screen">
-          <div class="screen-card gradient">
-            <div class="screen-label">Today</div>
-            <div class="screen-value">8,012 steps</div>
-          </div>
-          <div class="screen-card">
-            <div class="screen-label">Sleep last night</div>
-            <div class="screen-value">6.8 hrs</div>
-          </div>
-          <div class="screen-card">
-            <div class="screen-label">AI Coach</div>
-            <div class="screen-value">3 actionable insights</div>
-          </div>
-          <div class="screen-card gradient">
-            <div class="screen-label">Export ready</div>
-            <div class="screen-value">JSON + CSV</div>
+        <div class="phone-mock" aria-label="VitaVault app preview">
+          <div class="phone-screen">
+            <div class="screen-card gradient">
+              <div class="screen-label">Today</div>
+              <div class="screen-value">8,012 steps</div>
+            </div>
+            <div class="screen-card">
+              <div class="screen-label">Sleep last night</div>
+              <div class="screen-value">6.8 hrs</div>
+            </div>
+            <div class="screen-card">
+              <div class="screen-label">AI Coach</div>
+              <div class="screen-value">3 actionable insights</div>
+            </div>
+            <div class="screen-card gradient">
+              <div class="screen-label">Export ready</div>
+              <div class="screen-value">JSON + CSV</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Features -->
     <section class="container" id="features">
       <div class="section-head">
-        <h2>Powerful Features for Complete Control</h2>
-        <p class="lead">Own your health data end-to-end with privacy-first exports, AI flexibility, and open tooling.</p>
+        <h2>Everything you need to own your health data</h2>
+        <p class="lead">Privacy-first exports, AI flexibility, and open tooling — all on-device.</p>
       </div>
       <div class="grid features">
-        <article class="card"><h3>One-Tap Export</h3><p>Export all your health data as JSON or CSV. Steps, sleep, heart rate, weight, workouts — everything.</p></article>
-        <article class="card"><h3>Your AI, Your Choice</h3><p>Feed your export into ChatGPT, Claude, or any AI. We give you the data, you choose the brain.</p></article>
-        <article class="card"><h3>Built-in AI Coach</h3><p>Don't want to DIY? Our AI Coach analyzes your trends, prepares doctor visit summaries, and answers health questions.</p></article>
-        <article class="card"><h3>Medication Tracking</h3><p>Scan pill bottle labels with your camera. AI auto-fills everything. Set reminders. Never miss a dose.</p></article>
-        <article class="card"><h3>Privacy First</h3><p>Your data stays on your device. Exports go to your Files app. No accounts, no cloud sync required.</p></article>
-        <article class="card"><h3>Open Source Format</h3><p>Our export format is fully documented and open source. Build your own tools, integrations, or dashboards.</p></article>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="section-head">
-        <h2>How It Works</h2>
-        <p class="lead">From Apple Health to your AI workflow in under a minute.</p>
-      </div>
-      <div class="grid steps">
         <article class="card">
-          <span class="step-num">1</span>
-          <h3>
-            Connect to Apple Health
-            <svg class="step-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 20s-5.8-3.9-7.8-7.8C2.2 8.7 4.5 6 7.4 6c1.7 0 2.7.8 4.6 2.7C13.9 6.8 15 6 16.6 6c2.9 0 5.2 2.7 3.2 6.2-2 3.9-7.8 7.8-7.8 7.8Z" fill="#14B8A6"/>
-              <path d="M12 10.2 6.9 12.1v3.7c0 2.6 2.2 4.6 5.1 5.2 2.9-.6 5.1-2.6 5.1-5.2v-3.7L12 10.2Z" stroke="#E7EDF8" stroke-width="1.2"/>
-            </svg>
-          </h3>
-          <p>Grant read access once and VitaVault securely reads health metrics on-device only.</p>
+          <div class="card-icon teal">📤</div>
+          <h3>One-Tap Export</h3>
+          <p>Export all your health data as JSON or CSV. Steps, sleep, heart rate, weight, workouts — everything.</p>
         </article>
         <article class="card">
-          <span class="step-num">2</span>
-          <h3>
-            Choose your data &amp; export
-            <svg class="step-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3v11.2m0 0 4-4m-4 4-4-4" stroke="#14B8A6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect x="4" y="15.5" width="16" height="5.5" rx="2" stroke="#E7EDF8" stroke-width="1.2"/>
-            </svg>
-          </h3>
-          <p>Pick a time window, export JSON/CSV, and save directly to your Files app.</p>
+          <div class="card-icon teal">🧠</div>
+          <h3>Your AI, Your Choice</h3>
+          <p>Feed your export into ChatGPT, Claude, or any AI. We give you the data, you choose the brain.</p>
         </article>
         <article class="card">
-          <span class="step-num">3</span>
-          <h3>
-            Use with any AI or our Coach
-            <svg class="step-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M8.2 18.2c-2.6 0-4.7-2-4.7-4.4 0-2.1 1.6-3.9 3.8-4.3.7-2.9 3.3-5 6.5-5 3.8 0 6.8 3 6.8 6.6 0 2.4-1.3 4.2-3.3 5.2-.6 2.2-2.7 3.7-5.2 3.7-1.5 0-2.9-.6-3.9-1.8Z" stroke="#E7EDF8" stroke-width="1.2"/>
-              <path d="M10.9 7.9h2.2m-1.1-1.1v2.2m4.1 1.3h2m-1-1v2" stroke="#8B5CF6" stroke-width="1.3" stroke-linecap="round"/>
-            </svg>
-          </h3>
-          <p>Analyze trends in your favorite model or get guided recommendations from AI Coach.</p>
+          <div class="card-icon purple">✨</div>
+          <h3>Built-in AI Coach</h3>
+          <p>Don't want to DIY? Our AI Coach analyzes your trends, prepares doctor visit summaries, and answers health questions.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon teal">💊</div>
+          <h3>Medication Tracking</h3>
+          <p>Scan pill bottle labels with your camera. AI auto-fills everything. Set reminders. Never miss a dose.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon teal">🔒</div>
+          <h3>Privacy First</h3>
+          <p>Your data stays on your device. Exports go to your Files app. No accounts, no cloud sync required.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon teal">📖</div>
+          <h3>Open Source Format</h3>
+          <p>Our export format is fully documented and open source. Build your own tools, integrations, or dashboards.</p>
         </article>
       </div>
     </section>
 
+    <!-- How It Works -->
+    <section class="steps-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>How it works</h2>
+          <p class="lead">From Apple Health to your AI workflow in under a minute.</p>
+        </div>
+        <div class="grid steps">
+          <article class="card">
+            <span class="step-num">1</span>
+            <h3>Connect to Apple Health</h3>
+            <p>Grant read access once and VitaVault securely reads health metrics on-device only.</p>
+          </article>
+          <article class="card">
+            <span class="step-num">2</span>
+            <h3>Choose your data &amp; export</h3>
+            <p>Pick a time window, export JSON/CSV, and save directly to your Files app.</p>
+          </article>
+          <article class="card">
+            <span class="step-num">3</span>
+            <h3>Use with any AI or our Coach</h3>
+            <p>Analyze trends in your favorite model or get guided recommendations from AI Coach.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
     <section class="container">
-      <div class="section-head">
-        <h2>Pricing</h2>
-        <p class="lead">Start free. Upgrade once when you need more intelligence and automation.</p>
+      <div class="section-head" style="text-align:center;">
+        <h2>Simple pricing</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">Start free. Upgrade once when you want the full experience.</p>
       </div>
       <div class="grid pricing">
         <article class="card price-card">
           <h3>Free</h3>
           <p class="price">$0</p>
+          <p class="price-sub">Forever</p>
           <ul class="list">
             <li>Export data (JSON/CSV)</li>
             <li>View dashboard</li>
@@ -436,8 +531,9 @@
           </ul>
         </article>
         <article class="card price-card featured">
-          <h3>Premium (one-time)</h3>
+          <h3>Premium</h3>
           <p class="price">$4.99</p>
+          <p class="price-sub">One-time purchase</p>
           <ul class="list">
             <li>AI Coach</li>
             <li>Medication tracking</li>
@@ -450,15 +546,17 @@
       <div class="no-sub">No subscription. Pay once, own it forever.</div>
     </section>
 
+    <!-- CTA -->
     <section class="container">
       <div class="cta">
-        <h2>Take Control of Your Health Data</h2>
+        <h2>Take control of your health data</h2>
         <p>Open source. Privacy-first. No data hostage.</p>
         <a class="btn primary" href="#">Download on App Store</a>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="container foot">
       <div>VitaVault © 2026 Starboard Investments</div>
@@ -469,7 +567,6 @@
         <a href="https://github.com/BrandonS7/vitavault-tools">GitHub</a>
         <a href="mailto:support@vitavault.io">Contact</a>
       </div>
-      <div><a href="mailto:support@vitavault.io">support@vitavault.io</a></div>
     </div>
   </footer>
 
@@ -482,20 +579,18 @@
         menu.classList.toggle('open', next);
         toggle.setAttribute('aria-expanded', String(next));
       });
-      menu.querySelectorAll('a').forEach((link) => {
+      menu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           menu.classList.remove('open');
           toggle.setAttribute('aria-expanded', 'false');
         });
       });
     }
-
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener('click', (event) => {
-        const id = anchor.getAttribute('href');
-        const target = id && document.querySelector(id);
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        const target = document.querySelector(anchor.getAttribute('href'));
         if (!target) return;
-        event.preventDefault();
+        e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
