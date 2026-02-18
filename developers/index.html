@@ -199,17 +199,41 @@
       <div class="container">
         <span class="badge">OPEN SOURCE</span>
         <h1>Build with <strong>your health data</strong></h1>
-        <p class="lead">VitaVault exports your Apple Health data in standard JSON and CSV formats. Use our open-source tools to feed it into any AI, database, or workflow.</p>
+        <p class="lead">VitaVault exports Apple Health data in three formats: CSV (for spreadsheets), JSON (for code), and AI-Ready (for pasting straight into ChatGPT, Claude, or Gemini). Everything is open source.</p>
       </div>
     </section>
 
     <section class="container">
       <div class="section-head">
-        <h2>Export Schema</h2>
-        <p class="lead">Standardized JSON for direct ingestion into analytics pipelines and AI prompts.</p>
+        <h2>Three export formats</h2>
+        <p class="lead">Each export gives you the same health data in a different shape — pick the one that fits your workflow.</p>
       </div>
+
+      <h3 style="margin-bottom:0.6rem;font-size:1.1rem;">1. AI-Ready (the easy one)</h3>
+      <p style="color:var(--text-secondary);margin-bottom:0.8rem;font-size:0.95rem;">Plain text, pre-formatted for pasting into any AI chatbot. No code, no parsing — just copy, paste, ask.</p>
+      <div class="code-box" style="margin-bottom:2rem;">
+        <div class="code-head"><span>ai-ready-export.txt</span><button class="copy-btn" data-copy-target="aiready">Copy</button></div>
+        <pre id="aiready"><code><span class="t-s">HEALTH SUMMARY — Last 7 Days</span>
+
+<span class="t-k">Steps:</span> 43,133 total (6,162/day avg)
+<span class="t-k">Sleep:</span> 6h 42m last night, 7.1h weekly avg
+<span class="t-k">Heart Rate:</span> 72 bpm avg, 62 bpm resting
+<span class="t-k">HRV:</span> 30ms avg (below optimal — possible stress or fatigue)
+<span class="t-k">Blood Oxygen:</span> 97% avg
+<span class="t-k">Weight:</span> 185.4 lbs
+<span class="t-k">Active Calories:</span> 4,645 total (616/day avg)
+<span class="t-k">Exercise:</span> 142 min total
+
+<span class="t-p">Paste this into ChatGPT, Claude, or Gemini and ask:
+"What should I focus on this week?"
+"Prepare a summary for my doctor appointment"
+"What do my HRV trends mean?"</span></code></pre>
+      </div>
+
+      <h3 style="margin-bottom:0.6rem;font-size:1.1rem;">2. JSON (for developers)</h3>
+      <p style="color:var(--text-secondary);margin-bottom:0.8rem;font-size:0.95rem;">Structured data for apps, APIs, databases, or automation. Standard schema, easy to parse in any language.</p>
       <div class="code-box">
-        <div class="code-head"><span>example-export.json</span><button class="copy-btn" data-copy-target="schema">Copy</button></div>
+        <div class="code-head"><span>export.json</span><button class="copy-btn" data-copy-target="schema">Copy</button></div>
         <pre id="schema"><code>{
   <span class="t-k">"exportDate"</span>: <span class="t-s">"2026-02-17T12:00:00Z"</span>,
   <span class="t-k">"deviceId"</span>: <span class="t-s">"anonymous"</span>,
@@ -225,12 +249,22 @@
   }
 }</code></pre>
       </div>
+
+      <h3 style="margin:2rem 0 0.6rem;font-size:1.1rem;">3. CSV (for spreadsheets)</h3>
+      <p style="color:var(--text-secondary);margin-bottom:0.8rem;font-size:0.95rem;">Opens directly in Excel, Google Sheets, or Numbers. One row per day, one column per metric. Great for charts and tracking over time.</p>
+      <div class="code-box" style="margin-bottom:0;">
+        <div class="code-head"><span>export.csv</span><button class="copy-btn" data-copy-target="csvex">Copy</button></div>
+        <pre id="csvex"><code><span class="t-k">date</span>,<span class="t-k">steps</span>,<span class="t-k">sleep_hours</span>,<span class="t-k">resting_hr</span>,<span class="t-k">hrv_ms</span>,<span class="t-k">weight_lbs</span>,<span class="t-k">calories</span>
+<span class="t-s">2026-02-17</span>,<span class="t-n">8012</span>,<span class="t-n">6.7</span>,<span class="t-n">62</span>,<span class="t-n">28</span>,<span class="t-n">185.4</span>,<span class="t-n">642</span>
+<span class="t-s">2026-02-16</span>,<span class="t-n">5891</span>,<span class="t-n">7.2</span>,<span class="t-n">61</span>,<span class="t-n">33</span>,<span class="t-n">185.2</span>,<span class="t-n">589</span>
+<span class="t-s">2026-02-15</span>,<span class="t-n">7234</span>,<span class="t-n">6.9</span>,<span class="t-n">63</span>,<span class="t-n">29</span>,<span class="t-n">185.6</span>,<span class="t-n">617</span></code></pre>
+      </div>
     </section>
 
     <section class="container" style="background:var(--bg-alt);border-radius:24px;padding:3rem 2rem;">
       <div class="section-head">
         <h2>Use with any AI</h2>
-        <p class="lead">Pick your model and drop your export into prompts designed for health trend analysis.</p>
+        <p class="lead">The AI-Ready export is designed for this — just paste and ask. Here are some prompts to get started.</p>
       </div>
       <div class="grid use-grid">
         <article class="card">

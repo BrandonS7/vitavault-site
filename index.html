@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>VitaVault | Your Health Data. Your AI. Your Rules.</title>
-  <meta name="description" content="Export your Apple Health data in one tap and use it with ChatGPT, Claude, Gemini, or VitaVault AI Coach. Privacy-first, on-device, and open source.">
-  <meta name="keywords" content="health data export, Apple Health AI, health data privacy, open source health tools">
+  <meta name="description" content="Export your Apple Health data as CSV, JSON, or AI-ready format. Use it with ChatGPT, Claude, Gemini, or VitaVault's built-in AI Coach. Privacy-first and on-device.">
+  <meta name="keywords" content="health data export, Apple Health AI, health data privacy, open source health tools, export health data to ChatGPT">
   <link rel="canonical" href="https://vitavault.io/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="VitaVault | Your Health Data. Your AI. Your Rules.">
-  <meta property="og:description" content="Export Apple Health data as JSON/CSV and use it with any AI. Privacy-first and on-device.">
+  <meta property="og:description" content="Export Apple Health data as CSV, JSON, or AI-ready format. Use it with any AI. Privacy-first.">
   <meta property="og:url" content="https://vitavault.io/">
   <meta property="og:image" content="https://vitavault.io/assets/og.png">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -34,313 +34,90 @@
       --max: 1120px;
       --radius: 18px;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased;
     }
-
     .container { width: min(var(--max), 90%); margin: 0 auto; }
-
-    /* Nav */
     .nav-wrap {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 68px;
-      gap: 1rem;
-    }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.15rem;
-      color: var(--text);
-    }
+    nav { display: flex; align-items: center; justify-content: space-between; min-height: 68px; gap: 1rem; }
+    .brand { display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none; font-weight: 700; font-size: 1.15rem; color: var(--text); }
     .brand svg { width: 28px; height: 28px; }
     .menu { display: flex; align-items: center; gap: 0.25rem; }
-    .menu a {
-      color: var(--muted);
-      text-decoration: none;
-      padding: 0.5rem 0.75rem;
-      border-radius: 10px;
-      font-size: 0.93rem;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
+    .menu a { color: var(--muted); text-decoration: none; padding: 0.5rem 0.75rem; border-radius: 10px; font-size: 0.93rem; font-weight: 500; transition: all 0.2s; }
     .menu a:hover { color: var(--text); background: rgba(0,0,0,0.04); }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      border-radius: 12px;
-      border: none;
-      padding: 0.7rem 1.2rem;
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem; border-radius: 12px; border: none; padding: 0.7rem 1.2rem; font-weight: 600; font-size: 0.95rem; text-decoration: none; cursor: pointer; transition: all 0.2s; }
     .btn:hover { transform: translateY(-1px); }
-    .btn.primary {
-      color: #fff;
-      background: linear-gradient(135deg, var(--teal-light), var(--teal));
-      box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3);
-    }
-    .btn.primary:hover { box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4); }
-    .btn.ghost {
-      color: var(--text);
-      background: transparent;
-      border: 1.5px solid var(--border);
-    }
+    .btn.primary { color: #fff; background: linear-gradient(135deg, var(--teal-light), var(--teal)); box-shadow: 0 4px 14px rgba(13,148,136,0.3); }
+    .btn.primary:hover { box-shadow: 0 6px 20px rgba(13,148,136,0.4); }
+    .btn.ghost { color: var(--text); background: transparent; border: 1.5px solid var(--border); }
     .btn.ghost:hover { border-color: var(--teal-light); color: var(--teal); }
+    .mobile-toggle { display: none; background: transparent; border: 1.5px solid var(--border); color: var(--text); border-radius: 10px; padding: 0.45rem 0.6rem; font-size: 0.9rem; cursor: pointer; }
 
-    .mobile-toggle {
-      display: none;
-      background: transparent;
-      border: 1.5px solid var(--border);
-      color: var(--text);
-      border-radius: 10px;
-      padding: 0.45rem 0.6rem;
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-
-    /* Hero */
     section { padding: 5rem 0; }
-    .hero-section {
-      background: linear-gradient(180deg, #F0FDFB 0%, #FFFFFF 100%);
-      padding: 5.5rem 0 4rem;
-    }
-    .hero {
-      display: grid;
-      gap: 2.5rem;
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: center;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--teal-bg);
-      color: var(--teal);
-      border: 1px solid var(--teal-border);
-      border-radius: 999px;
-      padding: 0.3rem 0.8rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    h1 {
-      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
-      font-weight: 800;
-      letter-spacing: -0.035em;
-      line-height: 1.1;
-      margin-top: 1rem;
-      color: var(--text);
-    }
+    .hero-section { background: linear-gradient(180deg, #F0FDFB 0%, #FFFFFF 100%); padding: 5.5rem 0 4rem; }
+    .hero { display: grid; gap: 2.5rem; grid-template-columns: 1.15fr 0.85fr; align-items: center; }
+    .badge { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    h1 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.1; margin-top: 1rem; }
     h1 strong { color: var(--teal); }
-    h2 {
-      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      line-height: 1.15;
-      margin-bottom: 0.5rem;
-    }
-    .lead {
-      color: var(--text-secondary);
-      font-size: clamp(1rem, 1.6vw, 1.15rem);
-      max-width: 58ch;
-      margin-top: 1rem;
-      line-height: 1.65;
-    }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 0.5rem; }
+    .lead { color: var(--text-secondary); font-size: clamp(1rem, 1.6vw, 1.15rem); max-width: 58ch; margin-top: 1rem; line-height: 1.65; }
     .hero-actions { margin-top: 1.8rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
 
-    /* Phone Mock */
-    .phone-mock {
-      background: #111827;
-      border-radius: 32px;
-      padding: 12px;
-      width: min(320px, 100%);
-      margin-left: auto;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.08);
-    }
-    .phone-screen {
-      border-radius: 24px;
-      background: #0F172A;
-      padding: 1rem;
-      min-height: 420px;
-      display: grid;
-      gap: 0.65rem;
-    }
-    .screen-card {
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 14px;
-      padding: 0.7rem 0.85rem;
-      background: rgba(255,255,255,0.06);
-    }
-    .screen-card.gradient {
-      background: linear-gradient(140deg, rgba(20,184,166,0.2), rgba(139,92,246,0.15));
-      border-color: rgba(20,184,166,0.2);
-    }
+    .phone-mock { background: #111827; border-radius: 32px; padding: 12px; width: min(320px, 100%); margin-left: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.08); }
+    .phone-screen { border-radius: 24px; background: #0F172A; padding: 1rem; min-height: 420px; display: grid; gap: 0.65rem; }
+    .screen-card { border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 0.7rem 0.85rem; background: rgba(255,255,255,0.06); }
+    .screen-card.gradient { background: linear-gradient(140deg, rgba(20,184,166,0.2), rgba(139,92,246,0.15)); border-color: rgba(20,184,166,0.2); }
     .screen-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
     .screen-value { font-size: 1.25rem; font-weight: 700; color: #fff; margin-top: 0.15rem; }
 
-    /* Sections */
     .section-head { margin-bottom: 2rem; }
     .section-head .lead { margin-top: 0.5rem; }
-
-    /* Feature Cards */
     .grid { display: grid; gap: 1rem; }
     .features { grid-template-columns: repeat(3, 1fr); }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      transition: all 0.25s;
-    }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); transition: all 0.25s; }
     .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
-    .card-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 0.85rem;
-      font-size: 1.3rem;
-    }
+    .card-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; font-size: 1.3rem; }
     .card-icon.teal { background: var(--teal-bg); color: var(--teal); }
     .card-icon.purple { background: var(--purple-bg); color: var(--purple); }
     .card h3 { font-size: 1.05rem; font-weight: 650; margin-bottom: 0.4rem; }
     .card p { color: var(--text-secondary); font-size: 0.93rem; line-height: 1.55; }
 
-    /* Steps */
     .steps-section { background: var(--bg-alt); }
     .steps { grid-template-columns: repeat(3, 1fr); }
-    .step-num {
-      display: inline-flex;
-      width: 36px;
-      height: 36px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: var(--teal-bg);
-      border: 1.5px solid var(--teal-border);
-      color: var(--teal);
-      font-weight: 700;
-      font-size: 0.95rem;
-      margin-bottom: 0.75rem;
-    }
+    .step-num { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; border-radius: 50%; background: var(--teal-bg); border: 1.5px solid var(--teal-border); color: var(--teal); font-weight: 700; font-size: 0.95rem; margin-bottom: 0.75rem; }
 
-    /* Pricing */
-    .pricing { grid-template-columns: 1fr 1fr; max-width: 720px; margin: 0 auto; }
-    .price { font-size: 2.2rem; font-weight: 800; margin: 0.5rem 0 0.25rem; color: var(--text); }
+    /* Pricing — 3 tiers */
+    .pricing { grid-template-columns: repeat(3, 1fr); max-width: 960px; margin: 0 auto; }
+    .price { font-size: 2.2rem; font-weight: 800; margin: 0.5rem 0 0.25rem; }
     .price-sub { font-size: 0.85rem; color: var(--muted); }
-    .price-card.featured {
-      border-color: var(--teal-light);
-      box-shadow: 0 0 0 1px var(--teal-light), var(--shadow-lg);
-      position: relative;
-    }
-    .price-card.featured::before {
-      content: "BEST VALUE";
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(135deg, var(--teal-light), var(--teal));
-      color: #fff;
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 0.2rem 0.7rem;
-      border-radius: 999px;
-      letter-spacing: 0.06em;
-    }
+    .price-card.pop { border-color: var(--teal-light); box-shadow: 0 0 0 1px var(--teal-light), var(--shadow-lg); position: relative; }
+    .price-card.pop::before { content: "MOST POPULAR"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--teal-light), var(--teal)); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.7rem; border-radius: 999px; letter-spacing: 0.06em; white-space: nowrap; }
     .list { padding-left: 0; list-style: none; margin: 0.6rem 0 0; }
-    .list li {
-      color: var(--text-secondary);
-      font-size: 0.93rem;
-      padding: 0.3rem 0;
-      padding-left: 1.4rem;
-      position: relative;
-    }
-    .list li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--teal);
-      font-weight: 700;
-    }
-    .no-sub {
-      margin-top: 1.4rem;
-      border: 1.5px solid var(--teal-border);
-      border-radius: 14px;
-      background: var(--teal-bg);
-      color: var(--teal);
-      padding: 0.85rem;
-      font-weight: 600;
-      text-align: center;
-      font-size: 0.95rem;
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    .list li { color: var(--text-secondary); font-size: 0.9rem; padding: 0.28rem 0; padding-left: 1.4rem; position: relative; }
+    .list li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+    .list li.free-note { font-style: italic; color: var(--muted); font-size: 0.82rem; }
+    .list li.free-note::before { content: ""; }
 
-    /* CTA */
-    .cta {
-      background: linear-gradient(135deg, #F0FDFB, #EDE9FE);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-    .cta p {
-      color: var(--text-secondary);
-      margin: 0.6rem 0 1.4rem;
-      font-size: 1.05rem;
-    }
+    .honesty-box { margin-top: 1.4rem; border: 1.5px solid var(--teal-border); border-radius: 14px; background: var(--teal-bg); padding: 1rem 1.2rem; max-width: 960px; margin-left: auto; margin-right: auto; text-align: center; }
+    .honesty-box strong { color: var(--teal); }
+    .honesty-box p { color: var(--text-secondary); font-size: 0.92rem; margin: 0; line-height: 1.5; }
 
-    /* Footer */
-    footer {
-      background: var(--bg-footer);
-      padding: 2.4rem 0 3rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-    .foot {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.8rem 1.5rem;
-      align-items: center;
-    }
+    .cta { background: linear-gradient(135deg, #F0FDFB, #EDE9FE); border: 1px solid var(--border); border-radius: 24px; padding: 3rem 2rem; text-align: center; }
+    .cta p { color: var(--text-secondary); margin: 0.6rem 0 1.4rem; font-size: 1.05rem; }
+
+    footer { background: var(--bg-footer); padding: 2.4rem 0 3rem; color: var(--muted); font-size: 0.9rem; }
+    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.8rem 1.5rem; align-items: center; }
     .foot-links { display: flex; flex-wrap: wrap; gap: 1rem; }
     .foot a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .foot a:hover { color: var(--teal); }
 
-    /* Responsive */
     @media (max-width: 980px) {
       .hero { grid-template-columns: 1fr; text-align: center; }
       .hero .lead { margin-left: auto; margin-right: auto; }
@@ -352,20 +129,7 @@
     }
     @media (max-width: 640px) {
       .mobile-toggle { display: inline-flex; }
-      .menu {
-        display: none;
-        position: absolute;
-        top: 68px;
-        left: 5%;
-        right: 5%;
-        flex-direction: column;
-        background: rgba(255,255,255,0.98);
-        backdrop-filter: blur(12px);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 0.5rem;
-        box-shadow: var(--shadow-lg);
-      }
+      .menu { display: none; position: absolute; top: 68px; left: 5%; right: 5%; flex-direction: column; background: rgba(255,255,255,0.98); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 14px; padding: 0.5rem; box-shadow: var(--shadow-lg); }
       .menu.open { display: flex; }
       .menu a { padding: 0.65rem 0.85rem; }
       .nav-download { display: none; }
@@ -376,7 +140,6 @@
 </head>
 <body>
 
-  <!-- Nav -->
   <div class="nav-wrap">
     <div class="container">
       <nav>
@@ -385,26 +148,18 @@
             <path d="M12 21s-6.8-4.3-9-8.8C1 8.3 3.6 5 7.2 5c2 0 3.2 1 4.8 2.8C13.6 6 14.8 5 16.8 5 20.4 5 23 8.3 21 12.2 18.8 16.7 12 21 12 21Z" fill="url(#nav-g)"/>
             <path d="M7.7 13.2h8.6v4.1H7.7z" fill="#fff" opacity="0.9"/>
             <path d="M10 10.5h4v2.2h-4z" fill="#0D9488"/>
-            <defs>
-              <linearGradient id="nav-g" x1="3" y1="5" x2="21" y2="21" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#14B8A6"/>
-                <stop offset="1" stop-color="#0D9488"/>
-              </linearGradient>
-            </defs>
+            <defs><linearGradient id="nav-g" x1="3" y1="5" x2="21" y2="21" gradientUnits="userSpaceOnUse"><stop stop-color="#14B8A6"/><stop offset="1" stop-color="#0D9488"/></linearGradient></defs>
           </svg>
           VitaVault
         </a>
-
         <button class="mobile-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
-
         <div class="menu" id="menu">
           <a href="#features">Features</a>
           <a href="/developers/">Developers</a>
           <a href="/privacy/">Privacy</a>
           <a href="#download">Download</a>
         </div>
-
-        <a class="btn primary nav-download" href="#" aria-label="Download VitaVault">Download</a>
+        <a class="btn primary nav-download" href="#" aria-label="Download VitaVault">Download Free</a>
       </nav>
     </div>
   </div>
@@ -415,73 +170,81 @@
     <section class="hero-section" id="download">
       <div class="container hero">
         <div>
-          <span class="badge">✦ Now on the App Store</span>
-          <h1>Your Health Data.<br><strong>Your AI.</strong> Your Rules.</h1>
-          <p class="lead">Export your Apple Health data in one tap. Use it with ChatGPT, Claude, Gemini — or our built-in AI Coach. Your data never touches our servers.</p>
+          <span class="badge">✦ Free on the App Store</span>
+          <h1>Your health data.<br><strong>Any AI you want.</strong></h1>
+          <p class="lead">Your iPhone already tracks your steps, sleep, heart rate, and more. VitaVault lets you actually <em>use</em> that data — export it in one tap and drop it into ChatGPT, Claude, Gemini, or our built-in AI Coach.</p>
           <div class="hero-actions">
-            <a class="btn primary" href="#">Download on App Store</a>
-            <a class="btn ghost" href="https://github.com/BrandonS7/vitavault-tools">View on GitHub</a>
+            <a class="btn primary" href="#">Download Free</a>
+            <a class="btn ghost" href="https://github.com/BrandonS7/vitavault-tools">Open Source Docs</a>
           </div>
         </div>
         <div class="phone-mock" aria-label="VitaVault app preview">
           <div class="phone-screen">
             <div class="screen-card gradient">
-              <div class="screen-label">Today</div>
-              <div class="screen-value">8,012 steps</div>
+              <div class="screen-label">This week</div>
+              <div class="screen-value">43,133 steps</div>
             </div>
             <div class="screen-card">
-              <div class="screen-label">Sleep last night</div>
-              <div class="screen-value">6.8 hrs</div>
+              <div class="screen-label">Last night</div>
+              <div class="screen-value">6h 42m sleep</div>
             </div>
             <div class="screen-card">
-              <div class="screen-label">AI Coach</div>
-              <div class="screen-value">3 actionable insights</div>
+              <div class="screen-label">AI Coach says</div>
+              <div class="screen-value">"Add 20 min of walking"</div>
             </div>
             <div class="screen-card gradient">
               <div class="screen-label">Export ready</div>
-              <div class="screen-value">JSON + CSV</div>
+              <div class="screen-value">CSV · JSON · AI-Ready</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- What is this? -->
+    <section class="container">
+      <div class="section-head" style="max-width:700px;">
+        <h2>Wait — what's Apple Health data?</h2>
+        <p class="lead" style="margin-top:0.6rem;">Your iPhone (and Apple Watch, if you have one) quietly tracks a ton about you — steps, sleep, heart rate, calories, blood oxygen, and way more. It all lives in the Apple Health app. But it's stuck there. You can look at it, but you can't really <em>do</em> anything with it.</p>
+        <p class="lead">VitaVault gets it out. You tap export, pick a format, and now you've got a file you can actually use — send it to your doctor, paste it into an AI, track it in a spreadsheet, whatever you want.</p>
+      </div>
+    </section>
+
     <!-- Features -->
-    <section class="container" id="features">
+    <section class="container" id="features" style="padding-top:2rem;">
       <div class="section-head">
-        <h2>Everything you need to own your health data</h2>
-        <p class="lead">Privacy-first exports, AI flexibility, and open tooling — all on-device.</p>
+        <h2>Here's what you can do</h2>
       </div>
       <div class="grid features">
         <article class="card">
           <div class="card-icon teal">📤</div>
-          <h3>One-Tap Export</h3>
-          <p>Export all your health data as JSON or CSV. Steps, sleep, heart rate, weight, workouts — everything.</p>
+          <h3>Export in 3 formats</h3>
+          <p><strong>CSV</strong> opens in Excel or Google Sheets. <strong>JSON</strong> is for developers. <strong>AI-Ready</strong> is pre-formatted so you can paste it straight into ChatGPT or Claude and start asking questions.</p>
         </article>
         <article class="card">
           <div class="card-icon teal">🧠</div>
-          <h3>Your AI, Your Choice</h3>
-          <p>Feed your export into ChatGPT, Claude, or any AI. We give you the data, you choose the brain.</p>
+          <h3>Use any AI you want</h3>
+          <p>Export your data, paste it into your favorite AI, and ask things like "What should I focus on this week?" or "Prepare a summary for my doctor." Your data, your AI, your choice.</p>
         </article>
         <article class="card">
           <div class="card-icon purple">✨</div>
-          <h3>Built-in AI Coach</h3>
-          <p>Don't want to DIY? Our AI Coach analyzes your trends, prepares doctor visit summaries, and answers health questions.</p>
+          <h3>Or use our AI Coach</h3>
+          <p>Don't want to copy and paste? Our built-in AI Coach reads your data and gives you actionable insights, doctor visit prep, and answers to your health questions — right in the app.</p>
         </article>
         <article class="card">
           <div class="card-icon teal">💊</div>
-          <h3>Medication Tracking</h3>
-          <p>Scan pill bottle labels with your camera. AI auto-fills everything. Set reminders. Never miss a dose.</p>
+          <h3>Medication tracking</h3>
+          <p>Point your camera at a pill bottle — AI reads the label and fills in everything. Set reminders so you never miss a dose. Free, no upgrade needed.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon teal">📊</div>
+          <h3>Beautiful dashboard</h3>
+          <p>See all your health metrics in one place — steps, sleep, heart rate, HRV, blood oxygen, weight, calories, exercise. Charts, trends, everything. Always free.</p>
         </article>
         <article class="card">
           <div class="card-icon teal">🔒</div>
-          <h3>Privacy First</h3>
-          <p>Your data stays on your device. Exports go to your Files app. No accounts, no cloud sync required.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon teal">📖</div>
-          <h3>Open Source Format</h3>
-          <p>Our export format is fully documented and open source. Build your own tools, integrations, or dashboards.</p>
+          <h3>Your data stays yours</h3>
+          <p>Everything is processed on your phone. When you export, the file goes to your Files app — not our servers. No account needed. No sign-up. No tracking.</p>
         </article>
       </div>
     </section>
@@ -490,24 +253,23 @@
     <section class="steps-section">
       <div class="container">
         <div class="section-head">
-          <h2>How it works</h2>
-          <p class="lead">From Apple Health to your AI workflow in under a minute.</p>
+          <h2>It takes about 30 seconds</h2>
         </div>
         <div class="grid steps">
           <article class="card">
             <span class="step-num">1</span>
-            <h3>Connect to Apple Health</h3>
-            <p>Grant read access once and VitaVault securely reads health metrics on-device only.</p>
+            <h3>Open the app, tap Allow</h3>
+            <p>VitaVault asks for permission to read your Apple Health data. Tap allow, and that's it — your dashboard fills up immediately.</p>
           </article>
           <article class="card">
             <span class="step-num">2</span>
-            <h3>Choose your data &amp; export</h3>
-            <p>Pick a time window, export JSON/CSV, and save directly to your Files app.</p>
+            <h3>Browse or export</h3>
+            <p>Check out your dashboard, or hit export. Pick CSV, JSON, or AI-Ready. Choose a time range. The file saves to your phone.</p>
           </article>
           <article class="card">
             <span class="step-num">3</span>
-            <h3>Use with any AI or our Coach</h3>
-            <p>Analyze trends in your favorite model or get guided recommendations from AI Coach.</p>
+            <h3>Do whatever you want with it</h3>
+            <p>Paste it into ChatGPT. Email it to your doctor. Open it in Excel. Or skip all that and just ask our AI Coach. Up to you.</p>
           </article>
         </div>
       </div>
@@ -516,8 +278,8 @@
     <!-- Pricing -->
     <section class="container">
       <div class="section-head" style="text-align:center;">
-        <h2>Simple pricing</h2>
-        <p class="lead" style="margin-left:auto;margin-right:auto;">Start free. Upgrade once when you want the full experience.</p>
+        <h2>Pricing that makes sense</h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">Try everything free. Pay only if you want more.</p>
       </div>
       <div class="grid pricing">
         <article class="card price-card">
@@ -525,38 +287,74 @@
           <p class="price">$0</p>
           <p class="price-sub">Forever</p>
           <ul class="list">
-            <li>Export data (JSON/CSV)</li>
-            <li>View dashboard</li>
-            <li>7-day trends</li>
+            <li>Full health dashboard</li>
+            <li>All charts &amp; trends</li>
+            <li>3 exports to try it out</li>
+            <li>3 AI Coach questions</li>
+            <li>Medication tracking</li>
+            <li>Pill label scanning</li>
           </ul>
         </article>
-        <article class="card price-card featured">
+        <article class="card price-card pop">
           <h3>Premium</h3>
           <p class="price">$4.99</p>
-          <p class="price-sub">One-time purchase</p>
+          <p class="price-sub">One-time — yours forever</p>
           <ul class="list">
-            <li>AI Coach</li>
-            <li>Medication tracking</li>
-            <li>Auto-sync</li>
+            <li>Unlimited exports</li>
+            <li>CSV, JSON, &amp; AI-Ready</li>
             <li>All health metrics</li>
-            <li>Label scanning</li>
+            <li>7-day AI Coach trial</li>
+            <li>Everything in Free</li>
+          </ul>
+        </article>
+        <article class="card price-card">
+          <h3>AI Coach</h3>
+          <p class="price">$2.99<span style="font-size:0.45em;font-weight:500;color:var(--muted)">/mo</span></p>
+          <p class="price-sub">Optional add-on</p>
+          <ul class="list">
+            <li>50 AI queries per month</li>
+            <li>Daily health summaries</li>
+            <li>Detailed trend analysis</li>
+            <li>Doctor visit prep reports</li>
+            <li>Cancel anytime</li>
           </ul>
         </article>
       </div>
-      <div class="no-sub">No subscription. Pay once, own it forever.</div>
+      <div class="honesty-box">
+        <p><strong>No tricks.</strong> The dashboard, med tracking, and label scanning are free forever. Premium is a one-time purchase — no subscription. AI Coach is optional if you want ongoing AI analysis.</p>
+      </div>
+    </section>
+
+    <!-- AI-Ready Callout -->
+    <section class="container" style="padding-top:2rem;">
+      <div class="cta" style="text-align:left; display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center;">
+        <div>
+          <h2>The AI-Ready export is the magic</h2>
+          <p style="margin:0.6rem 0 0; color:var(--text-secondary); font-size:1rem; line-height:1.6;">Most health apps give you a spreadsheet and say "good luck." VitaVault gives you a file that's already formatted for AI — just paste it into ChatGPT, Claude, or Gemini and start asking questions. No formatting, no cleanup, no tech skills needed.</p>
+        </div>
+        <div style="background:#0F172A; border-radius:14px; padding:1rem; font-family:'SF Mono',Menlo,monospace; font-size:0.8rem; color:#E2E8F0; line-height:1.6; overflow-x:auto;">
+          <div style="color:#94A3B8; margin-bottom:0.5rem;">ai-ready-export.txt</div>
+          <span style="color:#86EFAC;">HEALTH SUMMARY — Last 7 Days</span><br><br>
+          <span style="color:#7DD3FC;">Steps:</span> 43,133 total (6,162/day avg)<br>
+          <span style="color:#7DD3FC;">Sleep:</span> 6h 42m last night, 7.1h avg<br>
+          <span style="color:#7DD3FC;">Resting HR:</span> 62 bpm<br>
+          <span style="color:#7DD3FC;">HRV:</span> 30ms (low — stress or fatigue)<br>
+          <span style="color:#7DD3FC;">Weight:</span> 185.4 lbs<br><br>
+          <span style="color:#C4B5FD;">→ Paste this into any AI and ask away</span>
+        </div>
+      </div>
     </section>
 
     <!-- CTA -->
     <section class="container">
       <div class="cta">
-        <h2>Take control of your health data</h2>
-        <p>Open source. Privacy-first. No data hostage.</p>
-        <a class="btn primary" href="#">Download on App Store</a>
+        <h2>Your health data is already there. Go get it.</h2>
+        <p>Free download. No account needed. Takes 30 seconds.</p>
+        <a class="btn primary" href="#">Download Free</a>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="container foot">
       <div>VitaVault © 2026 Starboard Investments</div>
@@ -571,29 +369,12 @@
   </footer>
 
   <script>
-    const toggle = document.querySelector('.mobile-toggle');
-    const menu = document.querySelector('#menu');
+    const toggle = document.querySelector('.mobile-toggle'), menu = document.querySelector('#menu');
     if (toggle && menu) {
-      toggle.addEventListener('click', () => {
-        const next = !menu.classList.contains('open');
-        menu.classList.toggle('open', next);
-        toggle.setAttribute('aria-expanded', String(next));
-      });
-      menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          menu.classList.remove('open');
-          toggle.setAttribute('aria-expanded', 'false');
-        });
-      });
+      toggle.addEventListener('click', () => { const n = !menu.classList.contains('open'); menu.classList.toggle('open', n); toggle.setAttribute('aria-expanded', String(n)); });
+      menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }));
     }
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', e => {
-        const target = document.querySelector(anchor.getAttribute('href'));
-        if (!target) return;
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const t = document.querySelector(a.getAttribute('href')); if (!t) return; e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }));
   </script>
 </body>
 </html>
