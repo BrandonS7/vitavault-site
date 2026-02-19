@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Use VitaVault | Complete Guide</title>
+  <meta name="description" content="Complete guide to VitaVault: scan lab results, track medications, use the AI health coach, prep for doctor visits, and export your health data.">
+  <link rel="canonical" href="https://vitavault.io/guide/">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <style>
+    :root {
+      --bg: #FFFFFF; --bg-alt: #F0FDFB; --bg-footer: #F1F5F9; --card: #FFFFFF;
+      --text: #1A1A2E; --text-secondary: #475569; --muted: #64748B;
+      --teal: #0D9488; --teal-light: #14B8A6; --teal-bg: rgba(20,184,166,0.08); --teal-border: rgba(20,184,166,0.25);
+      --purple: #8B5CF6; --purple-bg: rgba(139,92,246,0.08);
+      --red: #EF4444; --red-bg: rgba(239,68,68,0.08);
+      --indigo: #6366F1; --indigo-bg: rgba(99,102,241,0.08);
+      --border: #E2E8F0; --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+      --max: 800px; --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .container { width: min(var(--max), 90%); margin: 0 auto; }
+
+    .nav-wrap { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    nav { display: flex; align-items: center; justify-content: space-between; min-height: 60px; }
+    .brand { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; font-size: 1.1rem; color: var(--text); }
+    .brand svg { width: 24px; height: 24px; }
+    .back-link { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .back-link:hover { color: var(--teal); }
+
+    .hero { padding: 3rem 0 2rem; text-align: center; }
+    .hero h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; }
+    .hero h1 strong { color: var(--teal); }
+    .hero p { color: var(--text-secondary); margin-top: 0.5rem; font-size: 1.05rem; }
+
+    .toc { background: var(--bg-alt); border: 1px solid var(--teal-border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2.5rem; }
+    .toc h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--teal); margin-bottom: 0.8rem; }
+    .toc-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1.5rem; }
+    .toc-list a { color: var(--text-secondary); text-decoration: none; font-size: 0.92rem; padding: 0.2rem 0; display: block; }
+    .toc-list a:hover { color: var(--teal); }
+    @media (max-width: 600px) { .toc-list { grid-template-columns: 1fr; } }
+
+    .guide-section { padding: 2rem 0; border-top: 1px solid var(--border); }
+    .guide-section:first-of-type { border-top: none; }
+    .section-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; }
+    .section-icon.teal { background: var(--teal-bg); color: var(--teal); }
+    .section-icon.purple { background: var(--purple-bg); color: var(--purple); }
+    .section-icon.indigo { background: var(--indigo-bg); color: var(--indigo); }
+    .section-icon.red { background: var(--red-bg); color: var(--red); }
+    .guide-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .guide-section .intro { color: var(--text-secondary); margin-bottom: 1.2rem; font-size: 1rem; }
+
+    .step-list { list-style: none; counter-reset: steps; }
+    .step-list li { counter-increment: steps; position: relative; padding: 0.8rem 0 0.8rem 3rem; border-left: 2px solid var(--border); margin-left: 14px; }
+    .step-list li:last-child { border-left-color: transparent; }
+    .step-list li::before { content: counter(steps); position: absolute; left: -14px; top: 0.7rem; width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: #fff; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .step-list li strong { display: block; font-weight: 600; color: var(--text); margin-bottom: 0.15rem; }
+    .step-list li span { color: var(--text-secondary); font-size: 0.93rem; }
+
+    .tip { background: var(--teal-bg); border: 1px solid var(--teal-border); border-radius: 12px; padding: 0.8rem 1rem; margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); }
+    .tip strong { color: var(--teal); }
+
+    .cta-box { background: linear-gradient(135deg, #F0FDFB, #EDE9FE); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; text-align: center; margin: 3rem 0; }
+    .cta-box h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .cta-box p { color: var(--text-secondary); margin-bottom: 1rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem; border-radius: 12px; border: none; padding: 0.7rem 1.5rem; font-weight: 600; font-size: 0.95rem; text-decoration: none; cursor: pointer; transition: all 0.2s; color: #fff; background: linear-gradient(135deg, var(--teal-light), var(--teal)); box-shadow: 0 4px 14px rgba(13,148,136,0.3); }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(13,148,136,0.4); }
+
+    footer { background: var(--bg-footer); padding: 2rem 0; color: var(--muted); font-size: 0.85rem; text-align: center; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--teal); }
+  </style>
+</head>
+<body>
+
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a href="/" class="brand">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-6.8-4.3-9-8.8C1 8.3 3.6 5 7.2 5c2 0 3.2 1 4.8 2.8C13.6 6 14.8 5 16.8 5 20.4 5 23 8.3 21 12.2 18.8 16.7 12 21 12 21Z" fill="url(#g)"/><path d="M7.7 13.2h8.6v4.1H7.7z" fill="#fff" opacity="0.9"/><path d="M10 10.5h4v2.2h-4z" fill="#0D9488"/><defs><linearGradient id="g" x1="3" y1="5" x2="21" y2="21" gradientUnits="userSpaceOnUse"><stop stop-color="#14B8A6"/><stop offset="1" stop-color="#0D9488"/></linearGradient></defs></svg>
+          VitaVault
+        </a>
+        <a href="/" class="back-link">&larr; Back to Home</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+
+      <div class="hero">
+        <h1>How to Use <strong>VitaVault</strong></h1>
+        <p>Everything you need to know, from first launch to doctor visit prep.</p>
+      </div>
+
+      <div class="toc">
+        <h3>In This Guide</h3>
+        <ol class="toc-list">
+          <li><a href="#dashboard">1. Your Health Dashboard</a></li>
+          <li><a href="#labs">2. Scanning Lab Results</a></li>
+          <li><a href="#meds">3. Tracking Medications</a></li>
+          <li><a href="#sleep">4. Sleep Analysis</a></li>
+          <li><a href="#ai">5. AI Health Coach</a></li>
+          <li><a href="#doctor">6. Doctor Visit Prep</a></li>
+          <li><a href="#timeline">7. Health Timeline</a></li>
+          <li><a href="#export">8. Exporting Your Data</a></li>
+          <li><a href="#privacy">9. Privacy &amp; Your Data</a></li>
+        </ol>
+      </div>
+
+      <!-- 1. Dashboard -->
+      <div class="guide-section" id="dashboard">
+        <div class="section-icon teal">&#x1F4CA;</div>
+        <h2>1. Your Health Dashboard</h2>
+        <p class="intro">The dashboard is the first thing you see. It pulls data from Apple Health and shows your key metrics at a glance.</p>
+        <ol class="step-list">
+          <li><strong>Allow Health access</strong><span>When you first open VitaVault, it asks to read your Apple Health data. Tap Allow and your dashboard fills up immediately.</span></li>
+          <li><strong>Browse your metrics</strong><span>You'll see cards for steps, heart rate, HRV, blood oxygen, sleep, weight, calories, and exercise minutes. Each shows the latest value and a mini trend.</span></li>
+          <li><strong>Tap for detail</strong><span>Tap any metric card to see full charts with custom date ranges: 7 days, 30 days, 90 days, or set your own start and end dates.</span></li>
+          <li><strong>Check AI insights</strong><span>If you have AI access, insight cards appear at the top. Tap to expand for personalized analysis of your trends.</span></li>
+        </ol>
+        <div class="tip"><strong>Tip:</strong> The dashboard auto-updates as Apple Health gets new data from your iPhone, Apple Watch, or any connected device.</div>
+      </div>
+
+      <!-- 2. Labs -->
+      <div class="guide-section" id="labs">
+        <div class="section-icon indigo">&#x1F9EA;</div>
+        <h2>2. Scanning Lab Results</h2>
+        <p class="intro">This is VitaVault's standout feature. Upload or scan lab reports and get every value extracted, organized, and explained.</p>
+        <ol class="step-list">
+          <li><strong>Go to Records &gt; Labs</strong><span>Open the Records tab, select Labs with the segmented picker at the top, then tap the + button.</span></li>
+          <li><strong>Scan or upload</strong><span>Choose "Scan Document" to use your camera (great for paper reports), or "Upload PDF" for files saved on your phone or in email attachments.</span></li>
+          <li><strong>AI extracts everything</strong><span>VitaVault's AI reads the document and pulls out every test name, value, unit, and reference range. It also detects the lab date automatically.</span></li>
+          <li><strong>Review and save</strong><span>Check the extracted results. Adjust the date if needed using the date picker. Then save.</span></li>
+          <li><strong>Browse by date</strong><span>Your results are organized by date with cards showing the test count and how many are abnormal. Tap a date to see all results.</span></li>
+          <li><strong>Understand each result</strong><span>Tap any individual test for a plain-English AI explanation, a visual reference range bar, and a trend chart if you have multiple readings over time.</span></li>
+        </ol>
+        <div class="tip"><strong>Tip:</strong> You can upload multiple PDFs at once. Each file is processed separately with its own progress indicator. Great for catching up on months of lab work.</div>
+      </div>
+
+      <!-- 3. Medications -->
+      <div class="guide-section" id="meds">
+        <div class="section-icon teal">&#x1F48A;</div>
+        <h2>3. Tracking Medications</h2>
+        <p class="intro">Keep your complete medication list in one place with smart reminders so you never miss a dose.</p>
+        <ol class="step-list">
+          <li><strong>Go to Records &gt; Meds</strong><span>Open the Records tab and select Meds with the segmented picker.</span></li>
+          <li><strong>Add a medication</strong><span>Tap + and choose "Scan Label" to point your camera at a pill bottle. AI reads the label and fills in name, strength, form, directions, and more. Or choose "Manual Entry."</span></li>
+          <li><strong>Set your dosing</strong><span>Enter AM and PM doses (e.g., "2 tablets AM, 1 tablet PM"). This is what you actually take, not just what's on the bottle.</span></li>
+          <li><strong>Enable reminders</strong><span>Toggle reminders on, set times (6:00 AM, 9:00 PM, etc.), and choose which days. You'll get a notification even when the app is closed.</span></li>
+          <li><strong>Keep it current</strong><span>Update or remove medications as your prescriptions change. Your list is automatically included in Doctor Visit Prep reports and AI Coach context.</span></li>
+        </ol>
+      </div>
+
+      <!-- 4. Sleep -->
+      <div class="guide-section" id="sleep">
+        <div class="section-icon teal">&#x1F634;</div>
+        <h2>4. Sleep Analysis</h2>
+        <p class="intro">Understand your sleep patterns with nightly tracking, goal monitoring, and trend analysis.</p>
+        <ol class="step-list">
+          <li><strong>Tap the sleep card</strong><span>On your dashboard, tap the sleep metric card to open the detailed Sleep Analysis view.</span></li>
+          <li><strong>See nightly bars</strong><span>A bar chart shows each night's sleep duration. A dashed line marks the 8-hour goal so you can see which nights hit the target.</span></li>
+          <li><strong>Check your stats</strong><span>Average, minimum, and maximum sleep duration for the selected period. See how consistent you are.</span></li>
+          <li><strong>Change date range</strong><span>Switch between 7D, 30D, 90D, or set a custom range to analyze specific time periods.</span></li>
+        </ol>
+        <div class="tip"><strong>Tip:</strong> Sleep data comes from Apple Health. Make sure your Apple Watch or sleep tracking app (like Pillow or AutoSleep) is set up to write sleep data to Health.</div>
+      </div>
+
+      <!-- 5. AI Coach -->
+      <div class="guide-section" id="ai">
+        <div class="section-icon purple">&#x1F9E0;</div>
+        <h2>5. AI Health Coach</h2>
+        <p class="intro">Ask questions about your health and get clear, personalized answers based on your actual data.</p>
+        <ol class="step-list">
+          <li><strong>Open the AI Coach tab</strong><span>It's in the bottom tab bar. You'll see a text input and suggested questions.</span></li>
+          <li><strong>Ask anything</strong><span>The AI has context on your medications, lab results, and health trends. Try: "What does my high LDL mean?", "Should I be worried about my Vitamin D levels?", or "How has my sleep been trending?"</span></li>
+          <li><strong>Get explanations, not diagnoses</strong><span>The AI provides health education and helps you understand your numbers. It's not a replacement for your doctor, and it will tell you when to seek professional advice.</span></li>
+          <li><strong>Follow up</strong><span>Ask follow-up questions to dig deeper. The conversation keeps context so you don't have to repeat yourself.</span></li>
+        </ol>
+        <div class="tip"><strong>Tip:</strong> Free users get 3 AI queries. Premium includes a 7-day trial. The AI Analyst subscription ($2.99/month) gives you 50 queries per month.</div>
+      </div>
+
+      <!-- 6. Doctor Prep -->
+      <div class="guide-section" id="doctor">
+        <div class="section-icon indigo">&#x1F3E5;</div>
+        <h2>6. Doctor Visit Prep</h2>
+        <p class="intro">Generate a professional PDF summary to bring to your next appointment. Your doctor will love you for this.</p>
+        <ol class="step-list">
+          <li><strong>Find it</strong><span>Open the AI Coach tab and tap "Prepare for Doctor Visit" at the top. Or go to Settings &gt; Tools &gt; Doctor Visit Prep.</span></li>
+          <li><strong>Generate your report</strong><span>Tap "Generate Report." VitaVault compiles your data and creates a multi-page PDF.</span></li>
+          <li><strong>What's in the report</strong><span>Current medications with dosing, recent lab results with reference ranges and abnormal flags, 30-day health metrics (steps, heart rate, HRV, blood oxygen), and AI-generated questions to discuss with your doctor.</span></li>
+          <li><strong>Share it</strong><span>Tap Share to email it, AirDrop it, print it, or save it to Files. Bring it on your phone or print a copy.</span></li>
+        </ol>
+        <div class="tip"><strong>Tip:</strong> Generate the report the day before your appointment so the data is fresh. Doctor Visit Prep requires Premium ($4.99 one-time).</div>
+      </div>
+
+      <!-- 7. Timeline -->
+      <div class="guide-section" id="timeline">
+        <div class="section-icon teal">&#x1F4C5;</div>
+        <h2>7. Health Timeline</h2>
+        <p class="intro">See your complete health story in one chronological feed.</p>
+        <ol class="step-list">
+          <li><strong>Open it</strong><span>Go to Settings &gt; Tools &gt; Health Timeline.</span></li>
+          <li><strong>Scroll through events</strong><span>Every medication addition, lab date, journal entry, and health milestone appears in order. Each event type has a different color.</span></li>
+          <li><strong>Spot patterns</strong><span>Did your labs improve after starting a new medication? Did your sleep change after a stressful period you journaled about? The timeline helps you connect the dots.</span></li>
+        </ol>
+      </div>
+
+      <!-- 8. Export -->
+      <div class="guide-section" id="export">
+        <div class="section-icon teal">&#x1F4E4;</div>
+        <h2>8. Exporting Your Data</h2>
+        <p class="intro">Take your data anywhere. VitaVault exports in three formats designed for different use cases.</p>
+        <ol class="step-list">
+          <li><strong>Choose a format</strong><span><strong>CSV</strong> opens in Excel or Google Sheets. <strong>JSON</strong> is for developers. <strong>AI-Ready</strong> is pre-formatted for pasting into ChatGPT, Claude, or Gemini.</span></li>
+          <li><strong>Select a date range</strong><span>Pick the time period you want to export. Last 7 days, 30 days, or a custom range.</span></li>
+          <li><strong>Export and share</strong><span>The file saves to your device. Share it via email, AirDrop, or any app on your phone.</span></li>
+          <li><strong>Use with AI</strong><span>The AI-Ready format is designed to paste directly into any AI chatbot. Ask questions like "What trends do you see?" or "Prepare a summary for my doctor."</span></li>
+        </ol>
+        <div class="tip"><strong>Tip:</strong> Free users get 3 exports. Premium ($4.99 one-time) unlocks unlimited exports in all three formats.</div>
+      </div>
+
+      <!-- 9. Privacy -->
+      <div class="guide-section" id="privacy">
+        <div class="section-icon teal">&#x1F512;</div>
+        <h2>9. Privacy &amp; Your Data</h2>
+        <p class="intro">VitaVault is built on a simple principle: your data is yours.</p>
+        <ol class="step-list">
+          <li><strong>Everything stays on your device</strong><span>Health metrics, medications, lab results, and journal entries are stored locally on your iPhone. We have no cloud database.</span></li>
+          <li><strong>AI processing is temporary</strong><span>When you use AI features (Coach, Doctor Prep, Lab Analysis), only the relevant data is sent to our AI provider. It is not stored after the response is generated.</span></li>
+          <li><strong>No account required</strong><span>No sign-up, no login, no email collection. Just download and start using it.</span></li>
+          <li><strong>Delete and it's gone</strong><span>Remove the app and all your data is permanently deleted. No traces on any server anywhere.</span></li>
+          <li><strong>Apple Health is safe</strong><span>VitaVault reads from Apple Health but never modifies or deletes your Apple Health data.</span></li>
+        </ol>
+        <div class="tip"><strong>Tip:</strong> Read our full <a href="/privacy/" style="color:var(--teal);font-weight:600;">Privacy Policy</a> for complete details.</div>
+      </div>
+
+      <div class="cta-box">
+        <h2>Ready to take control of your health data?</h2>
+        <p>Free download. No account needed. All data stays on your device.</p>
+        <a class="btn" href="#">Download VitaVault Free</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>VitaVault &copy; 2026 Captain Intelligence LLC &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/terms/">Terms</a> &middot; <a href="mailto:support@vitavault.io">Contact</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

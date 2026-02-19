@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VitaVault | Your Health Data. Your AI. Your Rules.</title>
-  <meta name="description" content="Export your Apple Health data as CSV, JSON, or AI-ready format. Use it with ChatGPT, Claude, Gemini, or VitaVault's built-in AI Coach. Privacy-first and on-device.">
-  <meta name="keywords" content="health data export, Apple Health AI, health data privacy, open source health tools, export health data to ChatGPT">
+  <title>VitaVault | Your Health, Decoded</title>
+  <meta name="description" content="Scan lab results, track medications, and understand your health data with AI. Beautiful dashboard, doctor visit prep, and sleep analysis. All data stays on your device.">
+  <meta name="keywords" content="health tracker, lab results app, medication tracker, personal health record, PHR, AI health coach, doctor visit prep, Apple Health, sleep analysis">
   <link rel="canonical" href="https://vitavault.io/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="VitaVault | Your Health Data. Your AI. Your Rules.">
-  <meta property="og:description" content="Export Apple Health data as CSV, JSON, or AI-ready format. Use it with any AI. Privacy-first.">
+  <meta property="og:title" content="VitaVault | Your Health, Decoded">
+  <meta property="og:description" content="Scan lab results, track medications, and understand your health data with AI. Privacy-first, on-device.">
   <meta property="og:url" content="https://vitavault.io/">
   <meta property="og:image" content="https://vitavault.io/assets/og.png">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -28,6 +28,8 @@
       --teal-border: rgba(20, 184, 166, 0.25);
       --purple: #8B5CF6;
       --purple-bg: rgba(139, 92, 246, 0.08);
+      --red-bg: rgba(239, 68, 68, 0.08);
+      --red: #EF4444;
       --border: #E2E8F0;
       --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
       --shadow-lg: 0 4px 24px rgba(0,0,0,0.08);
@@ -74,8 +76,10 @@
     .phone-screen { border-radius: 24px; background: #0F172A; padding: 1rem; min-height: 420px; display: grid; gap: 0.65rem; }
     .screen-card { border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 0.7rem 0.85rem; background: rgba(255,255,255,0.06); }
     .screen-card.gradient { background: linear-gradient(140deg, rgba(20,184,166,0.2), rgba(139,92,246,0.15)); border-color: rgba(20,184,166,0.2); }
+    .screen-card.red { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.2); }
     .screen-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
     .screen-value { font-size: 1.25rem; font-weight: 700; color: #fff; margin-top: 0.15rem; }
+    .screen-value .flag { color: #FCA5A5; font-size: 0.8rem; font-weight: 600; }
 
     .section-head { margin-bottom: 2rem; }
     .section-head .lead { margin-top: 0.5rem; }
@@ -86,6 +90,7 @@
     .card-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; font-size: 1.3rem; }
     .card-icon.teal { background: var(--teal-bg); color: var(--teal); }
     .card-icon.purple { background: var(--purple-bg); color: var(--purple); }
+    .card-icon.red { background: var(--red-bg); color: var(--red); }
     .card h3 { font-size: 1.05rem; font-weight: 650; margin-bottom: 0.4rem; }
     .card p { color: var(--text-secondary); font-size: 0.93rem; line-height: 1.55; }
 
@@ -93,7 +98,12 @@
     .steps { grid-template-columns: repeat(3, 1fr); }
     .step-num { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; border-radius: 50%; background: var(--teal-bg); border: 1.5px solid var(--teal-border); color: var(--teal); font-weight: 700; font-size: 0.95rem; margin-bottom: 0.75rem; }
 
-    /* Pricing — 3 tiers */
+    .highlight-section { padding: 4rem 0; }
+    .highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+    .highlight-grid.reverse { direction: rtl; }
+    .highlight-grid.reverse > * { direction: ltr; }
+    .highlight-visual { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; }
+
     .pricing { grid-template-columns: repeat(3, 1fr); max-width: 960px; margin: 0 auto; }
     .price { font-size: 2.2rem; font-weight: 800; margin: 0.5rem 0 0.25rem; }
     .price-sub { font-size: 0.85rem; color: var(--muted); }
@@ -101,9 +111,7 @@
     .price-card.pop::before { content: "MOST POPULAR"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--teal-light), var(--teal)); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.7rem; border-radius: 999px; letter-spacing: 0.06em; white-space: nowrap; }
     .list { padding-left: 0; list-style: none; margin: 0.6rem 0 0; }
     .list li { color: var(--text-secondary); font-size: 0.9rem; padding: 0.28rem 0; padding-left: 1.4rem; position: relative; }
-    .list li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
-    .list li.free-note { font-style: italic; color: var(--muted); font-size: 0.82rem; }
-    .list li.free-note::before { content: ""; }
+    .list li::before { content: "\2713"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
 
     .honesty-box { margin-top: 1.4rem; border: 1.5px solid var(--teal-border); border-radius: 14px; background: var(--teal-bg); padding: 1rem 1.2rem; max-width: 960px; margin-left: auto; margin-right: auto; text-align: center; }
     .honesty-box strong { color: var(--teal); }
@@ -111,6 +119,14 @@
 
     .cta { background: linear-gradient(135deg, #F0FDFB, #EDE9FE); border: 1px solid var(--border); border-radius: 24px; padding: 3rem 2rem; text-align: center; }
     .cta p { color: var(--text-secondary); margin: 0.6rem 0 1.4rem; font-size: 1.05rem; }
+
+    .lab-demo { font-family: 'SF Mono', Menlo, monospace; font-size: 0.82rem; line-height: 1.7; }
+    .lab-row { display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0; border-bottom: 1px solid var(--border); }
+    .lab-row:last-child { border-bottom: none; }
+    .lab-name { font-weight: 600; color: var(--text); }
+    .lab-val { color: var(--teal); font-weight: 600; }
+    .lab-val.high { color: var(--red); }
+    .lab-ref { color: var(--muted); font-size: 0.75rem; }
 
     footer { background: var(--bg-footer); padding: 2.4rem 0 3rem; color: var(--muted); font-size: 0.9rem; }
     .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.8rem 1.5rem; align-items: center; }
@@ -126,6 +142,7 @@
       .features { grid-template-columns: repeat(2, 1fr); }
       .steps { grid-template-columns: 1fr; }
       .pricing { grid-template-columns: 1fr; max-width: 380px; }
+      .highlight-grid, .highlight-grid.reverse { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
       .mobile-toggle { display: inline-flex; }
@@ -155,11 +172,11 @@
         <button class="mobile-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
         <div class="menu" id="menu">
           <a href="#features">Features</a>
-          <a href="/developers/">Developers</a>
-          <a href="/privacy/">Privacy</a>
-          <a href="#download">Download</a>
+          <a href="#labs">Labs</a>
+          <a href="/guide/">Guide</a>
+          <a href="#pricing">Pricing</a>
         </div>
-        <a class="btn primary nav-download" href="#" aria-label="Download VitaVault">Download Free</a>
+        <a class="btn primary nav-download" href="#download" aria-label="Download VitaVault">Download Free</a>
       </nav>
     </div>
   </div>
@@ -170,82 +187,139 @@
     <section class="hero-section" id="download">
       <div class="container hero">
         <div>
-          <span class="badge">✦ Free on the App Store</span>
-          <h1>Your health data.<br><strong>Any AI you want.</strong></h1>
-          <p class="lead">Your iPhone already tracks your steps, sleep, heart rate, and more. VitaVault lets you actually <em>use</em> that data — export it in one tap and drop it into ChatGPT, Claude, Gemini, or our built-in AI Coach.</p>
+          <span class="badge">&#10022; Free on the App Store</span>
+          <h1>Your health data,<br><strong>finally decoded.</strong></h1>
+          <p class="lead">Scan your lab results and actually understand them. Track medications with smart reminders. See your health trends on a beautiful dashboard. Prep for doctor visits with AI-generated reports. All on your device, all private.</p>
           <div class="hero-actions">
             <a class="btn primary" href="#">Download Free</a>
-            <a class="btn ghost" href="https://github.com/BrandonS7/vitavault-tools">Open Source Docs</a>
+            <a class="btn ghost" href="#labs">See how labs work</a>
           </div>
         </div>
         <div class="phone-mock" aria-label="VitaVault app preview">
           <div class="phone-screen">
             <div class="screen-card gradient">
-              <div class="screen-label">This week</div>
-              <div class="screen-value">43,133 steps</div>
+              <div class="screen-label">Lab Results - Feb 15</div>
+              <div class="screen-value">12 tests <span class="flag">2 flagged</span></div>
+            </div>
+            <div class="screen-card">
+              <div class="screen-label">AI Coach</div>
+              <div class="screen-value">"Your LDL is trending down"</div>
             </div>
             <div class="screen-card">
               <div class="screen-label">Last night</div>
-              <div class="screen-value">6h 42m sleep</div>
-            </div>
-            <div class="screen-card">
-              <div class="screen-label">AI Coach says</div>
-              <div class="screen-value">"Add 20 min of walking"</div>
+              <div class="screen-value">7h 12m sleep</div>
             </div>
             <div class="screen-card gradient">
-              <div class="screen-label">Export ready</div>
-              <div class="screen-value">CSV · JSON · AI-Ready</div>
+              <div class="screen-label">Medications</div>
+              <div class="screen-value">4 active - all on track</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- What is this? -->
+    <!-- The Problem -->
     <section class="container">
       <div class="section-head" style="max-width:700px;">
-        <h2>Wait — what's Apple Health data?</h2>
-        <p class="lead" style="margin-top:0.6rem;">Your iPhone (and Apple Watch, if you have one) quietly tracks a ton about you — steps, sleep, heart rate, calories, blood oxygen, and way more. It all lives in the Apple Health app. But it's stuck there. You can look at it, but you can't really <em>do</em> anything with it.</p>
-        <p class="lead">VitaVault gets it out. You tap export, pick a format, and now you've got a file you can actually use — send it to your doctor, paste it into an AI, track it in a spreadsheet, whatever you want.</p>
+        <h2>Your health data is scattered and confusing</h2>
+        <p class="lead" style="margin-top:0.6rem;">Lab results sit in a patient portal you never check. Medications are scribbled on paper. Your Apple Watch tracks everything but you never look at it. And when your doctor asks "any changes since last visit?" you just shrug.</p>
+        <p class="lead">VitaVault puts it all in one place and makes it make sense. Scan a lab report, and instead of cryptic numbers, you get clear explanations. Track your meds, and you'll never miss a dose. Check your dashboard, and you'll actually know how you're doing.</p>
       </div>
     </section>
 
     <!-- Features -->
     <section class="container" id="features" style="padding-top:2rem;">
       <div class="section-head">
-        <h2>Here's what you can do</h2>
+        <h2>Everything your health app should do</h2>
       </div>
       <div class="grid features">
         <article class="card">
-          <div class="card-icon teal">📤</div>
-          <h3>Export in 3 formats</h3>
-          <p><strong>CSV</strong> opens in Excel or Google Sheets. <strong>JSON</strong> is for developers. <strong>AI-Ready</strong> is pre-formatted so you can paste it straight into ChatGPT or Claude and start asking questions.</p>
+          <div class="card-icon teal">&#x1F9EA;</div>
+          <h3>Scan lab results</h3>
+          <p>Point your camera at a lab report or upload a PDF. VitaVault extracts every value, organizes by date, and flags anything abnormal. Tap any result for a plain-English explanation.</p>
         </article>
         <article class="card">
-          <div class="card-icon teal">🧠</div>
-          <h3>Use any AI you want</h3>
-          <p>Export your data, paste it into your favorite AI, and ask things like "What should I focus on this week?" or "Prepare a summary for my doctor." Your data, your AI, your choice.</p>
+          <div class="card-icon teal">&#x1F48A;</div>
+          <h3>Track medications</h3>
+          <p>Scan a pill bottle label and AI fills in everything. Set AM/PM dosing, custom reminders, and keep your complete medication list ready to share with any doctor.</p>
         </article>
         <article class="card">
-          <div class="card-icon purple">✨</div>
-          <h3>Or use our AI Coach</h3>
-          <p>Don't want to copy and paste? Our built-in AI Coach reads your data and gives you actionable insights, doctor visit prep, and answers to your health questions — right in the app.</p>
+          <div class="card-icon purple">&#x2728;</div>
+          <h3>AI Health Coach</h3>
+          <p>Ask questions about your labs, meds, or trends. Get clear, personalized explanations. Not a replacement for your doctor, but a great way to understand your numbers.</p>
         </article>
         <article class="card">
-          <div class="card-icon teal">💊</div>
-          <h3>Medication tracking</h3>
-          <p>Point your camera at a pill bottle — AI reads the label and fills in everything. Set reminders so you never miss a dose. Free, no upgrade needed.</p>
+          <div class="card-icon teal">&#x1F4CA;</div>
+          <h3>Health dashboard</h3>
+          <p>Steps, heart rate, HRV, blood oxygen, sleep, weight, and more. Custom date ranges with trend charts that show where you're heading.</p>
         </article>
         <article class="card">
-          <div class="card-icon teal">📊</div>
-          <h3>Beautiful dashboard</h3>
-          <p>See all your health metrics in one place — steps, sleep, heart rate, HRV, blood oxygen, weight, calories, exercise. Charts, trends, everything. Always free.</p>
+          <div class="card-icon purple">&#x1F3E5;</div>
+          <h3>Doctor visit prep</h3>
+          <p>Generate a professional PDF with your meds, recent labs, health trends, and AI-suggested questions. Share via email, AirDrop, or print before your appointment.</p>
         </article>
         <article class="card">
-          <div class="card-icon teal">🔒</div>
-          <h3>Your data stays yours</h3>
-          <p>Everything is processed on your phone. When you export, the file goes to your Files app — not our servers. No account needed. No sign-up. No tracking.</p>
+          <div class="card-icon teal">&#x1F634;</div>
+          <h3>Sleep analysis</h3>
+          <p>See nightly sleep duration with 8-hour goal tracking, 30-day trends, and your best/worst nights. Understand how your sleep patterns affect everything else.</p>
         </article>
+        <article class="card">
+          <div class="card-icon teal">&#x1F4C5;</div>
+          <h3>Health timeline</h3>
+          <p>Your complete health story in one chronological view. Medication changes, lab dates, journal entries, and milestones. See the full picture.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon teal">&#x1F4E4;</div>
+          <h3>Export anywhere</h3>
+          <p>Export your data as CSV, JSON, or AI-Ready format. Paste into ChatGPT, Claude, or Gemini. Send to your doctor. Open in a spreadsheet. Your data, your choice.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon teal">&#x1F512;</div>
+          <h3>Privacy first</h3>
+          <p>Everything stays on your device. No cloud storage, no accounts, no tracking. Delete the app and your data is completely gone. We never see it.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Lab Scanning Highlight -->
+    <section class="highlight-section" id="labs">
+      <div class="container">
+        <div class="highlight-grid">
+          <div>
+            <span class="badge">&#x1F9EA; Core Feature</span>
+            <h2 style="margin-top:1rem;">Upload labs,<br>actually understand them</h2>
+            <p class="lead" style="margin-top:0.8rem;">Nobody explains your lab results. MyChart shows you numbers. Your doctor's office mails you a sheet of paper. VitaVault is different: scan or upload, and every value gets a clear explanation.</p>
+            <p class="lead">Results are organized by date and grouped by category (lipids, thyroid, liver, kidney, and more). Abnormal values are flagged. Tap any result and AI explains what it means, whether you should be concerned, and what questions to ask your doctor.</p>
+          </div>
+          <div class="highlight-visual">
+            <div style="font-weight:700; font-size:0.95rem; margin-bottom:0.6rem; color:var(--teal);">Lab Results - Feb 15, 2026</div>
+            <div class="lab-demo">
+              <div class="lab-row">
+                <div><span class="lab-name">Total Cholesterol</span><br><span class="lab-ref">Ref: &lt;200 mg/dL</span></div>
+                <span class="lab-val">187 mg/dL</span>
+              </div>
+              <div class="lab-row">
+                <div><span class="lab-name">LDL Cholesterol</span><br><span class="lab-ref">Ref: &lt;100 mg/dL</span></div>
+                <span class="lab-val high">128 mg/dL &#9888;</span>
+              </div>
+              <div class="lab-row">
+                <div><span class="lab-name">HDL Cholesterol</span><br><span class="lab-ref">Ref: &gt;40 mg/dL</span></div>
+                <span class="lab-val">52 mg/dL</span>
+              </div>
+              <div class="lab-row">
+                <div><span class="lab-name">TSH</span><br><span class="lab-ref">Ref: 0.4-4.0 mIU/L</span></div>
+                <span class="lab-val">2.1 mIU/L</span>
+              </div>
+              <div class="lab-row">
+                <div><span class="lab-name">Vitamin D</span><br><span class="lab-ref">Ref: 30-100 ng/mL</span></div>
+                <span class="lab-val high">22 ng/mL &#9888;</span>
+              </div>
+            </div>
+            <div style="margin-top:0.8rem; padding:0.6rem 0.8rem; background:var(--purple-bg); border-radius:10px; font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+              <strong style="color:var(--purple);">AI Insight:</strong> Your LDL is slightly elevated. This is common and often improves with dietary changes. Your Vitamin D is low, which is typical in winter. Consider supplementation and discuss both with your doctor.
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -253,30 +327,30 @@
     <section class="steps-section">
       <div class="container">
         <div class="section-head">
-          <h2>It takes about 30 seconds</h2>
+          <h2>Up and running in 30 seconds</h2>
         </div>
         <div class="grid steps">
           <article class="card">
             <span class="step-num">1</span>
-            <h3>Open the app, tap Allow</h3>
-            <p>VitaVault asks for permission to read your Apple Health data. Tap allow, and that's it — your dashboard fills up immediately.</p>
+            <h3>Download and allow Health access</h3>
+            <p>VitaVault asks for permission to read your Apple Health data. Tap allow and your dashboard fills up immediately with steps, sleep, heart rate, and more.</p>
           </article>
           <article class="card">
             <span class="step-num">2</span>
-            <h3>Browse or export</h3>
-            <p>Check out your dashboard, or hit export. Pick CSV, JSON, or AI-Ready. Choose a time range. The file saves to your phone.</p>
+            <h3>Add your meds and labs</h3>
+            <p>Scan a pill bottle or enter meds manually. Upload lab PDFs or snap a photo of your results. VitaVault organizes everything automatically.</p>
           </article>
           <article class="card">
             <span class="step-num">3</span>
-            <h3>Do whatever you want with it</h3>
-            <p>Paste it into ChatGPT. Email it to your doctor. Open it in Excel. Or skip all that and just ask our AI Coach. Up to you.</p>
+            <h3>Understand your health</h3>
+            <p>Check your dashboard for trends. Ask the AI Coach questions. Generate a Doctor Visit Prep report before your next appointment. Export data anytime.</p>
           </article>
         </div>
       </div>
     </section>
 
     <!-- Pricing -->
-    <section class="container">
+    <section class="container" id="pricing">
       <div class="section-head" style="text-align:center;">
         <h2>Pricing that makes sense</h2>
         <p class="lead" style="margin-left:auto;margin-right:auto;">Try everything free. Pay only if you want more.</p>
@@ -288,22 +362,26 @@
           <p class="price-sub">Forever</p>
           <ul class="list">
             <li>Full health dashboard</li>
-            <li>All charts &amp; trends</li>
-            <li>3 exports to try it out</li>
-            <li>3 AI Coach questions</li>
+            <li>All charts and trends</li>
             <li>Medication tracking</li>
             <li>Pill label scanning</li>
+            <li>Lab scanning and organization</li>
+            <li>Sleep analysis</li>
+            <li>Health Timeline</li>
+            <li>3 AI queries to try</li>
+            <li>3 data exports to try</li>
           </ul>
         </article>
         <article class="card price-card pop">
           <h3>Premium</h3>
           <p class="price">$4.99</p>
-          <p class="price-sub">One-time — yours forever</p>
+          <p class="price-sub">One-time - yours forever</p>
           <ul class="list">
-            <li>Unlimited exports</li>
-            <li>CSV, JSON, &amp; AI-Ready</li>
-            <li>All health metrics</li>
+            <li>Unlimited data exports</li>
+            <li>CSV, JSON, and AI-Ready</li>
+            <li>Doctor Visit Prep reports</li>
             <li>7-day AI Coach trial</li>
+            <li>Priority support</li>
             <li>Everything in Free</li>
           </ul>
         </article>
@@ -313,43 +391,24 @@
           <p class="price-sub">Optional add-on</p>
           <ul class="list">
             <li>50 AI queries per month</li>
-            <li>Daily health summaries</li>
+            <li>Lab result explanations</li>
+            <li>Personalized health coaching</li>
+            <li>Medication interaction insights</li>
             <li>Detailed trend analysis</li>
-            <li>Doctor visit prep reports</li>
             <li>Cancel anytime</li>
           </ul>
         </article>
       </div>
       <div class="honesty-box">
-        <p><strong>No tricks.</strong> The dashboard, med tracking, and label scanning are free forever. Premium is a one-time purchase — no subscription. AI Coach is optional if you want ongoing AI analysis.</p>
-      </div>
-    </section>
-
-    <!-- AI-Ready Callout -->
-    <section class="container" style="padding-top:2rem;">
-      <div class="cta" style="text-align:left; display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:center;">
-        <div>
-          <h2>The AI-Ready export is the magic</h2>
-          <p style="margin:0.6rem 0 0; color:var(--text-secondary); font-size:1rem; line-height:1.6;">Most health apps give you a spreadsheet and say "good luck." VitaVault gives you a file that's already formatted for AI — just paste it into ChatGPT, Claude, or Gemini and start asking questions. No formatting, no cleanup, no tech skills needed.</p>
-        </div>
-        <div style="background:#0F172A; border-radius:14px; padding:1rem; font-family:'SF Mono',Menlo,monospace; font-size:0.8rem; color:#E2E8F0; line-height:1.6; overflow-x:auto;">
-          <div style="color:#94A3B8; margin-bottom:0.5rem;">ai-ready-export.txt</div>
-          <span style="color:#86EFAC;">HEALTH SUMMARY — Last 7 Days</span><br><br>
-          <span style="color:#7DD3FC;">Steps:</span> 43,133 total (6,162/day avg)<br>
-          <span style="color:#7DD3FC;">Sleep:</span> 6h 42m last night, 7.1h avg<br>
-          <span style="color:#7DD3FC;">Resting HR:</span> 62 bpm<br>
-          <span style="color:#7DD3FC;">HRV:</span> 30ms (low — stress or fatigue)<br>
-          <span style="color:#7DD3FC;">Weight:</span> 185.4 lbs<br><br>
-          <span style="color:#C4B5FD;">→ Paste this into any AI and ask away</span>
-        </div>
+        <p><strong>No tricks.</strong> The dashboard, med tracking, lab scanning, and sleep analysis are free forever. Premium is a one-time purchase, not a subscription. AI Coach is optional if you want ongoing AI analysis.</p>
       </div>
     </section>
 
     <!-- CTA -->
     <section class="container">
       <div class="cta">
-        <h2>Your health data is already there. Go get it.</h2>
-        <p>Free download. No account needed. Takes 30 seconds.</p>
+        <h2>Your health data deserves better than confusion.</h2>
+        <p>Free download. No account needed. All data stays on your device.</p>
         <a class="btn primary" href="#">Download Free</a>
       </div>
     </section>
@@ -357,12 +416,11 @@
 
   <footer>
     <div class="container foot">
-      <div>VitaVault © 2026 Starboard Investments</div>
+      <div>VitaVault &copy; 2026 Captain Intelligence LLC</div>
       <div class="foot-links">
-        <a href="/privacy/">Privacy Policy</a>
-        <a href="/terms/">Terms of Service</a>
-        <a href="/developers/">Developers</a>
-        <a href="https://github.com/BrandonS7/vitavault-tools">GitHub</a>
+        <a href="/guide/">Guide</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
         <a href="mailto:support@vitavault.io">Contact</a>
       </div>
     </div>
