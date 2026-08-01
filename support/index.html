@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support — VitaVault</title>
+  <meta name="description" content="Get help with VitaVault. Contact support, browse common questions, and find guides.">
+  <link rel="canonical" href="https://vitavault.io/support/">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",system-ui,sans-serif;background:#fff;color:#1A1A2E;line-height:1.7;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:720px;margin:0 auto;padding:4rem 1.5rem 6rem}
+    a{color:#0D9488}
+    h1{font-size:2rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:0.5rem}
+    h2{font-size:1.25rem;font-weight:700;margin:2rem 0 0.5rem;color:#1A1A2E}
+    p,li{color:#475569;font-size:0.97rem}
+    ul{padding-left:1.2rem;margin:0.4rem 0}
+    .back{display:inline-flex;align-items:center;gap:0.4rem;color:#64748B;text-decoration:none;font-size:0.9rem;font-weight:500;margin-bottom:2rem}
+    .back:hover{color:#0D9488}
+    .lede{color:#64748B;font-size:1rem;margin-bottom:2rem}
+    form{margin-top:1rem;display:flex;flex-direction:column;gap:0.9rem}
+    label{font-size:0.85rem;font-weight:600;color:#1A1A2E}
+    input,textarea,select{width:100%;padding:0.7rem 0.85rem;border:1px solid #CBD5E1;border-radius:10px;font:inherit;font-size:0.95rem;color:#1A1A2E;background:#fff}
+    input:focus,textarea:focus,select:focus{outline:2px solid #0D9488;outline-offset:1px;border-color:#0D9488}
+    textarea{min-height:140px;resize:vertical}
+    button{background:#0D9488;color:#fff;border:0;border-radius:10px;padding:0.85rem 1.4rem;font-size:1rem;font-weight:700;cursor:pointer}
+    button:hover{background:#14B8A6}
+    .faq p{margin-bottom:0.6rem}
+    .note{font-size:0.85rem;color:#64748B;margin-top:0.6rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="/" class="back">← Back to VitaVault</a>
+    <h1>Support</h1>
+    <p class="lede">Questions, bug reports, feature ideas — send a message and we'll get back to you.</p>
+
+    <form action="https://formspree.io/f/mojjerbw" method="POST">
+      <input type="hidden" name="site" value="vitavault">
+      <input type="hidden" name="_subject" value="VitaVault support request">
+      <div>
+        <label for="email">Your email</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com">
+      </div>
+      <div>
+        <label for="topic">Topic</label>
+        <select id="topic" name="topic">
+          <option>Question</option>
+          <option>Bug report</option>
+          <option>Purchase or subscription issue</option>
+          <option>Feature request</option>
+          <option>Privacy question</option>
+        </select>
+      </div>
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required placeholder="Tell us what's going on…"></textarea>
+      </div>
+      <button type="submit">Send message</button>
+      <p class="note">Please don't include medical details or health records in your message.</p>
+    </form>
+
+    <div class="faq">
+      <h2>Common questions</h2>
+      <p><strong>How does pricing work?</strong> VitaVault is free to download, with a free first-month AI trial. Premium is a one-time $4.99 purchase — all features forever, plus a full year of AI Insights included. After that year, AI Insights can be continued with an optional monthly subscription.</p>
+      <p><strong>Where is my health data stored?</strong> On your device. See the <a href="/privacy/">privacy policy</a> for the full picture.</p>
+      <p><strong>How do I restore a purchase on a new phone?</strong> Open the paywall (Settings → Premium) and tap "Restore Purchases" — it's tied to your Apple ID.</p>
+      <p><strong>How do I connect my Apple Health data?</strong> See the in-app guide (Settings → Health Sources Guide) or the <a href="/guide/">getting started guide</a>.</p>
+    </div>
+  </div>
+</body>
+</html>
