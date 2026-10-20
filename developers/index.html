@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://vitavault.io/developers/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="VitaVault Developers | Open Health Export Format">
-  <meta property="og:description" content="Open source Apple Health export schema and tools for AI workflows.">
+  <meta property="og:description" content="Apple Health export schema and an open source toolkit for AI workflows.">
   <meta property="og:url" content="https://vitavault.io/developers/">
   <meta property="og:image" content="https://vitavault.io/assets/og.png">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
@@ -118,7 +118,7 @@
     }
     .copy-btn {
       border: 1px solid #334155; background: #1E293B; color: #CBD5E1;
-      border-radius: 8px; font-size: 0.78rem; padding: 0.2rem 0.6rem; cursor: pointer;
+      border-radius: 8px; font-size: 0.78rem; padding: 0.2rem 0.8rem; cursor: pointer; min-height: 44px; min-width: 64px;
       transition: all 0.2s;
     }
     .copy-btn:hover { background: #334155; }
@@ -153,7 +153,7 @@
       gap: 0.8rem 1.5rem; align-items: center;
     }
     .foot-links { display: flex; flex-wrap: wrap; gap: 1rem; }
-    .foot a { color: var(--muted); text-decoration: none; }
+    .foot a { color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
     .foot a:hover { color: var(--teal); }
 
     @media (max-width: 900px) { .use-grid { grid-template-columns: 1fr; } .github { grid-template-columns: 1fr; } }
@@ -200,7 +200,7 @@
       <div class="container">
         <span class="badge">OPEN SOURCE</span>
         <h1>Build with <strong>your health data</strong></h1>
-        <p class="lead">VitaVault exports Apple Health data in three formats: CSV (for spreadsheets), JSON (for code), and AI-Ready (for pasting straight into ChatGPT, Claude, or Gemini). Everything is open source.</p>
+        <p class="lead">VitaVault exports Apple Health data in three formats: CSV (for spreadsheets), JSON (for code), and AI-Ready (for pasting straight into ChatGPT, Claude, or Gemini). The export toolkit is open source.</p>
       </div>
     </section>
 
@@ -319,7 +319,7 @@ console.log(<span class="t-s">`Recovery score: ${score}`</span>);</code></pre>
           <p style="margin-top:1.2rem;"><a class="btn primary" href="https://github.com/BrandonS7/vitavault-tools">Star us on GitHub</a></p>
         </article>
         <article class="card" style="display:flex;align-items:center;">
-          <div class="api-note">VitaVault stores all data on your iPhone. There is no cloud API. Your data leaves your phone only when you export it, use an AI feature or scan, or connect OpenClaw sync.</div>
+          <div class="api-note">VitaVault stores your health data on your iPhone, and there is no public API. The one exception is OpenClaw sync through VitaVault Cloud, which is off unless you turn it on: your OpenClaw agent then fetches your synced data from our server with a connection key unique to your device. Otherwise, your data leaves your phone only when you export it or use an AI feature or scan.</div>
         </article>
       </div>
     </section>

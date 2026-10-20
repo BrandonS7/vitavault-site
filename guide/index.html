@@ -69,7 +69,7 @@
     .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(13,148,136,0.4); }
 
     footer { background: var(--bg-footer); padding: 2rem 0; color: var(--muted); font-size: 0.85rem; text-align: center; }
-    footer a { color: var(--muted); text-decoration: none; }
+    footer a { color: var(--muted); text-decoration: none; display: inline-block; padding: 11px 4px; }
     footer a:hover { color: var(--teal); }
   </style>
 </head>
@@ -114,10 +114,10 @@
       <div class="guide-section" id="connect">
         <div class="section-icon teal">&#x1F4CA;</div>
         <h2>1. Connect to Apple Health</h2>
-        <p class="intro">One tap and you're connected. VitaVault reads directly from Apple Health - no setup, no importing, no file transfers.</p>
+        <p class="intro">One tap and you're connected. VitaVault reads directly from Apple Health: no setup, no importing, no file transfers.</p>
         <ol class="step-list">
-          <li><strong>Allow Health access - that's all</strong><span>Open VitaVault, tap Allow when prompted, and your dashboard fills up automatically with all your health data. That's the entire setup.</span></li>
-          <li><strong>Everything syncs automatically</strong><span>Steps, heart rate, HRV, blood oxygen, sleep, weight, calories, exercise - it all comes from Apple Health. Any device that writes to Apple Health (Apple Watch, Oura, Withings, Fitbit, sleep trackers) shows up automatically.</span></li>
+          <li><strong>Allow Health access. That's all.</strong><span>Open VitaVault, tap Allow when prompted, and your dashboard fills up automatically with all your health data. That's the entire setup.</span></li>
+          <li><strong>Everything syncs automatically</strong><span>Steps, heart rate, HRV, blood oxygen, sleep, weight, calories, exercise: it all comes from Apple Health. Any device that writes to Apple Health (Apple Watch, Oura, Withings, Fitbit, sleep trackers) shows up automatically.</span></li>
           <li><strong>Browse your dashboard</strong><span>Tap any metric card for detailed charts with custom date ranges: 7 days, 30 days, 90 days, or set your own start and end dates.</span></li>
           <li><strong>This data powers everything</strong><span>Your Apple Health data feeds the exports, AI insights, doctor prep, and trend analysis. The more data Apple Health has, the more useful VitaVault becomes.</span></li>
         </ol>
@@ -128,9 +128,9 @@
       <div class="guide-section" id="export">
         <div class="section-icon teal">&#x1F4E4;</div>
         <h2>2. Export &amp; Use Your Data</h2>
-        <p class="intro">This is why VitaVault exists. Apple Health locks your data on your phone. VitaVault gets it out in formats you can actually use - with any AI, any doctor, any tool.</p>
+        <p class="intro">This is why VitaVault exists. Apple Health locks your data on your phone. VitaVault gets it out in formats you can actually use, with any AI, any doctor, any tool.</p>
         <ol class="step-list">
-          <li><strong>Choose your format</strong><span><strong>CSV</strong> opens in Excel or Google Sheets for tracking and analysis. <strong>JSON</strong> is for developers and data tools. <strong>AI-Ready</strong> is pre-formatted for pasting directly into AI chatbots - this is the one most people want.</span></li>
+          <li><strong>Choose your format</strong><span><strong>CSV</strong> opens in Excel or Google Sheets for tracking and analysis. <strong>JSON</strong> is for developers and data tools. <strong>AI-Ready</strong> is pre-formatted for pasting directly into AI chatbots. This is the one most people want.</span></li>
           <li><strong>Paste into any AI</strong><span>The AI-Ready format is the magic. Copy it, paste it into ChatGPT, Claude, or Gemini, and ask anything: "What should I focus on this week?", "Analyze my sleep trends", "Prepare a health summary for my doctor." You get personalized insights from any AI you trust.</span></li>
           <li><strong>Pick your date range</strong><span>Export the last 7 days, 30 days, 90 days, or set a custom range. The file saves to your device and you can share via email, AirDrop, or any app.</span></li>
           <li><strong>Send it anywhere</strong><span>Email the CSV to your doctor so they have real data. Track progress in a spreadsheet. Feed it into health research tools. Your data, completely portable, no strings attached.</span></li>
@@ -168,20 +168,6 @@
         </ol>
       </div>
 
-      <!-- 4. Sleep -->
-      <div class="guide-section" id="sleep">
-        <div class="section-icon teal">&#x1F634;</div>
-        <h2>7. Sleep Analysis</h2>
-        <p class="intro">Understand your sleep patterns with nightly tracking, goal monitoring, and trend analysis.</p>
-        <ol class="step-list">
-          <li><strong>Tap the sleep card</strong><span>On your dashboard, tap the sleep metric card to open the detailed Sleep Analysis view.</span></li>
-          <li><strong>See nightly bars</strong><span>A bar chart shows each night's sleep duration. A dashed line marks the 8-hour goal so you can see which nights hit the target.</span></li>
-          <li><strong>Check your stats</strong><span>Average, minimum, and maximum sleep duration for the selected period. See how consistent you are.</span></li>
-          <li><strong>Change date range</strong><span>Switch between 7D, 30D, 90D, or set a custom range to analyze specific time periods.</span></li>
-        </ol>
-        <div class="tip"><strong>Tip:</strong> Sleep data comes from Apple Health. Make sure your Apple Watch or sleep tracking app (like Pillow or AutoSleep) is set up to write sleep data to Health.</div>
-      </div>
-
       <!-- 5. AI Insights -->
       <div class="guide-section" id="ai">
         <div class="section-icon purple">&#x1F9E0;</div>
@@ -194,7 +180,7 @@
           <li><strong>Get explanations, not diagnoses</strong><span>The AI provides health education and helps you understand your numbers. It's not a replacement for your doctor, and it will tell you when to seek professional advice.</span></li>
           <li><strong>Follow up</strong><span>Ask follow-up questions to dig deeper. The conversation keeps context so you don't have to repeat yourself.</span></li>
         </ol>
-        <div class="tip"><strong>Tip:</strong> Free users get 10 AI queries in their first month. Premium ($4.99 one-time) includes 6 months of AI Insights starting the day you buy (50 a month, resets monthly). AI Insights is $2.99 a month (50 a month, resets monthly), and you can add it any time.</div>
+        <div class="tip"><strong>Tip:</strong> Free users get 10 AI queries in their first month. Premium is $4.99 one-time. AI Insights is $2.99 a month (50 a month, resets monthly). Optional, any time. Premium already includes 6 months of AI Insights.</div>
       </div>
 
       <!-- 6. Doctor Prep -->
@@ -210,6 +196,20 @@
           <li><strong>Share it</strong><span>Tap Share to email it, AirDrop it, print it, or save it to Files. Bring it on your phone or print a copy.</span></li>
         </ol>
         <div class="tip"><strong>Tip:</strong> Generate the report the day before your appointment so the data is fresh. Doctor Visit Prep requires Premium ($4.99 one-time).</div>
+      </div>
+
+      <!-- 7. Sleep -->
+      <div class="guide-section" id="sleep">
+        <div class="section-icon teal">&#x1F634;</div>
+        <h2>7. Sleep Analysis</h2>
+        <p class="intro">Understand your sleep patterns with nightly tracking, goal monitoring, and trend analysis.</p>
+        <ol class="step-list">
+          <li><strong>Tap the sleep card</strong><span>On your dashboard, tap the sleep metric card to open the detailed Sleep Analysis view.</span></li>
+          <li><strong>See nightly bars</strong><span>A bar chart shows each night's sleep duration. A dashed line marks the 8-hour goal so you can see which nights hit the target.</span></li>
+          <li><strong>Check your stats</strong><span>Average, minimum, and maximum sleep duration for the selected period. See how consistent you are.</span></li>
+          <li><strong>Change date range</strong><span>Switch between 7D, 30D, 90D, or set a custom range to analyze specific time periods.</span></li>
+        </ol>
+        <div class="tip"><strong>Tip:</strong> Sleep data comes from Apple Health. Make sure your Apple Watch or sleep tracking app (like Pillow or AutoSleep) is set up to write sleep data to Health.</div>
       </div>
 
       <!-- 7. Timeline -->
@@ -234,7 +234,7 @@
           <li><strong>Stored on your iPhone</strong><span>Health metrics, medications, lab results, and journal entries are stored locally on your iPhone.</span></li>
           <li><strong>AI sends only what it needs</strong><span>When you use AI features or scans (Insights, Doctor Prep, Lab Analysis), only what that request needs is sent through our server to Anthropic Claude, with Google Gemini as a backup, and we don't keep your health data.</span></li>
           <li><strong>No account required</strong><span>No sign-up, no login, no email collection. Just download and start using it.</span></li>
-          <li><strong>Delete and it's gone</strong><span>Remove the app and all your data is permanently deleted. We don't keep your health data on any server. The one exception is OpenClaw sync through VitaVault Cloud, if you turn it on (see the Privacy Policy).</span></li>
+          <li><strong>Delete and it's gone</strong><span>Remove the app and everything on your iPhone is permanently deleted. We don't keep your health data on any server. The one exception is OpenClaw sync through VitaVault Cloud, which is off unless you turn it on. To have that copy removed, contact us (see the Privacy Policy).</span></li>
           <li><strong>Apple Health is safe</strong><span>VitaVault reads from Apple Health but never modifies or deletes your Apple Health data.</span></li>
         </ol>
         <div class="tip"><strong>Tip:</strong> Read our full <a href="/privacy/" style="color:var(--teal);font-weight:600;">Privacy Policy</a> for complete details.</div>

@@ -114,6 +114,7 @@
     .card.price-card .price-sub { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin: 0; }
     .price-card .list li.ai-incl { color: var(--text); font-weight: 600; }
     .price-card.addon { background: var(--teal-bg); border-style: dashed; border-color: var(--teal-border); box-shadow: none; position: relative; }
+    .price-card.addon .price-sub { font-size: 13px; font-weight: 500; }
     .price-card.addon::before { content: "OPTIONAL ADD-ON"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #fff; color: var(--teal); border: 1px solid var(--teal-border); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; padding: 0.2rem 0.6rem; border-radius: 999px; white-space: nowrap; }
     .card a[href="/privacy/"] { display: inline-block; padding: 12px 0; }
     .section-head .lead { max-width: 640px; }
@@ -142,7 +143,7 @@
     footer { background: var(--bg-footer); padding: 2.4rem 0 3rem; color: var(--muted); font-size: 0.9rem; }
     .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.8rem 1.5rem; align-items: center; }
     .foot-links { display: flex; flex-wrap: wrap; gap: 1rem; }
-    .foot a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .foot a { color: var(--muted); text-decoration: none; transition: color 0.2s; display: inline-flex; align-items: center; min-height: 44px; }
     .foot a:hover { color: var(--teal); }
 
     @media (max-width: 980px) {
@@ -283,7 +284,7 @@
         <article class="card">
           <div class="card-icon teal">&#x1F512;</div>
           <h3>Privacy first</h3>
-          <p>Your health data is stored on your iPhone, and no account is needed. No tracking. AI features send only what each request needs, through our server to Anthropic Claude, with Google Gemini as a backup, and we don't keep your health data. <a href="/privacy/">Details</a></p>
+          <p>Your health data is stored on your iPhone, and no account is needed. No tracking. AI features send only what each request needs, through our server to Anthropic Claude, with Google Gemini as a backup, and we don't keep your health data unless you turn on OpenClaw sync through VitaVault Cloud. <a href="/privacy/">Details</a></p>
         </article>
       </div>
     </section>
@@ -395,7 +396,7 @@
         <article class="card price-card addon">
           <h3>AI Insights</h3>
           <p class="price">$2.99<span class="per">/mo</span></p>
-          <p class="price-sub">Premium includes AI Insights for 6 months. You only need the subscription after that.</p>
+          <p class="price-sub">Optional, any time. Premium already includes 6 months of AI Insights.</p>
           <ul class="list">
             <li>AI queries: 50 a month, resets monthly</li>
             <li>Lab result explanations</li>
@@ -407,7 +408,7 @@
         </article>
       </div>
       <div class="honesty-box">
-        <p><strong>Straightforward pricing.</strong> Download free and get 10 AI queries in your first month. Premium is a one-time $4.99 purchase, not a subscription, and includes 6 months of AI Insights starting the day you buy (50 a month, resets monthly). AI Insights is $2.99 a month (50 a month, resets monthly). Premium includes AI Insights for 6 months. You only need the subscription after that. Everything else in Premium stays yours forever.</p>
+        <p><strong>Straightforward pricing.</strong> Download free and get 10 AI queries in your first month. Premium is a one-time $4.99 purchase, not a subscription, and everything in it stays yours forever. AI Insights is $2.99 a month (50 a month, resets monthly). Optional, any time. Premium already includes 6 months of AI Insights. Premium's included AI starts the day you buy.</p>
       </div>
     </section>
 
