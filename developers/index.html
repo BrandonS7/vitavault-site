@@ -200,72 +200,68 @@
       <div class="container">
         <span class="badge">OPEN SOURCE</span>
         <h1>Build with <strong>your health data</strong></h1>
-        <p class="lead">VitaVault exports Apple Health data in three formats: CSV (for spreadsheets), JSON (for code), and AI-Ready (for pasting straight into ChatGPT, Claude, or Gemini). The export toolkit is open source.</p>
+        <p class="lead">VitaVault exports Apple Health data in two formats: CSV (for spreadsheets) and JSON (for code and AI tools). The export toolkit is open source.</p>
       </div>
     </section>
 
     <section class="container">
       <div class="section-head">
-        <h2>Three export formats</h2>
-        <p class="lead">Each export gives you the same health data in a different shape. Pick the one that fits your workflow.</p>
+        <h2>Two export formats</h2>
+        <p class="lead">Each export gives you the same Apple Health samples in a different shape. Exports are unlimited for everyone. Free exports cover 5 metrics for the last 7 days; Premium covers every metric and your full history.</p>
       </div>
 
-      <h3 style="margin-bottom:0.6rem;font-size:1.1rem;">1. AI-Ready (the easy one)</h3>
-      <p style="color:var(--text-secondary);margin-bottom:0.8rem;font-size:0.95rem;">Plain text, pre-formatted for pasting into any AI chatbot. No code, no parsing: just copy, paste, ask.</p>
-      <div class="code-box" style="margin-bottom:2rem;">
-        <div class="code-head"><span>ai-ready-export.txt</span><button class="copy-btn" data-copy-target="aiready">Copy</button></div>
-        <pre id="aiready"><code><span class="t-s">HEALTH SUMMARY: Last 7 Days</span>
-
-<span class="t-k">Steps:</span> 43,133 total (6,162/day avg)
-<span class="t-k">Sleep:</span> 6h 42m last night, 7.1h weekly avg
-<span class="t-k">Heart Rate:</span> 72 bpm avg, 62 bpm resting
-<span class="t-k">HRV:</span> 30ms avg (below optimal, possible stress or fatigue)
-<span class="t-k">Blood Oxygen:</span> 97% avg
-<span class="t-k">Weight:</span> 185.4 lbs
-<span class="t-k">Active Calories:</span> 4,645 total (616/day avg)
-<span class="t-k">Exercise:</span> 142 min total
-
-<span class="t-p">Paste this into ChatGPT, Claude, or Gemini and ask:
-"What should I focus on this week?"
-"Prepare a summary for my doctor appointment"
-"What do my HRV trends mean?"</span></code></pre>
-      </div>
-
-      <h3 style="margin-bottom:0.6rem;font-size:1.1rem;">2. JSON (for developers)</h3>
-      <p style="color:var(--text-secondary);margin-bottom:0.8rem;font-size:0.95rem;">Structured data for apps, APIs, databases, or automation. Standard schema, easy to parse in any language.</p>
+      <h3 style="margin-bottom:0.6rem;font-size:1.1rem;">1. JSON (for developers and AI tools)</h3>
+      <p style="color:var(--text-secondary);margin-bottom:0.8rem;font-size:0.95rem;">One record per Apple Health sample, with its type, value, unit, start and end time, and source. Easy to parse in any language. Trimmed here: the real file also carries device and app details, and every record in the range.</p>
       <div class="code-box">
         <div class="code-head"><span>export.json</span><button class="copy-btn" data-copy-target="schema">Copy</button></div>
         <pre id="schema"><code>{
-  <span class="t-k">"exportDate"</span>: <span class="t-s">"2026-02-17T12:00:00Z"</span>,
-  <span class="t-k">"deviceId"</span>: <span class="t-s">"anonymous"</span>,
-  <span class="t-k">"period"</span>: <span class="t-s">"7d"</span>,
-  <span class="t-k">"metrics"</span>: {
-    <span class="t-k">"steps"</span>: { <span class="t-k">"total"</span>: <span class="t-n">43133</span>, <span class="t-k">"dailyAverage"</span>: <span class="t-n">5719</span>, <span class="t-k">"unit"</span>: <span class="t-s">"steps"</span> },
-    <span class="t-k">"sleep"</span>: { <span class="t-k">"lastNight"</span>: <span class="t-n">6.7</span>, <span class="t-k">"weeklyAverage"</span>: <span class="t-n">7.1</span>, <span class="t-k">"unit"</span>: <span class="t-s">"hours"</span> },
-    <span class="t-k">"heartRate"</span>: { <span class="t-k">"average"</span>: <span class="t-n">72</span>, <span class="t-k">"resting"</span>: <span class="t-n">62</span>, <span class="t-k">"unit"</span>: <span class="t-s">"bpm"</span> },
-    <span class="t-k">"weight"</span>: { <span class="t-k">"latest"</span>: <span class="t-n">185.4</span>, <span class="t-k">"unit"</span>: <span class="t-s">"lbs"</span> },
-    <span class="t-k">"activeCalories"</span>: { <span class="t-k">"dailyAverage"</span>: <span class="t-n">542</span>, <span class="t-k">"unit"</span>: <span class="t-s">"kcal"</span> },
-    <span class="t-k">"hrv"</span>: { <span class="t-k">"average"</span>: <span class="t-n">30</span>, <span class="t-k">"unit"</span>: <span class="t-s">"ms"</span> },
-    <span class="t-k">"bloodOxygen"</span>: { <span class="t-k">"average"</span>: <span class="t-n">97</span>, <span class="t-k">"unit"</span>: <span class="t-s">"%"</span> }
-  }
+  <span class="t-k">"schemaVersion"</span>: <span class="t-s">"2.0"</span>,
+  <span class="t-k">"syncTimestamp"</span>: <span class="t-s">"2026-02-17T12:00:00.000Z"</span>,
+  <span class="t-k">"exportRangeStart"</span>: <span class="t-s">"2026-02-11T00:00:00.000Z"</span>,
+  <span class="t-k">"exportRangeEnd"</span>: <span class="t-s">"2026-02-17T11:00:00.000Z"</span>,
+  <span class="t-k">"includedTypes"</span>: [<span class="t-s">"stepCount"</span>, <span class="t-s">"heartRate"</span>],
+  <span class="t-k">"recordCount"</span>: <span class="t-n">2</span>,
+  <span class="t-k">"records"</span>: [
+    {
+      <span class="t-k">"id"</span>: <span class="t-s">"8C1E0F52-1B7A-4C2D-9E61-5A0D2F3B7C11"</span>,
+      <span class="t-k">"type"</span>: <span class="t-s">"stepCount"</span>,
+      <span class="t-k">"value"</span>: <span class="t-n">812</span>,
+      <span class="t-k">"unit"</span>: <span class="t-s">"count"</span>,
+      <span class="t-k">"startDate"</span>: <span class="t-s">"2026-02-17T10:00:00.000Z"</span>,
+      <span class="t-k">"endDate"</span>: <span class="t-s">"2026-02-17T11:00:00.000Z"</span>,
+      <span class="t-k">"timezoneOffsetMinutes"</span>: <span class="t-n">-300</span>,
+      <span class="t-k">"sourceName"</span>: <span class="t-s">"Apple Watch"</span>,
+      <span class="t-k">"schemaVersion"</span>: <span class="t-s">"2.0"</span>
+    },
+    {
+      <span class="t-k">"id"</span>: <span class="t-s">"D47A93E0-6F2B-4E85-A1C9-0B3E8F2D5A64"</span>,
+      <span class="t-k">"type"</span>: <span class="t-s">"heartRate"</span>,
+      <span class="t-k">"value"</span>: <span class="t-n">72</span>,
+      <span class="t-k">"unit"</span>: <span class="t-s">"bpm"</span>,
+      <span class="t-k">"startDate"</span>: <span class="t-s">"2026-02-17T10:41:12.000Z"</span>,
+      <span class="t-k">"endDate"</span>: <span class="t-s">"2026-02-17T10:41:12.000Z"</span>,
+      <span class="t-k">"timezoneOffsetMinutes"</span>: <span class="t-n">-300</span>,
+      <span class="t-k">"sourceName"</span>: <span class="t-s">"Apple Watch"</span>,
+      <span class="t-k">"schemaVersion"</span>: <span class="t-s">"2.0"</span>
+    }
+  ]
 }</code></pre>
       </div>
 
-      <h3 style="margin:2rem 0 0.6rem;font-size:1.1rem;">3. CSV (for spreadsheets)</h3>
-      <p style="color:var(--text-secondary);margin-bottom:0.8rem;font-size:0.95rem;">Opens directly in Excel, Google Sheets, or Numbers. One row per day, one column per metric. Great for charts and tracking over time.</p>
+      <h3 style="margin:2rem 0 0.6rem;font-size:1.1rem;">2. CSV (for spreadsheets)</h3>
+      <p style="color:var(--text-secondary);margin-bottom:0.8rem;font-size:0.95rem;">Opens directly in Excel, Google Sheets, or Numbers. One row per Apple Health sample, with the same fields as the JSON records. Filter by type to chart any metric over time.</p>
       <div class="code-box" style="margin-bottom:0;">
         <div class="code-head"><span>export.csv</span><button class="copy-btn" data-copy-target="csvex">Copy</button></div>
-        <pre id="csvex"><code><span class="t-k">date</span>,<span class="t-k">steps</span>,<span class="t-k">sleep_hours</span>,<span class="t-k">resting_hr</span>,<span class="t-k">hrv_ms</span>,<span class="t-k">weight_lbs</span>,<span class="t-k">calories</span>
-<span class="t-s">2026-02-17</span>,<span class="t-n">8012</span>,<span class="t-n">6.7</span>,<span class="t-n">62</span>,<span class="t-n">28</span>,<span class="t-n">185.4</span>,<span class="t-n">642</span>
-<span class="t-s">2026-02-16</span>,<span class="t-n">5891</span>,<span class="t-n">7.2</span>,<span class="t-n">61</span>,<span class="t-n">33</span>,<span class="t-n">185.2</span>,<span class="t-n">589</span>
-<span class="t-s">2026-02-15</span>,<span class="t-n">7234</span>,<span class="t-n">6.9</span>,<span class="t-n">63</span>,<span class="t-n">29</span>,<span class="t-n">185.6</span>,<span class="t-n">617</span></code></pre>
+        <pre id="csvex"><code><span class="t-k">id</span>,<span class="t-k">type</span>,<span class="t-k">value</span>,<span class="t-k">categoryValue</span>,<span class="t-k">unit</span>,<span class="t-k">startDate</span>,<span class="t-k">endDate</span>,<span class="t-k">timezoneOffsetMinutes</span>,<span class="t-k">sourceName</span>,<span class="t-k">sourceBundle</span>,<span class="t-k">sourceVersion</span>,<span class="t-k">sourceProductType</span>,<span class="t-k">deviceName</span>,<span class="t-k">deviceManufacturer</span>,<span class="t-k">deviceModel</span>,<span class="t-k">deviceSoftwareVersion</span>,<span class="t-k">metadata</span>
+<span class="t-s">8C1E0F52-1B7A-4C2D-9E61-5A0D2F3B7C11</span>,stepCount,<span class="t-n">812</span>,,count,2026-02-17T10:00:00.000Z,2026-02-17T11:00:00.000Z,<span class="t-n">-300</span>,Apple Watch,,,,,,,,
+<span class="t-s">D47A93E0-6F2B-4E85-A1C9-0B3E8F2D5A64</span>,heartRate,<span class="t-n">72</span>,,bpm,2026-02-17T10:41:12.000Z,2026-02-17T10:41:12.000Z,<span class="t-n">-300</span>,Apple Watch,,,,,,,,</code></pre>
       </div>
     </section>
 
     <section class="container" style="background:var(--bg-alt);border-radius:24px;padding:3rem 2rem;">
       <div class="section-head">
         <h2>Use with any AI</h2>
-        <p class="lead">The AI-Ready export is designed for this. Just paste and ask. Here are some prompts to get started.</p>
+        <p class="lead">Upload your JSON or CSV file, or paste it in, and ask. Here are some prompts to get started.</p>
       </div>
       <div class="grid use-grid">
         <article class="card">
@@ -297,9 +293,10 @@
           <p>Parse JSON/CSV in Python, JavaScript, or any language. Build dashboards, alerts, or integrations.</p>
           <div class="code-box" style="margin-top:0.8rem;">
             <div class="code-head"><span>JavaScript</span><button class="copy-btn" data-copy-target="app">Copy</button></div>
-            <pre id="app"><code><span class="t-b">const</span> metrics = data.metrics;
-<span class="t-b">const</span> score = metrics.sleep.weeklyAverage * 10 + metrics.hrv.average;
-console.log(<span class="t-s">`Recovery score: ${score}`</span>);</code></pre>
+            <pre id="app"><code><span class="t-b">const</span> steps = data.records
+  .filter(r =&gt; r.type === <span class="t-s">"stepCount"</span>)
+  .reduce((sum, r) =&gt; sum + (r.value ?? <span class="t-n">0</span>), <span class="t-n">0</span>);
+console.log(<span class="t-s">`Steps in this export: ${steps}`</span>);</code></pre>
           </div>
         </article>
       </div>
