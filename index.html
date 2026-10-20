@@ -113,8 +113,9 @@
     .card.price-card .price .per { font-size: 1rem; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-left: 2px; }
     .card.price-card .price-sub { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin: 0; }
     .price-card .list li.ai-incl { color: var(--text); font-weight: 600; }
-    .price-card.addon { background: var(--teal-bg); border-style: dashed; border-color: var(--teal-border); box-shadow: none; }
-    .price-card .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.25rem; }
+    .price-card.addon { background: var(--teal-bg); border-style: dashed; border-color: var(--teal-border); box-shadow: none; position: relative; }
+    .price-card.addon::before { content: "OPTIONAL ADD-ON"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #fff; color: var(--teal); border: 1px solid var(--teal-border); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; padding: 0.2rem 0.6rem; border-radius: 999px; white-space: nowrap; }
+    .card a[href="/privacy/"] { display: inline-block; padding: 12px 0; }
     .section-head .lead { max-width: 640px; }
     .price-card .price-cta { display: flex; width: 100%; min-height: 48px; margin-top: 1rem; }
     .price-card.pop { border-color: var(--teal-light); box-shadow: 0 0 0 1px var(--teal-light), var(--shadow-lg); position: relative; }
@@ -162,6 +163,7 @@
       .nav-download { display: none; }
       .features { grid-template-columns: 1fr; }
       section { padding: 3.5rem 0; }
+      .grid { gap: 1.5rem; }
     }
   </style>
 </head>
@@ -194,7 +196,7 @@
         <div>
           <span class="badge">&#10022; Free on the App Store</span>
           <h1>Your health data,<br><strong>finally decoded.</strong></h1>
-          <p class="lead">Scan your lab results and actually understand them. Track medications with smart reminders. See your health trends on a beautiful dashboard. Prep for doctor visits with AI-generated reports. Your health data is stored on your iPhone, and no account is needed.</p>
+          <p class="lead">Scan your lab results and actually understand them. Track medications with smart reminders. See your health trends on a beautiful dashboard. Prep for doctor visits with AI-generated reports. Stored on your iPhone, no account needed.</p>
           <div class="hero-actions">
             <a class="btn primary" href="https://apps.apple.com/us/app/id6759207298" target="_blank" rel="noopener">Download Free</a>
             <a class="btn ghost" href="#labs">See how labs work</a>
@@ -381,7 +383,7 @@
           <p class="price">$4.99</p>
           <p class="price-sub">One-time, yours forever</p>
           <ul class="list">
-            <li class="ai-incl">6 months of AI Insights starting the day you buy, 50 a month, resets monthly</li>
+            <li class="ai-incl">6 months of AI Insights from the day you buy: 50 a month, resets monthly</li>
             <li>Everything in the app</li>
             <li>Unlimited data exports</li>
             <li>CSV, JSON, and AI-Ready formats</li>
@@ -391,10 +393,9 @@
           <a class="btn primary price-cta" href="https://apps.apple.com/us/app/id6759207298" target="_blank" rel="noopener">Download Free</a>
         </article>
         <article class="card price-card addon">
-          <span class="eyebrow">Optional add-on</span>
           <h3>AI Insights</h3>
           <p class="price">$2.99<span class="per">/mo</span></p>
-          <p class="price-sub">Optional, any time. Premium includes the first 6 months.</p>
+          <p class="price-sub">Premium includes AI Insights for 6 months. You only need the subscription after that.</p>
           <ul class="list">
             <li>AI queries: 50 a month, resets monthly</li>
             <li>Lab result explanations</li>
@@ -406,7 +407,7 @@
         </article>
       </div>
       <div class="honesty-box">
-        <p><strong>Straightforward pricing.</strong> Download free and get 10 AI queries in your first month. Premium is a one-time $4.99 purchase, not a subscription, and includes 6 months of AI Insights starting the day you buy (50 a month, resets monthly). AI Insights is $2.99 a month (50 a month, resets monthly), and you can add it any time. Everything else in Premium stays yours forever.</p>
+        <p><strong>Straightforward pricing.</strong> Download free and get 10 AI queries in your first month. Premium is a one-time $4.99 purchase, not a subscription, and includes 6 months of AI Insights starting the day you buy (50 a month, resets monthly). AI Insights is $2.99 a month (50 a month, resets monthly). Premium includes AI Insights for 6 months. You only need the subscription after that. Everything else in Premium stays yours forever.</p>
       </div>
     </section>
 

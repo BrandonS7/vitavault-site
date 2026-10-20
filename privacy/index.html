@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy | VitaVault</title>
-  <meta name="description" content="VitaVault privacy policy. Your health data stays on your device.">
+  <meta name="description" content="Your health data is stored on your iPhone, and no account is needed.">
   <link rel="canonical" href="https://vitavault.io/privacy/">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <style>
@@ -28,13 +28,13 @@
     <p class="updated">Last updated: October 20, 2026</p>
 
     <h2>The short version</h2>
-    <p>VitaVault does not collect, store, or transmit your personal health data to any server. Everything stays on your device.</p>
+    <p>Your health data is stored on your iPhone, and no account is needed. When you use AI features or scans, only what that request needs is sent through our server to generate the answer, as described below. We don't keep your health data. The one exception is OpenClaw sync through VitaVault Cloud, which is off unless you turn it on (see OpenClaw Sync below).</p>
 
     <h2>Data Collection</h2>
     <p>VitaVault reads health data from Apple HealthKit with your explicit permission. This data is:</p>
     <ul>
-      <li>Processed entirely on your device</li>
-      <li>Never uploaded to our servers or any third party</li>
+      <li>Stored on your iPhone</li>
+      <li>Never uploaded or shared, except what an AI feature or scan sends when you use it (see AI Insights below), or what OpenClaw sync sends if you connect it</li>
       <li>Never used for advertising or analytics</li>
       <li>Only exported when you explicitly choose to export</li>
     </ul>
@@ -43,6 +43,14 @@
     <p>AI features run only after you accept the consent prompt. Each request sends our Cloudflare Worker only what that feature needs: your question, and depending on the feature, a summary of your health numbers (such as steps, heart rate, and sleep hours), your medication list, or your lab results. Lab scan sends the text your iPhone read from the report, which can include anything printed on it. Label scan sends the label photo. The worker passes this to Anthropic Claude, with Google Gemini as a backup, to generate the answer, and does not keep it.</p>
     <p>To apply monthly AI limits, each AI and scan request also carries a random install ID created by the app and, if you bought Premium or AI Insights, Apple's signed purchase record (product, transaction IDs, and purchase and expiry dates). Neither includes your name, email, or Apple ID. We keep only usage counters keyed to these IDs, and to your IP address for free users. The counters expire automatically.</p>
     <p style="margin-top:0.5rem;"><strong>If you don't use AI features, label scan, lab scan, or OpenClaw sync, no health data leaves your phone.</strong></p>
+
+    <h2>OpenClaw Sync</h2>
+    <p>OpenClaw sync is optional and off until you connect it in Settings and confirm the consent prompt. It sends your health metrics, medications, and labs to an OpenClaw AI agent that you run, so it can answer questions about them. There are two ways to connect:</p>
+    <ul>
+      <li><strong>VitaVault Cloud:</strong> your data is stored on our server under a connection key unique to your device, and your agent fetches it with that key. This is the only case where we store health data.</li>
+      <li><strong>Direct webhook:</strong> your data goes straight from your iPhone to the web address and token you enter, without passing through our server.</li>
+    </ul>
+    <p>Disconnect any time in Settings to stop syncing. To have data already stored on VitaVault Cloud removed, contact us at the address below.</p>
 
     <h2>Medication Data</h2>
     <p>Medication information you enter (names, dosages, reminders) is stored locally on your device. Photos of medication labels are sent through our Cloudflare Worker to Anthropic Claude, with Google Gemini as a backup, to read the label, and the worker does not keep them.</p>
@@ -57,9 +65,10 @@
     <p>We do not use analytics SDKs, tracking pixels, or any form of user behavior monitoring. We don't know who you are or how you use the app.</p>
 
     <h2>Third Parties</h2>
-    <p>VitaVault does not share data with third parties. The only external communication is:</p>
+    <p>VitaVault does not sell or share your data for advertising. The only external communication is:</p>
     <ul>
-      <li>AI Insights requests (anonymized health summaries only, when you choose to use the feature)</li>
+      <li>AI features and scans, sent through our server to Anthropic Claude, with Google Gemini as a backup, when you use them</li>
+      <li>OpenClaw sync, only if you connect it</li>
       <li>Apple's App Store for in-app purchases</li>
     </ul>
 
