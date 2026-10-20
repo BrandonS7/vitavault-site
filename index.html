@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>VitaVault | Your Health, Decoded</title>
-  <meta name="description" content="Scan lab results, track medications, and understand your health data with AI. Beautiful dashboard, doctor visit prep, and sleep analysis. All data stays on your device.">
+  <meta name="description" content="Scan lab results, track medications, and understand your health data with AI. Beautiful dashboard, doctor visit prep, and sleep analysis. Your health data is stored on your iPhone, and no account is needed.">
   <meta name="keywords" content="health tracker, lab results app, medication tracker, personal health record, PHR, AI health insights, doctor visit prep, Apple Health, sleep analysis">
   <link rel="canonical" href="https://vitavault.io/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="VitaVault | Your Health, Decoded">
-  <meta property="og:description" content="Scan lab results, track medications, and understand your health data with AI. Privacy-first, on-device.">
+  <meta property="og:description" content="Scan lab results, track medications, and understand your health data with AI. Your health data is stored on your iPhone, and no account is needed.">
   <meta property="og:url" content="https://vitavault.io/">
   <meta property="og:image" content="https://vitavault.io/assets/og.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
@@ -109,10 +109,16 @@
     .highlight-visual { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; }
 
     .pricing { grid-template-columns: repeat(3, 1fr); max-width: 960px; margin: 0 auto; }
-    .price { font-size: 2.2rem; font-weight: 800; margin: 0.5rem 0 0.25rem; }
-    .price-sub { font-size: 0.85rem; color: var(--muted); }
+    .card.price-card .price { font-size: 2.5rem; font-weight: 800; color: var(--text); line-height: 1.1; letter-spacing: -0.02em; margin: 0.35rem 0 0.2rem; }
+    .card.price-card .price .per { font-size: 1rem; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-left: 2px; }
+    .card.price-card .price-sub { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin: 0; }
+    .price-card .list li.ai-incl { color: var(--text); font-weight: 600; }
+    .price-card.addon { background: var(--teal-bg); border-style: dashed; border-color: var(--teal-border); box-shadow: none; }
+    .price-card .eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.25rem; }
+    .section-head .lead { max-width: 640px; }
+    .price-card .price-cta { display: flex; width: 100%; min-height: 48px; margin-top: 1rem; }
     .price-card.pop { border-color: var(--teal-light); box-shadow: 0 0 0 1px var(--teal-light), var(--shadow-lg); position: relative; }
-    .price-card.pop::before { content: "MOST POPULAR"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--teal-light), var(--teal)); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.7rem; border-radius: 999px; letter-spacing: 0.06em; white-space: nowrap; }
+    .price-card.pop::before { content: "RECOMMENDED"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--teal-light), var(--teal)); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.7rem; border-radius: 999px; letter-spacing: 0.06em; white-space: nowrap; }
     .list { padding-left: 0; list-style: none; margin: 0.6rem 0 0; }
     .list li { color: var(--text-secondary); font-size: 0.9rem; padding: 0.28rem 0; padding-left: 1.4rem; position: relative; }
     .list li::before { content: "\2713"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
@@ -188,7 +194,7 @@
         <div>
           <span class="badge">&#10022; Free on the App Store</span>
           <h1>Your health data,<br><strong>finally decoded.</strong></h1>
-          <p class="lead">Scan your lab results and actually understand them. Track medications with smart reminders. See your health trends on a beautiful dashboard. Prep for doctor visits with AI-generated reports. All on your device, all private.</p>
+          <p class="lead">Scan your lab results and actually understand them. Track medications with smart reminders. See your health trends on a beautiful dashboard. Prep for doctor visits with AI-generated reports. Your health data is stored on your iPhone, and no account is needed.</p>
           <div class="hero-actions">
             <a class="btn primary" href="https://apps.apple.com/us/app/id6759207298" target="_blank" rel="noopener">Download Free</a>
             <a class="btn ghost" href="#labs">See how labs work</a>
@@ -275,7 +281,7 @@
         <article class="card">
           <div class="card-icon teal">&#x1F512;</div>
           <h3>Privacy first</h3>
-          <p>Everything stays on your device. No cloud storage, no accounts, no tracking. Delete the app and your data is completely gone. We never see it.</p>
+          <p>Your health data is stored on your iPhone, and no account is needed. No tracking. AI features send only what each request needs, through our server to Anthropic Claude, with Google Gemini as a backup, and we don't keep your health data. <a href="/privacy/">Details</a></p>
         </article>
       </div>
     </section>
@@ -348,19 +354,17 @@
       </div>
     </section>
 
-    <!-- Pricing (2026-10-20). DO NOT DEPLOY TO PRODUCTION until the App Store price of
-         com.starboard.healthexport.ai_monthly has been changed to the new price below and the
-         6-month Premium worker is live. Plan: /workspace/vitavault/pricing/ai-sub-price-change.md -->
+    <!-- Pricing -->
     <section class="container" id="pricing">
       <div class="section-head" style="text-align:center;">
         <h2>Pricing that makes sense</h2>
-        <p class="lead" style="margin-left:auto;margin-right:auto;">Free to download. One price for Premium, with 6 months of AI included.</p>
+        <p class="lead" style="margin-left:auto;margin-right:auto;">Free to download. Premium is $4.99 once, with 6 months of AI included.</p>
       </div>
       <div class="grid pricing">
         <article class="card price-card">
           <h3>Free</h3>
           <p class="price">$0</p>
-          <p class="price-sub">Free to download</p>
+          <p class="price-sub">No account needed</p>
           <ul class="list">
             <li>10 AI queries in your first month</li>
             <li>Full health dashboard</li>
@@ -377,21 +381,22 @@
           <p class="price">$4.99</p>
           <p class="price-sub">One-time, yours forever</p>
           <ul class="list">
+            <li class="ai-incl">6 months of AI Insights starting the day you buy, 50 a month, resets monthly</li>
             <li>Everything in the app</li>
-            <li>6 months of AI Insights included (50 queries a month)</li>
             <li>Unlimited data exports</li>
             <li>CSV, JSON, and AI-Ready formats</li>
             <li>Doctor Visit Prep reports</li>
-            <li>Lab scanning and organization</li>
             <li>Priority support</li>
           </ul>
+          <a class="btn primary price-cta" href="https://apps.apple.com/us/app/id6759207298" target="_blank" rel="noopener">Download Free</a>
         </article>
-        <article class="card price-card">
+        <article class="card price-card addon">
+          <span class="eyebrow">Optional add-on</span>
           <h3>AI Insights</h3>
-          <p class="price">$2.99<span style="font-size:0.45em;font-weight:500;color:var(--muted)">/mo</span></p>
-          <p class="price-sub">After your 6 included months</p>
+          <p class="price">$2.99<span class="per">/mo</span></p>
+          <p class="price-sub">Optional, any time. Premium includes the first 6 months.</p>
           <ul class="list">
-            <li>50 AI queries a month</li>
+            <li>AI queries: 50 a month, resets monthly</li>
             <li>Lab result explanations</li>
             <li>Health trend analysis</li>
             <li>Medication interaction insights</li>
@@ -401,7 +406,7 @@
         </article>
       </div>
       <div class="honesty-box">
-        <p><strong>Straightforward pricing.</strong> Download free and get 10 AI queries in your first month. Premium is a one-time $4.99 purchase, not a subscription, and includes 6 months of AI Insights at 50 queries a month. After that, AI Insights is $2.99 a month for 50 AI queries. Everything else in Premium stays yours forever.</p>
+        <p><strong>Straightforward pricing.</strong> Download free and get 10 AI queries in your first month. Premium is a one-time $4.99 purchase, not a subscription, and includes 6 months of AI Insights starting the day you buy (50 a month, resets monthly). AI Insights is $2.99 a month (50 a month, resets monthly), and you can add it any time. Everything else in Premium stays yours forever.</p>
       </div>
     </section>
 

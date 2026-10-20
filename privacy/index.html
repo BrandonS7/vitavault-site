@@ -25,7 +25,7 @@
   <div class="wrap">
     <a href="/" class="back">← Back to VitaVault</a>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: February 17, 2026</p>
+    <p class="updated">Last updated: October 20, 2026</p>
 
     <h2>The short version</h2>
     <p>VitaVault does not collect, store, or transmit your personal health data to any server. Everything stays on your device.</p>
@@ -40,11 +40,12 @@
     </ul>
 
     <h2>AI Insights</h2>
-    <p>When you use the AI Insights feature (free first-month queries, Premium, or AI Insights subscription), an anonymized summary of your health metrics is sent to a secure AI endpoint (Google Gemini, via our Cloudflare Worker) to generate insights. This summary contains only numbers, such as steps, heart rate, and sleep hours. To enforce monthly AI limits, each request also carries a random install ID and, if you bought Premium or AI Insights, Apple's signed purchase record. Neither includes your name, Apple ID, email, or location, and the usage counters expire automatically. The AI provider does not store your data after processing.</p>
-    <p style="margin-top:0.5rem;"><strong>If you never use the AI Insights, nothing ever leaves your phone.</strong></p>
+    <p>AI features run only after you accept the consent prompt. Each request sends our Cloudflare Worker only what that feature needs: your question, and depending on the feature, a summary of your health numbers (such as steps, heart rate, and sleep hours), your medication list, or your lab results. Lab scan sends the text your iPhone read from the report, which can include anything printed on it. Label scan sends the label photo. The worker passes this to Anthropic Claude, with Google Gemini as a backup, to generate the answer, and does not keep it.</p>
+    <p>To apply monthly AI limits, each AI and scan request also carries a random install ID created by the app and, if you bought Premium or AI Insights, Apple's signed purchase record (product, transaction IDs, and purchase and expiry dates). Neither includes your name, email, or Apple ID. We keep only usage counters keyed to these IDs, and to your IP address for free users. The counters expire automatically.</p>
+    <p style="margin-top:0.5rem;"><strong>If you don't use AI features, label scan, lab scan, or OpenClaw sync, no health data leaves your phone.</strong></p>
 
     <h2>Medication Data</h2>
-    <p>Medication information you enter (names, dosages, reminders) is stored locally on your device. Photos of medication labels are processed through a secure cloud endpoint for text recognition only and are not retained after processing.</p>
+    <p>Medication information you enter (names, dosages, reminders) is stored locally on your device. Photos of medication labels are sent through our Cloudflare Worker to Anthropic Claude, with Google Gemini as a backup, to read the label, and the worker does not keep them.</p>
 
     <h2>Exports</h2>
     <p>When you export your health data (JSON or CSV), the file is saved to your device's local storage via the iOS Files app. You control where that file goes, and we never see it.</p>
