@@ -119,6 +119,9 @@
     .card a[href="/privacy/"] { display: inline-block; padding: 12px 0; }
     .section-head .lead { max-width: 640px; }
     .price-card .price-cta { display: flex; width: 100%; min-height: 48px; margin-top: 1rem; }
+    .price-card { display: flex; flex-direction: column; }
+    .price-card .price-cta { margin-top: auto; }
+    .price-card .list { margin-bottom: 1rem; }
     .price-card.pop { border-color: var(--teal-light); box-shadow: 0 0 0 1px var(--teal-light), var(--shadow-lg); position: relative; }
     .price-card.pop::before { content: "RECOMMENDED"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--teal-light), var(--teal)); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.7rem; border-radius: 999px; letter-spacing: 0.06em; white-space: nowrap; }
     .list { padding-left: 0; list-style: none; margin: 0.6rem 0 0; }
@@ -169,6 +172,7 @@
 
     /* 44px tap targets */
     .brand, .mobile-toggle, .back, .back-link, .nav-download { min-height: 44px; }
+    .mobile-toggle { align-items: center; justify-content: center; }
     .back-link { display: inline-flex; align-items: center; }
     .menu a { display: inline-flex; align-items: center; min-height: 44px; }
   </style>
@@ -264,7 +268,7 @@
         <article class="card">
           <div class="card-icon teal">&#x1F4CA;</div>
           <h3>Health dashboard</h3>
-          <p>Steps, heart rate, calories, distance, flights, and sleep for free. Premium adds HRV, blood oxygen, weight, and more. Custom date ranges with trend charts that show where you're heading.</p>
+          <p>Steps, heart rate, active energy, distance, flights, and sleep for free. Premium adds HRV, blood oxygen, weight, and more. Custom date ranges with trend charts that show where you're heading.</p>
         </article>
         <article class="card">
           <div class="card-icon purple">&#x1F3E5;</div>
@@ -375,14 +379,11 @@
           <p class="price-sub">No account needed</p>
           <ul class="list">
             <li>10 AI queries in your first month</li>
-            <li>Dashboard: steps, heart rate, calories, distance, flights, sleep</li>
-            <li>Charts and trends for those metrics</li>
+            <li>Dashboard and charts: steps, heart rate, active energy, distance, flights, sleep</li>
             <li>Medication tracking</li>
-            <li>Lab scanning, 15 a month</li>
-            <li>Sleep analysis</li>
+            <li>Lab and label scans, 15 a month each</li>
             <li>Health Timeline, journal and check-ins</li>
-            <li>Unlimited CSV and JSON exports</li>
-            <li>Steps, heart rate, active energy, distance and sleep for the last 7 days</li>
+            <li>Unlimited CSV and JSON exports: steps, heart rate, active energy, distance and sleep, last 7 days</li>
           </ul>
         </article>
         <article class="card price-card pop">
@@ -390,8 +391,10 @@
           <p class="price">$4.99</p>
           <p class="price-sub">One-time, yours forever</p>
           <ul class="list">
+            <li>Everything in Free, plus:</li>
             <li class="ai-incl">6 months of AI Insights from the day you buy: 50 a month, resets monthly</li>
-            <li>Every health metric with full history</li>
+            <li>Every health metric with full history (up to a year back on your first export)</li>
+            <li>Lab and label scans, 60 a month each</li>
             <li>Automatic background sync</li>
             <li>Doctor Visit Prep reports</li>
           </ul>
