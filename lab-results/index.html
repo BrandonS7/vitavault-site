@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab Results App for iPhone: Understand Your Blood Work | VitaVault</title>
+  <meta name="description" content="Scan a paper lab report or upload PDFs, see every value with its reference range and abnormal flags, and tap any result for a plain-English explanation. Stored on your iPhone, no account needed.">
+  <link rel="canonical" href="https://vitavault.io/lab-results/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vitavault.io/lab-results/">
+  <meta property="og:title" content="Lab Results App for iPhone: Understand Your Blood Work">
+  <meta property="og:description" content="Scan or upload lab reports and get every value organized, flagged and explained in plain English. Stored on your iPhone.">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+  <link rel="shortcut icon" href="/assets/favicons/favicon.ico">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can VitaVault read a paper lab report?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Tap Scan Document and point your camera at the report. The text is read on your iPhone first, then the lab values are pulled out so you can review them before saving."}}, {"@type": "Question", "name": "Can I upload a PDF from my patient portal?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Save the PDF to Files, then choose Upload PDFs. You can pick several PDFs at once and each one is processed separately."}}, {"@type": "Question", "name": "Is my lab data sent anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "Your saved lab results are stored on your iPhone, and no account is needed. To pull values out of a report or explain a result, VitaVault asks for your consent first, then sends only the text that request needs through our server to Anthropic Claude, with Google Gemini as a backup. We don't keep your health data. If you say no, VitaVault uses a less accurate extraction on your iPhone instead."}}, {"@type": "Question", "name": "Does VitaVault diagnose anything?", "acceptedAnswer": {"@type": "Answer", "text": "No. Explanations are general health education only. Talk to your healthcare provider about what your results mean for you."}}, {"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "VitaVault is free to download and includes 10 AI queries in your first month. Premium is a one-time $4.99 purchase with 6 months of AI Insights included (50 a month, resets monthly). AI Insights is also available on its own for $2.99 a month."}}]}</script>
+  <style>
+    :root {
+      --bg: #FFFFFF; --bg-alt: #F0FDFB; --bg-footer: #F1F5F9; --card: #FFFFFF;
+      --text: #1A1A2E; --text-secondary: #475569; --muted: #64748B;
+      --teal: #0D9488; --teal-light: #14B8A6; --teal-bg: rgba(20,184,166,0.08); --teal-border: rgba(20,184,166,0.25);
+      --purple: #8B5CF6; --purple-bg: rgba(139,92,246,0.08);
+      --red: #EF4444; --red-bg: rgba(239,68,68,0.08);
+      --indigo: #6366F1; --indigo-bg: rgba(99,102,241,0.08);
+      --border: #E2E8F0; --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06);
+      --max: 800px; --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .container { width: min(var(--max), 90%); margin: 0 auto; }
+
+    .nav-wrap { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    nav { display: flex; align-items: center; justify-content: space-between; min-height: 60px; }
+    .brand { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; font-weight: 700; font-size: 1.1rem; color: var(--text); }
+    .brand svg { width: 24px; height: 24px; }
+    .back-link { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .back-link:hover { color: var(--teal); }
+
+    .hero { padding: 3rem 0 2rem; text-align: center; }
+    .hero h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; }
+    .hero h1 strong { color: var(--teal); }
+    .hero p { color: var(--text-secondary); margin-top: 0.5rem; font-size: 1.05rem; }
+
+    .toc { background: var(--bg-alt); border: 1px solid var(--teal-border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2.5rem; }
+    .toc h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--teal); margin-bottom: 0.8rem; }
+    .toc-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1.5rem; }
+    .toc-list a { color: var(--text-secondary); text-decoration: none; font-size: 0.92rem; padding: 0.2rem 0; min-height: 44px; display: flex; align-items: center; }
+    .toc-list a:hover { color: var(--teal); }
+    @media (max-width: 600px) { .toc-list { grid-template-columns: 1fr; } }
+
+    .guide-section { padding: 2rem 0; border-top: 1px solid var(--border); }
+    .guide-section:first-of-type { border-top: none; }
+    .section-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; }
+    .section-icon.teal { background: var(--teal-bg); color: var(--teal); }
+    .section-icon.purple { background: var(--purple-bg); color: var(--purple); }
+    .section-icon.indigo { background: var(--indigo-bg); color: var(--indigo); }
+    .section-icon.red { background: var(--red-bg); color: var(--red); }
+    .guide-section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .guide-section .intro { color: var(--text-secondary); margin-bottom: 1.2rem; font-size: 1rem; }
+
+    .step-list { list-style: none; counter-reset: steps; }
+    .step-list li { counter-increment: steps; position: relative; padding: 0.8rem 0 0.8rem 3rem; border-left: 2px solid var(--border); margin-left: 14px; }
+    .step-list li:last-child { border-left-color: transparent; }
+    .step-list li::before { content: counter(steps); position: absolute; left: -14px; top: 0.7rem; width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: #fff; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .step-list li strong { display: block; font-weight: 600; color: var(--text); margin-bottom: 0.15rem; }
+    .step-list li span { color: var(--text-secondary); font-size: 0.93rem; }
+
+    .tip { background: var(--teal-bg); border: 1px solid var(--teal-border); border-radius: 12px; padding: 0.8rem 1rem; margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); }
+    .tip strong { color: var(--teal); }
+
+    .cta-box { background: linear-gradient(135deg, #F0FDFB, #EDE9FE); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; text-align: center; margin: 3rem 0; }
+    .cta-box h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .cta-box p { color: var(--text-secondary); margin-bottom: 1rem; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem; border-radius: 12px; border: none; padding: 0.7rem 1.5rem; font-weight: 600; font-size: 0.95rem; text-decoration: none; cursor: pointer; transition: all 0.2s; color: #fff; background: linear-gradient(135deg, var(--teal-light), var(--teal)); box-shadow: 0 4px 14px rgba(13,148,136,0.3); }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(13,148,136,0.4); }
+
+    footer { background: var(--bg-footer); padding: 2rem 0; color: var(--muted); font-size: 0.85rem; text-align: center; }
+    footer a { color: var(--muted); text-decoration: none; display: inline-block; padding: 11px 4px; }
+    footer a:hover { color: var(--teal); }
+
+    /* 44px tap targets */
+    .brand, .mobile-toggle, .back, .back-link, .nav-download { min-height: 44px; }
+    .mobile-toggle { align-items: center; justify-content: center; }
+    .back-link { display: inline-flex; align-items: center; }
+    .menu a { display: inline-flex; align-items: center; min-height: 44px; }
+    .faq h3 { font-size: 1.05rem; margin: 1.2rem 0 0.3rem; }
+    .faq p { color: var(--text-secondary); font-size: 0.95rem; }
+    .note { color: var(--muted); font-size: 0.85rem; margin-top: 1rem; }
+    .related { margin-top: 1rem; font-size: 0.95rem; color: var(--text-secondary); }
+    .related a { color: var(--teal); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+  </style>
+</head>
+<body>
+
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a href="/" class="brand">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-6.8-4.3-9-8.8C1 8.3 3.6 5 7.2 5c2 0 3.2 1 4.8 2.8C13.6 6 14.8 5 16.8 5 20.4 5 23 8.3 21 12.2 18.8 16.7 12 21 12 21Z" fill="url(#g)"/><path d="M7.7 13.2h8.6v4.1H7.7z" fill="#fff" opacity="0.9"/><path d="M10 10.5h4v2.2h-4z" fill="#0D9488"/><defs><linearGradient id="g" x1="3" y1="5" x2="21" y2="21" gradientUnits="userSpaceOnUse"><stop stop-color="#14B8A6"/><stop offset="1" stop-color="#0D9488"/></linearGradient></defs></svg>
+          VitaVault
+        </a>
+        <a href="/" class="back-link">&larr; Back to Home</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+
+      <div class="hero">
+        <h1>Understand your <strong>blood work</strong></h1>
+        <p>Your lab report is a page of numbers. VitaVault turns it into a list you can read: every test, its value, its reference range, and a plain-English explanation when you want one.</p>
+        <p style="margin-top:1.2rem;"><a class="btn" href="https://apps.apple.com/app/apple-store/id6759207298?pt=128444210&amp;ct=web_lab_results&amp;mt=8" target="_blank" rel="noopener">Download VitaVault Free</a></p>
+      </div>
+
+      <div class="guide-section" id="how">
+        <div class="section-icon indigo">&#x1F9EA;</div>
+        <h2>From paper to plain English</h2>
+        <ol class="step-list">
+          <li><strong>Scan or upload</strong><span>Open Records, choose Labs, and tap +. Scan a paper report with your camera, upload one or more PDFs, or add a result by hand.</span></li>
+          <li><strong>Values pulled out for you</strong><span>VitaVault finds each test name, value, unit and reference range, and picks up the report date. Check them, fix the date if needed, and save.</span></li>
+          <li><strong>Organized by date</strong><span>Each report date gets a card showing how many tests it has and how many are flagged abnormal.</span></li>
+          <li><strong>Tap for "What does this mean?"</strong><span>Open any result to see your value on a reference range bar, a trend chart once you have more than one reading, and a plain-English explanation.</span></li>
+        </ol>
+        <div class="tip"><strong>Tip:</strong> Catching up on old results? Pick several PDFs at once and each file gets its own progress line.</div>
+      </div>
+
+      <div class="guide-section" id="privacy">
+        <div class="section-icon teal">&#x1F512;</div>
+        <h2>Stored on your iPhone</h2>
+        <p class="intro">Your lab results are saved on your iPhone, and there is no account to create. AI features ask for your consent first and send only what each request needs through our server to Anthropic Claude, with Google Gemini as a backup. We don't keep your health data. Prefer not to use AI for extraction? Decline, and VitaVault reads the values on your iPhone instead (less accurate).</p>
+        <p class="related">Details: <a href="/privacy/">Privacy Policy</a></p>
+      </div>
+
+      <div class="guide-section faq" id="faq">
+        <h2>Questions</h2>
+        <h3>Can VitaVault read a paper lab report?</h3>
+        <p>Yes. Tap Scan Document and point your camera at the report. The text is read on your iPhone first, then the lab values are pulled out so you can review them before saving.</p>
+        <h3>Can I upload a PDF from my patient portal?</h3>
+        <p>Yes. Save the PDF to Files, then choose Upload PDFs. You can pick several PDFs at once and each one is processed separately.</p>
+        <h3>Is my lab data sent anywhere?</h3>
+        <p>Your saved lab results are stored on your iPhone, and no account is needed. To pull values out of a report or explain a result, VitaVault asks for your consent first, then sends only the text that request needs through our server to Anthropic Claude, with Google Gemini as a backup. We don't keep your health data. If you say no, VitaVault uses a less accurate extraction on your iPhone instead.</p>
+        <h3>Does VitaVault diagnose anything?</h3>
+        <p>No. Explanations are general health education only. Talk to your healthcare provider about what your results mean for you.</p>
+        <h3>How much does it cost?</h3>
+        <p>VitaVault is free to download and includes 10 AI queries in your first month. Premium is a one-time $4.99 purchase with 6 months of AI Insights included (50 a month, resets monthly). AI Insights is also available on its own for $2.99 a month.</p>
+        <p class="note">VitaVault provides general health education only. It is not a medical device and does not replace advice from your healthcare provider.</p>
+        <p class="related">More: <a href="/guide/#labs">Full lab scanning guide</a></p>
+      </div>
+
+      <div class="cta-box">
+        <h2>See your next lab report clearly</h2>
+        <p>Free download. No account needed. Your health data is stored on your iPhone.</p>
+        <a class="btn" href="https://apps.apple.com/app/apple-store/id6759207298?pt=128444210&amp;ct=web_lab_results&amp;mt=8" target="_blank" rel="noopener">Download VitaVault Free</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>VitaVault &copy; 2026 Captain Intelligence LLC &middot; <a href="/privacy/">Privacy</a> &middot; <a href="/terms/">Terms</a> &middot; <a href="mailto:support@vitavault.io">Contact</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
