@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
   <link rel="shortcut icon" href="/assets/favicons/favicon.ico">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can VitaVault read my pill bottle label?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose Scan Label and take a photo of the label, or pick one from your photo library. With your consent, the photo is sent through our server to Anthropic Claude, with Google Gemini as a backup, and the name, strength, form, directions, quantity, refills, prescriber, pharmacy and Rx number are filled in for you to check before you save."}}, {"@type": "Question", "name": "Can I add medications without scanning?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose Add Manually and type in whatever you know. Only the name is required. Supplements and vitamins work the same way."}}, {"@type": "Question", "name": "How do medication reminders work?", "acceptedAnswer": {"@type": "Answer", "text": "Turn on reminders for a medication, add one or more times, and pick the days of the week. VitaVault schedules notifications on your iPhone, so they arrive even when the app is closed."}}, {"@type": "Question", "name": "Can I share my medication list with my doctor?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Doctor Visit Prep makes a report that lists your current medications with strength, form and the AM and PM doses you entered, along with recent lab results."}}, {"@type": "Question", "name": "Is my medication list sent anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "Your medication list is stored on your iPhone, and no account is needed. A label scan asks for your consent first and sends the label photo for that request. We don't keep your health data. If you decline, nothing is sent and you can add the medication by hand."}}, {"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "VitaVault is free to download and includes 10 AI queries in your first month. Premium is a one-time $4.99 purchase with 6 months of AI Insights included (50 a month, resets monthly). AI Insights is also available on its own for $2.99 a month."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can VitaVault read my pill bottle label?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose Scan Label, then Take Photo or Choose from Library. With your consent, the photo is sent through our server to Anthropic Claude, with Google Gemini as a backup, and the details it can read (name, strength, form, directions, quantity, refills, prescriber, pharmacy and Rx number) are filled in for you to check and edit before you save."}}, {"@type": "Question", "name": "Can I add medications without scanning?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose Add Manually and type in whatever you know. Only the name is required. You can add supplements and vitamins the same way."}}, {"@type": "Question", "name": "How do medication reminders work?", "acceptedAnswer": {"@type": "Answer", "text": "Turn on reminders for a medication, add one or more times, and pick the days of the week. Once you allow notifications, VitaVault schedules them on your iPhone, so they arrive even when the app is closed."}}, {"@type": "Question", "name": "Can I share my medication list with my doctor?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with Premium. Doctor Visit Prep makes a PDF report that lists your medications with strength, form and the AM and PM doses you entered, along with recent lab results, and you can share it from the app."}}, {"@type": "Question", "name": "Is my medication list sent anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "Your medication list is stored on your iPhone, and no account is needed. Before a label photo is sent, VitaVault asks for your consent, then sends the photo for that one scan. We don't keep your health data. If you decline, nothing is sent and you can add the medication by hand."}}, {"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "VitaVault is free to download and includes 10 AI queries in your first month. Premium is a one-time $4.99 purchase with 6 months of AI Insights included (50 a month, resets monthly). AI Insights is also available on its own for $2.99 a month."}}]}</script>
   <style>
     :root {
       --bg: #FFFFFF; --bg-alt: #F0FDFB; --bg-footer: #F1F5F9; --card: #FFFFFF;
@@ -120,32 +120,32 @@
         <h2>From pill bottle to reminder</h2>
         <ol class="step-list">
           <li><strong>Scan the label or add it yourself</strong><span>Open Records, choose Meds, and tap +. Choose Scan Label to photograph the bottle, or Add Manually to type it in.</span></li>
-          <li><strong>Details filled in for you</strong><span>A label scan fills in the name, strength, form, directions, quantity, refills, prescriber, pharmacy and Rx number. Check them and save. The label photo is kept with the medication.</span></li>
+          <li><strong>Details filled in for you</strong><span>A label scan fills in what it can read: name, strength, form, directions, quantity, refills, prescriber, pharmacy and Rx number. Check and edit them, then save. The label photo is kept with the medication.</span></li>
           <li><strong>Set what you actually take</strong><span>Enter your AM and PM doses, like "2 tablets" in the morning and "1 tablet" at night, plus start and end dates and notes.</span></li>
-          <li><strong>Get reminders</strong><span>Turn on reminders, add as many times as you need, and pick the days. Notifications arrive even when the app is closed.</span></li>
+          <li><strong>Get reminders</strong><span>Turn on reminders, add one or more times, and pick the days. Once you allow notifications, they arrive even when the app is closed.</span></li>
         </ol>
-        <div class="tip"><strong>Tip:</strong> Going to an appointment? Doctor Visit Prep puts your current medications and doses in a report you can share.</div>
+        <div class="tip"><strong>Tip:</strong> Going to an appointment? Doctor Visit Prep, a Premium feature, puts your medications and doses in a PDF report you can share.</div>
       </div>
 
       <div class="guide-section" id="privacy">
         <div class="section-icon indigo">&#x1F512;</div>
         <h2>Stored on your iPhone</h2>
-        <p class="intro">Your medication list is saved on your iPhone, and there is no account to create. Label scanning asks for your consent first and sends the label photo through our server to Anthropic Claude, with Google Gemini as a backup. We don't keep your health data. Prefer not to use AI? Decline, and add medications by hand instead.</p>
+        <p class="intro">Your medication list is saved on your iPhone, and there is no account to create. Label scanning uses AI, so VitaVault asks for your consent before any label photo is sent through our server to Anthropic Claude, with Google Gemini as a backup. We don't keep your health data. Prefer not to use AI? Decline, and add medications by hand instead.</p>
         <p class="related">Details: <a href="/privacy/">Privacy Policy</a></p>
       </div>
 
       <div class="guide-section faq" id="faq">
         <h2>Questions</h2>
         <h3>Can VitaVault read my pill bottle label?</h3>
-        <p>Yes. Choose Scan Label and take a photo of the label, or pick one from your photo library. With your consent, the photo is sent through our server to Anthropic Claude, with Google Gemini as a backup, and the name, strength, form, directions, quantity, refills, prescriber, pharmacy and Rx number are filled in for you to check before you save.</p>
+        <p>Yes. Choose Scan Label, then Take Photo or Choose from Library. With your consent, the photo is sent through our server to Anthropic Claude, with Google Gemini as a backup, and the details it can read (name, strength, form, directions, quantity, refills, prescriber, pharmacy and Rx number) are filled in for you to check and edit before you save.</p>
         <h3>Can I add medications without scanning?</h3>
-        <p>Yes. Choose Add Manually and type in whatever you know. Only the name is required. Supplements and vitamins work the same way.</p>
+        <p>Yes. Choose Add Manually and type in whatever you know. Only the name is required. You can add supplements and vitamins the same way.</p>
         <h3>How do medication reminders work?</h3>
-        <p>Turn on reminders for a medication, add one or more times, and pick the days of the week. VitaVault schedules notifications on your iPhone, so they arrive even when the app is closed.</p>
+        <p>Turn on reminders for a medication, add one or more times, and pick the days of the week. Once you allow notifications, VitaVault schedules them on your iPhone, so they arrive even when the app is closed.</p>
         <h3>Can I share my medication list with my doctor?</h3>
-        <p>Yes. Doctor Visit Prep makes a report that lists your current medications with strength, form and the AM and PM doses you entered, along with recent lab results.</p>
+        <p>Yes, with Premium. Doctor Visit Prep makes a PDF report that lists your medications with strength, form and the AM and PM doses you entered, along with recent lab results, and you can share it from the app.</p>
         <h3>Is my medication list sent anywhere?</h3>
-        <p>Your medication list is stored on your iPhone, and no account is needed. A label scan asks for your consent first and sends the label photo for that request. We don't keep your health data. If you decline, nothing is sent and you can add the medication by hand.</p>
+        <p>Your medication list is stored on your iPhone, and no account is needed. Before a label photo is sent, VitaVault asks for your consent, then sends the photo for that one scan. We don't keep your health data. If you decline, nothing is sent and you can add the medication by hand.</p>
         <h3>How much does it cost?</h3>
         <p>VitaVault is free to download and includes 10 AI queries in your first month. Premium is a one-time $4.99 purchase with 6 months of AI Insights included (50 a month, resets monthly). AI Insights is also available on its own for $2.99 a month.</p>
         <p class="note">VitaVault provides general health education only. It is not a medical device and does not replace advice from your doctor or pharmacist.</p>
@@ -153,7 +153,7 @@
       </div>
 
       <div class="cta-box">
-        <h2>Never lose track of a dose</h2>
+        <h2>Keep every medication in one place</h2>
         <p>Free download. No account needed. Your health data is stored on your iPhone.</p>
         <a class="btn" href="https://apps.apple.com/app/apple-store/id6759207298?pt=128444210&amp;ct=web_medication_tracker&amp;mt=8" target="_blank" rel="noopener">Download VitaVault Free</a>
       </div>
