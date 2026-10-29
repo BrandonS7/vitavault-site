@@ -50,8 +50,8 @@
 
     <h2>AI Insights</h2>
     <p>AI features run only after you accept the consent prompt. Each request sends our Cloudflare Worker only what that feature needs: your question, and depending on the feature, a summary of your health numbers (such as steps, heart rate, and sleep hours), your medication list, or your lab results. Lab scan sends the text your iPhone read from the report, which can include anything printed on it. Label scan sends the label photo. The worker passes this to Anthropic Claude, with Google Gemini as a backup, to generate the answer, and does not keep it.</p>
-    <p>To apply monthly AI limits, each AI and scan request also carries a random install ID created by the app and, if you bought Premium or AI Insights, Apple's signed purchase record (product, transaction IDs, and purchase and expiry dates). Neither includes your name, email, or Apple ID. We keep only usage counters keyed to these IDs, and to your IP address for free users. The counters expire automatically.</p>
-    <p style="margin-top:0.5rem;"><strong>If you don't use AI features, label scan, lab scan, or OpenClaw sync, no health data leaves your phone.</strong></p>
+    <p>To apply monthly AI limits, each AI and scan request also carries a random install ID created by the app and, if you bought Premium or AI Insights, Apple's signed purchase record (product, transaction IDs, and purchase and expiry dates). Neither includes your name, email, or Apple Account. We keep only usage counters keyed to these IDs, and to your IP address for free users. The counters expire automatically.</p>
+    <p style="margin-top:0.5rem;"><strong>If you don't use AI features, label scan, lab scan, or OpenClaw sync, no health data is sent to us or to any AI provider. Medications, lab results, journal and check-ins can still sync through your own iCloud (see iCloud Sync).</strong></p>
 
     <h2>OpenClaw Sync</h2>
     <p>OpenClaw sync is optional and off until you connect it in Settings and confirm the consent prompt. It sends your health metrics, medications, and labs to an OpenClaw AI agent that you run, so it can answer questions about them. There are two ways to connect:</p>
@@ -65,7 +65,7 @@
     <p>Medication information you enter (names, dosages, reminders) is stored on your device, and in your own iCloud if your iPhone is signed in to iCloud (see iCloud Sync below). Photos of medication labels are sent through our Cloudflare Worker to Anthropic Claude, with Google Gemini as a backup, to read the label, and the worker does not keep them.</p>
 
     <h2>iCloud Sync</h2>
-    <p>If your iPhone is signed in to iCloud, VitaVault syncs your medications, lab results, journal entries and daily check-ins through your own private iCloud account, so they can show up on your other devices signed in to the same Apple Account. Apple stores this data in your iCloud, not on VitaVault's servers, and we can't see it. VitaVault does not sync your Apple Health readings or export files this way.</p>
+    <p>If your iPhone is signed in to iCloud, VitaVault syncs your medications, lab results, journal entries and daily check-ins through your own private iCloud account, so they can show up on your other devices signed in to the same Apple Account. Apple stores this data in your iCloud, not on VitaVault's servers, and we can't see it. VitaVault does not sync your Apple Health readings or export files this way. VitaVault does not have a setting to turn this off yet. Nothing syncs if your iPhone is not signed in to iCloud.</p>
 
     <h2>Exports</h2>
     <p>When you export your health data (JSON or CSV), the file is saved on your iPhone, inside the VitaVault app. We never see it.</p>
@@ -81,11 +81,12 @@
     <ul>
       <li>AI features and scans, sent through our server to Anthropic Claude, with Google Gemini as a backup, when you use them</li>
       <li>OpenClaw sync, only if you connect it</li>
+      <li>Apple iCloud, to sync your medications, lab results, journal and check-ins to your own iCloud account when your iPhone is signed in</li>
       <li>Apple's App Store for in-app purchases</li>
     </ul>
 
     <h2>Data Deletion</h2>
-    <p>You can delete all app data at any time from Settings → Delete All App Data. This permanently removes all exported files, sync history, and cached data from your device. Copies of your medications, lab results, journal and check-ins in your iCloud are not removed by this. Data stored on VitaVault Cloud for OpenClaw sync is not removed by this; contact us to delete it.</p>
+    <p>You can delete all app data at any time from Settings → Delete All App Data. This permanently removes all exported files, sync history, and cached data from your device. It does not delete medications or lab results you added, on this iPhone or in your iCloud, and it does not remove the copies of your journal and check-ins in your iCloud. To remove medications, lab results and journal entries everywhere, delete them in the app while your iPhone is signed in to iCloud, so the deletion also reaches your iCloud copy, before you delete the app. Data stored on VitaVault Cloud for OpenClaw sync is not removed by this; contact us to delete it.</p>
 
     <h2>Children</h2>
     <p>VitaVault is not directed at children under 13 and does not knowingly collect data from children.</p>

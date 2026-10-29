@@ -59,7 +59,7 @@
     .step-list li { counter-increment: steps; position: relative; padding: 0.8rem 0 0.8rem 3rem; border-left: 2px solid var(--border); margin-left: 14px; }
     .step-list li:last-child { border-left-color: transparent; }
     .step-list li::before { content: counter(steps); position: absolute; left: -14px; top: 0.7rem; width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: #fff; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-    .step-list li strong { display: block; font-weight: 600; color: var(--text); margin-bottom: 0.15rem; }
+    .step-list li > strong { display: block; font-weight: 600; color: var(--text); margin-bottom: 0.15rem; }
     .step-list li span { color: var(--text-secondary); font-size: 0.93rem; }
 
     .tip { background: var(--teal-bg); border: 1px solid var(--teal-border); border-radius: 12px; padding: 0.8rem 1rem; margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); }
@@ -241,10 +241,10 @@
 
         <p class="intro">VitaVault is built on a simple principle: your data is yours.</p>
         <ol class="step-list">
-          <li><strong>Stored on your iPhone</strong><span>Health metrics, medications, lab results, and journal entries are stored locally on your iPhone.</span></li>
+          <li><strong>Stored on your iPhone</strong><span>Health metrics, medications, lab results, and journal entries are stored locally on your iPhone. Medications, lab results, journal and check-ins also sync through your own iCloud if your iPhone is signed in.</span></li>
           <li><strong>AI sends only what it needs</strong><span>When you use AI features or scans (Insights, Doctor Prep, Lab Analysis), only what that request needs is sent through our server to Anthropic Claude, with Google Gemini as a backup, and we don't keep your health data.</span></li>
           <li><strong>No account required</strong><span>No sign-up, no login, no email collection. Just download and start using it.</span></li>
-          <li><strong>Delete and it's gone</strong><span>Remove the app and everything on your iPhone is permanently deleted. We don't keep your health data on any server. The one exception is OpenClaw sync through VitaVault Cloud, which is off unless you turn it on. To have that copy removed, contact us (see the Privacy Policy).</span></li>
+          <li><strong>Delete and it's gone</strong><span>Remove the app and everything on your iPhone is permanently deleted. Copies in your own iCloud stay there (see the Privacy Policy). We don't keep your health data on any server. The one exception is OpenClaw sync through VitaVault Cloud, which is off unless you turn it on. To have that copy removed, contact us (see the Privacy Policy).</span></li>
           <li><strong>Apple Health is safe</strong><span>VitaVault reads from Apple Health but never modifies or deletes your Apple Health data.</span></li>
         </ol>
         <div class="tip"><strong>Tip:</strong> Read our full <a href="/privacy/" style="color:var(--teal);font-weight:600;">Privacy Policy</a> for complete details.</div>
