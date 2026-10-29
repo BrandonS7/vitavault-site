@@ -34,10 +34,10 @@
   <div class="wrap">
     <a href="/" class="back">← Back to VitaVault</a>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: October 20, 2026</p>
+    <p class="updated">Last updated: October 29, 2026</p>
 
     <h2>The short version</h2>
-    <p>Your health data is stored on your iPhone, and no account is needed. When you use AI features or scans, only what that request needs is sent through our server to generate the answer, as described below. We don't keep your health data. The one exception is OpenClaw sync through VitaVault Cloud, which is off unless you turn it on (see OpenClaw Sync below).</p>
+    <p>Your health data is stored on your iPhone, and no account is needed. If your iPhone is signed in to iCloud, your medications, lab results, journal and check-ins also sync through your own iCloud account. When you use AI features or scans, only what that request needs is sent through our server to generate the answer, as described below. We don't keep your health data. The one exception is OpenClaw sync through VitaVault Cloud, which is off unless you turn it on (see OpenClaw Sync below).</p>
 
     <h2>Data Collection</h2>
     <p>VitaVault reads health data from Apple HealthKit with your explicit permission. This data is:</p>
@@ -64,8 +64,11 @@
     <h2>Medication Data</h2>
     <p>Medication information you enter (names, dosages, reminders) is stored locally on your device. Photos of medication labels are sent through our Cloudflare Worker to Anthropic Claude, with Google Gemini as a backup, to read the label, and the worker does not keep them.</p>
 
+    <h2>iCloud Sync</h2>
+    <p>If your iPhone is signed in to iCloud, VitaVault syncs your medications, lab results, journal entries and daily check-ins through your own private iCloud account, so they can show up on your other devices signed in to the same Apple Account. Apple stores this data in your iCloud, not on VitaVault's servers, and we can't see it. VitaVault does not sync your Apple Health readings or export files this way.</p>
+
     <h2>Exports</h2>
-    <p>When you export your health data (JSON or CSV), the file is saved to your device's local storage via the iOS Files app. You control where that file goes, and we never see it.</p>
+    <p>When you export your health data (JSON or CSV), the file is saved on your iPhone, inside the VitaVault app. We never see it.</p>
 
     <h2>No Accounts</h2>
     <p>VitaVault does not require an account, email address, or any personal information to use. There is no sign-up process.</p>
@@ -82,7 +85,7 @@
     </ul>
 
     <h2>Data Deletion</h2>
-    <p>You can delete all app data at any time from Settings → Delete All App Data. This permanently removes all exported files, sync history, and cached data from your device. Data stored on VitaVault Cloud for OpenClaw sync is not removed by this; contact us to delete it.</p>
+    <p>You can delete all app data at any time from Settings → Delete All App Data. This permanently removes all exported files, sync history, and cached data from your device. Copies of your medications, lab results, journal and check-ins in your iCloud are not removed by this. Data stored on VitaVault Cloud for OpenClaw sync is not removed by this; contact us to delete it.</p>
 
     <h2>Children</h2>
     <p>VitaVault is not directed at children under 13 and does not knowingly collect data from children.</p>
