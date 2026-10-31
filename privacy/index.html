@@ -65,10 +65,10 @@
     <p>Medication information you enter (names, dosages, reminders) is stored on your device, and in your own iCloud if your iPhone is signed in to iCloud (see iCloud Sync below). Photos of medication labels are sent through our Cloudflare Worker to Anthropic Claude, with Google Gemini as a backup, to read the label, and the worker does not keep them.</p>
 
     <h2>iCloud Sync</h2>
-    <p>If your iPhone is signed in to iCloud, VitaVault syncs your medications, lab results, journal entries and daily check-ins through your own private iCloud account, so they can show up on your other devices signed in to the same Apple Account. Apple stores this data in your iCloud, not on VitaVault's servers, and we can't see it. VitaVault does not sync your Apple Health readings or export files this way. VitaVault does not have a setting to turn this off yet. Nothing syncs if your iPhone is not signed in to iCloud.</p>
+    <p>If your iPhone is signed in to iCloud, VitaVault syncs your medications, lab results, journal entries and daily check-ins through your own private iCloud account, so they can show up on your other devices signed in to the same Apple Account. Apple stores this data in your iCloud, not on VitaVault's servers, and we can't see it. VitaVault does not sync your Apple Health readings or export files this way. You can turn this off with the iCloud Sync switch in Settings. Nothing syncs if your iPhone is not signed in to iCloud.</p>
 
     <h2>Exports</h2>
-    <p>When you export your health data (JSON or CSV), the file is saved on your iPhone, inside the VitaVault app. We never see it.</p>
+    <p>When you export your health data (JSON or CSV), the file is saved on your iPhone, inside the VitaVault app. If you tap Share Export, the file goes only where you send it. We never see it.</p>
 
     <h2>No Accounts</h2>
     <p>VitaVault does not require an account, email address, or any personal information to use. There is no sign-up process.</p>
@@ -86,7 +86,7 @@
     </ul>
 
     <h2>Data Deletion</h2>
-    <p>You can delete all app data at any time from Settings → Delete All App Data. This permanently removes all exported files, sync history, and cached data from your device. It does not delete medications or lab results you added, on this iPhone or in your iCloud, and it does not remove the copies of your journal and check-ins in your iCloud. To remove medications, lab results, journal entries and check-ins everywhere, delete them in the app while your iPhone is signed in to iCloud, so the deletion also reaches your iCloud copy, before you delete the app. Data stored on VitaVault Cloud for OpenClaw sync is not removed by this; contact us to delete it.</p>
+    <p>You can delete your data at any time from Settings, Delete All App Data. Delete from This iPhone removes your labs, medications, journal, check-ins, photos, exports and cached data from this iPhone, turns iCloud sync off on this iPhone, and keeps your iCloud copy. If you also choose Also Delete from iCloud and confirm Delete Everywhere, VitaVault also deletes your labs, medications, journal and check-ins from your iCloud and from every device signed in to your Apple Account, and your other devices delete their photos and exports the next time they sync. This can't be undone. Apple Health data is never affected. Data stored on VitaVault Cloud for OpenClaw sync is not removed by this; contact us to delete it.</p>
 
     <h2>Children</h2>
     <p>VitaVault is not directed at children under 13 and does not knowingly collect data from children.</p>
