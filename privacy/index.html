@@ -34,10 +34,10 @@
   <div class="wrap">
     <a href="/" class="back">← Back to VitaVault</a>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: October 29, 2026</p>
+    <p class="updated">Last updated: November 3, 2026</p>
 
     <h2>The short version</h2>
-    <p>Your health data is stored on your iPhone, and no account is needed. If your iPhone is signed in to iCloud, your medications, lab results, journal and check-ins also sync through your own iCloud account. When you use AI features or scans, only what that request needs is sent through our server to generate the answer, as described below. We don't keep your health data. The one exception is OpenClaw sync through VitaVault Cloud, which is off unless you turn it on (see OpenClaw Sync below).</p>
+    <p>Your health data is stored on your iPhone, and no account is needed. If your iPhone is signed in to iCloud and iCloud Sync is on (it is on by default), your medications, lab results, journal and check-ins also sync through your own iCloud account. When you use AI features or scans, only what that request needs is sent through our server to generate the answer, as described below. We don't keep your health data. The one exception is OpenClaw sync through VitaVault Cloud, which is off unless you turn it on (see OpenClaw Sync below).</p>
 
     <h2>Data Collection</h2>
     <p>VitaVault reads health data from Apple HealthKit with your explicit permission. This data is:</p>
@@ -62,10 +62,10 @@
     <p>Disconnect any time in Settings to stop syncing. To have data already stored on VitaVault Cloud removed, contact us at the address below.</p>
 
     <h2>Medication Data</h2>
-    <p>Medication information you enter (names, dosages, reminders) is stored on your device, and in your own iCloud if your iPhone is signed in to iCloud (see iCloud Sync below). Photos of medication labels are sent through our Cloudflare Worker to Anthropic Claude, with Google Gemini as a backup, to read the label, and the worker does not keep them.</p>
+    <p>Medication information you enter (names, dosages, reminders) is stored on your device, and in your own iCloud if iCloud Sync is on (see iCloud Sync below). Photos of medication labels are sent through our Cloudflare Worker to Anthropic Claude, with Google Gemini as a backup, to read the label, and the worker does not keep them.</p>
 
     <h2>iCloud Sync</h2>
-    <p>If your iPhone is signed in to iCloud, VitaVault syncs your medications, lab results, journal entries and daily check-ins through your own private iCloud account, so they can show up on your other devices signed in to the same Apple Account. Apple stores this data in your iCloud, not on VitaVault's servers, and we can't see it. VitaVault does not sync your Apple Health readings or export files this way. You can turn this off with the iCloud Sync switch in Settings. Nothing syncs if your iPhone is not signed in to iCloud.</p>
+    <p>If your iPhone is signed in to iCloud and the iCloud Sync switch in Settings is on (it is on by default), VitaVault syncs your medications, lab results, journal entries and daily check-ins through your own private iCloud account, so they can show up on your other devices signed in to the same Apple Account. Apple stores this data in your iCloud, not on VitaVault's servers, and we can't see it. VitaVault does not sync your Apple Health readings or export files this way. You can turn this off at any time with that switch. Nothing syncs if your iPhone is not signed in to iCloud.</p>
 
     <h2>Exports</h2>
     <p>When you export your health data (JSON or CSV), the file is saved on your iPhone, inside the VitaVault app. If you tap Share Export, the file goes only where you send it. We never see it.</p>
@@ -81,7 +81,7 @@
     <ul>
       <li>AI features and scans, sent through our server to Anthropic Claude, with Google Gemini as a backup, when you use them</li>
       <li>OpenClaw sync, only if you connect it</li>
-      <li>Apple iCloud, to sync your medications, lab results, journal and check-ins to your own iCloud account when your iPhone is signed in</li>
+      <li>Apple iCloud, to sync your medications, lab results, journal and check-ins to your own iCloud account when your iPhone is signed in and iCloud Sync is on</li>
       <li>Apple's App Store for in-app purchases</li>
     </ul>
 
