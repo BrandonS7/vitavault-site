@@ -21,6 +21,11 @@
     ul{padding-left:1.2rem;margin:0.4rem 0}
     .back{display:inline-flex;align-items:center;gap:0.4rem;color:#64748B;text-decoration:none;font-size:0.9rem;font-weight:500;margin-bottom:2rem}
     .back:hover{color:#0D9488}
+    h3{font-size:1.05rem;font-weight:700;margin:1.4rem 0 0.4rem;color:#1A1A2E}
+    .tbl{overflow-x:auto;margin:0.6rem 0}
+    table{border-collapse:collapse;font-size:0.88rem;color:#475569;min-width:520px}
+    th,td{border:1px solid #E2E8F0;padding:0.45rem 0.6rem;text-align:left;vertical-align:top}
+    th{background:#F8FAFC;color:#1A1A2E}
     .updated{color:#64748B;font-size:0.85rem;margin-bottom:2rem}
 
     /* 44px tap targets */
@@ -34,73 +39,148 @@
   <div class="wrap">
     <a href="/" class="back">← Back to VitaVault</a>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: November 8, 2026</p>
-
+    <p class="updated">Last updated: November 11, 2026</p>
+    <p><strong>VitaVault</strong>, provided by Captain Intelligence LLC</p>
+    <p>This policy takes effect on the date shown above, the day it was published.</p>
     <h2>The short version</h2>
-    <p>Your health data is stored on your iPhone, and no account is needed. If your iPhone is signed in to iCloud and iCloud Sync is on (it is on by default), your medications, lab results, journal and check-ins also sync through your own iCloud account. When you use AI features or scans, only what that request needs is sent through our server to generate the answer, as described below. We don't keep your health data. The one exception is AI agent sync through VitaVault Cloud, which is off unless you turn it on (see AI Agent Sync below).</p>
-
-    <h2>Data Collection</h2>
-    <p>VitaVault reads health data from Apple HealthKit with your explicit permission. This data is:</p>
     <ul>
-      <li>Stored on your iPhone</li>
-      <li>Never uploaded or shared, except what an AI feature or scan sends when you use it (see AI Insights below), or what AI agent sync sends if you connect it</li>
-      <li>Never used for advertising or analytics</li>
-      <li>Only exported when you explicitly choose to export</li>
+      <li><strong>On your iPhone.</strong> Your health data is stored on your iPhone, and no account is needed.</li>
+      <li><strong>iCloud.</strong> If your iPhone is signed in to iCloud and iCloud Sync is on (it is on by default), your medications, lab results, journal entries and check-ins also sync through your own iCloud account. That is your storage, not ours.</li>
+      <li><strong>Connect to your AI agent.</strong> This option sends Apple Health data from your iPhone straight to a server you choose. It does not go through VitaVault, and VitaVault does not keep a copy.</li>
+      <li><strong>AI features and scans.</strong> When you use them, only what that request needs is sent through our server to Claude, made by Anthropic, to generate the answer. Claude is the only AI provider. Our server doesn't keep it.</li>
+      <li><strong>VitaVault Cloud.</strong> The one place we have stored health data is VitaVault Cloud, an older agent sync option. Since November 9, 2026, it is closed to new users. Summaries from iPhones already connected stay stored until deleted. See VitaVault Cloud below.</li>
     </ul>
-
-    <h2>AI Insights</h2>
-    <p>AI features run only after you accept the consent prompt. Each request sends our Cloudflare Worker only what that feature needs: your question, and depending on the feature, a summary of your health numbers (such as steps, heart rate, and sleep hours), your medication list, or your lab results. Lab scan sends the text your iPhone read from the report, which can include anything printed on it. Label scan sends the label photo. The worker passes this to Anthropic Claude, with Google Gemini as a backup, to generate the answer, and does not keep it.</p>
-    <p>To apply monthly AI limits, each AI and scan request also carries a random install ID created by the app and, if you bought Premium or AI Insights, Apple's signed purchase record (product, transaction IDs, and purchase and expiry dates). Neither includes your name, email, or Apple Account. We keep only usage counters keyed to these IDs, and to your IP address for free users. The counters expire automatically.</p>
-    <p style="margin-top:0.5rem;"><strong>If you don't use AI features, label scan, lab scan, or AI agent sync, no health data is sent to us or to any AI provider. Medications, lab results, journal and check-ins can still sync through your own iCloud (see iCloud Sync).</strong></p>
-
-    <h2>AI Agent Sync</h2>
-    <p>AI agent sync is optional and off until you connect it in Settings (in the current app: Connect to OpenClaw) and confirm the consent prompt. It sends a daily summary of your Apple Health metrics (such as steps, heart rate, resting heart rate, HRV, blood oxygen, respiratory rate, distance, exercise minutes, flights climbed, weight and last night's sleep) to an AI agent you connect, so it can answer questions about them. It does not send your medications, lab results, journal or check-ins. Today the supported agent is OpenClaw. There are two ways to connect:</p>
+    <h2>What VitaVault reads and stores on your iPhone</h2>
     <ul>
-      <li><strong>VitaVault Cloud:</strong> your data is stored on our server, which runs on Cloudflare, linked to a connection key unique to your device, and your agent reads it with that key. Each day's summary is kept for up to 365 days after it was last uploaded, and your most recent summary is kept until you ask us to delete it. VitaVault staff can access stored data to run and support the service. This is the only case where we store health data. It is not end-to-end encrypted: our server and the agent you connect can read it.</li>
-      <li><strong>Direct webhook:</strong> your data goes straight from your iPhone to the web address and token you enter, without passing through our server.</li>
+      <li><strong>Apple Health.</strong> VitaVault reads the Apple Health types you allow. It writes only one thing back to Apple Health: weight entries you add in the app. You can turn off VitaVault's access to Apple Health at any time in the iOS Settings app.</li>
+      <li><strong>What you enter.</strong> Medications, lab results, journal entries and daily check-ins are saved in files on your iPhone. Photos you attach to labs and medications stay on your iPhone and are never synced to iCloud.</li>
+      <li><strong>Connection keys and tokens.</strong> The keys and tokens for your own server, your webhook and VitaVault Cloud are kept in the iPhone Keychain, on this device only.</li>
+      <li><strong>Device ID.</strong> On first launch the app creates a random install ID and keeps it in the iPhone Keychain. It is not your Apple Account, your name or Apple's advertising ID. You can see it in Settings, About, Device ID.</li>
+      <li><strong>Camera.</strong> VitaVault uses the camera to scan lab reports and medication labels, and to scan the pairing QR code from your own server. The QR code is read on your iPhone.</li>
+      <li><strong>Background refresh.</strong> When iOS allows, VitaVault may refresh in the background to read new Apple Health data on your iPhone. This does not send anything off your iPhone.</li>
     </ul>
-    <p>Disconnect any time in Settings to stop syncing. Disconnecting stops new uploads but does not delete what is already stored. To have data already stored on VitaVault Cloud removed, contact us at the address below. Once your agent has your data, that agent's own privacy terms also apply.</p>
-
-    <h2>Medication Data</h2>
-    <p>Medication information you enter (names, dosages, reminders) is stored on your device, and in your own iCloud if iCloud Sync is on (see iCloud Sync below). Photos of medication labels are sent through our Cloudflare Worker to Anthropic Claude, with Google Gemini as a backup, to read the label, and the worker does not keep them.</p>
-
     <h2>iCloud Sync</h2>
-    <p>If your iPhone is signed in to iCloud and the iCloud Sync switch in Settings is on (it is on by default), VitaVault syncs your medications, lab results, journal entries and daily check-ins through your own private iCloud account, so they can show up on your other devices signed in to the same Apple Account. Apple stores this data in your iCloud, not on VitaVault's servers, and we can't see it. VitaVault does not sync your Apple Health readings or export files this way. You can turn this off at any time with that switch. Nothing syncs if your iPhone is not signed in to iCloud.</p>
-
-    <h2>Exports</h2>
-    <p>When you export your health data (JSON or CSV), the file is saved on your iPhone, inside the VitaVault app. If you tap Share Export, the file goes only where you send it. We never see it.</p>
-
-    <h2>No Accounts</h2>
-    <p>VitaVault does not require an account, email address, or any personal information to use. There is no sign-up process.</p>
-
-    <h2>No Tracking</h2>
-    <p>We do not use analytics SDKs, tracking pixels, or any form of user behavior monitoring. We don't know who you are or how you use the app.</p>
-
-    <h2>Third Parties</h2>
-    <p>VitaVault does not sell or share your data for advertising. The only external communication is:</p>
+    <p>If your iPhone is signed in to iCloud and the iCloud Sync switch is on, VitaVault stores four things in your own private iCloud account, using Apple's iCloud key-value storage: your medications, lab results, journal entries and daily check-ins. This is health information, kept in your iCloud storage. It can then show up on your other devices signed in to the same Apple Account. The switch is in Settings, Your Data &amp; Privacy, and it is on by default.</p>
     <ul>
-      <li>AI features and scans, sent through our server to Anthropic Claude, with Google Gemini as a backup, when you use them</li>
-      <li>AI agent sync, only if you connect it: VitaVault Cloud stores it on Cloudflare, and the agent you connect receives it</li>
-      <li>Apple iCloud, to sync your medications, lab results, journal and check-ins to your own iCloud account when your iPhone is signed in and iCloud Sync is on</li>
-      <li>Apple's App Store for in-app purchases</li>
+      <li><strong>Where it is stored.</strong> Apple stores this data in your iCloud account, under your Apple Account and Apple's terms. It does not go to VitaVault's servers, and we can't see it.</li>
+      <li><strong>What is not synced.</strong> VitaVault does not sync your Apple Health readings, photos or export files this way.</li>
+      <li><strong>Turning it off.</strong> You can turn it off at any time with that switch. Nothing syncs if your iPhone is not signed in to iCloud.</li>
     </ul>
-
+    <h2>AI Agent Sync</h2>
+    <p>AI agent sync is optional and off until you set it up. There are three ways to connect.</p>
+    <h3>Connect to your AI agent (your own server)</h3>
+    <p>This is in Settings, Connect to your AI agent.</p>
+    <p><strong>How you connect.</strong> You scan the QR code from your own server, paste its link, or type its address and pairing code. The address must start with https://. Before anything is sent, a screen shows the server address your data will go to and the list of what is sent. Nothing is sent until you tap Connect and send.</p>
+    <p><strong>What is sent:</strong></p>
+    <ul>
+      <li>Daily totals and averages from Apple Health: steps, active energy, heart rate, resting heart rate, HRV, blood oxygen, breathing rate, walking distance, exercise minutes, flights climbed, weight and sleep.</li>
+      <li>Every blood pressure reading: systolic, diastolic, the time of the reading, the name of the app that recorded it, and Apple Health's ID for that reading.</li>
+      <li>A device label ("iPhone") and the VitaVault version.</li>
+    </ul>
+    <p><strong>What is not sent:</strong> lab results, medications, journal entries and check-ins.</p>
+    <p><strong>When it is sent:</strong></p>
+    <ul>
+      <li>When you connect, VitaVault sends the last 7 days.</li>
+      <li>After that, it sends new data each time you open VitaVault (at most once a minute), when you tap Send now, and when you tap the Dashboard sync button.</li>
+      <li>If it has been a while, it catches up on up to 31 days.</li>
+      <li>It does not send in the background. Your server is up to date as of the last time you opened VitaVault.</li>
+    </ul>
+    <p><strong>Where it goes.</strong></p>
+    <ul>
+      <li>Your iPhone sends this data straight to the server you chose. It does not pass through VitaVault, and VitaVault does not receive or keep a copy.</li>
+      <li>Your server decides how to store and keep what it receives. Any agent you give access to that server can read it, and that agent's own terms apply.</li>
+      <li>Until your server confirms it has stored a batch, the batch waits in a queue file on your iPhone. That file is protected by iOS file protection and excluded from backups.</li>
+    </ul>
+    <p><strong>Disconnecting.</strong> When you disconnect, or use Delete All App Data, VitaVault forgets the connection, its token, the queue and its delivery record on your iPhone. Data already on your server stays there until you delete it on your server.</p>
+    <h3>Your own webhook (older option)</h3>
+    <p>This is in Settings, Other connections. Your daily summary goes straight from your iPhone to the web address and token you enter. It does not pass through our server, and we never see it. The address must start with https://. The token is kept in the iPhone Keychain.</p>
+    <h3>VitaVault Cloud (closed to new users)</h3>
+    <p>Since November 9, 2026, VitaVault Cloud does not accept new devices. It appears in Settings, Other connections only on an iPhone that was already connected. iPhones that were already connected can keep using it until VitaVault Cloud storage ends in a future update. We will tell you in the app first, before that happens and before we delete data stored on VitaVault Cloud. We have not set a date.</p>
+    <p><strong>What it sends.</strong> One day's summary of 12 Apple Health numbers: steps, active energy, heart rate, resting heart rate, HRV, blood oxygen, breathing rate, walking distance, exercise minutes, flights climbed, weight and last night's sleep. It sends when you open the app or tap the Dashboard sync button. It does not send blood pressure, medications, lab results, journal entries or check-ins.</p>
+    <p><strong>What VitaVault Cloud stores, plainly.</strong></p>
+    <ul>
+      <li>Your daily summaries are stored as plain records on our server's storage (Cloudflare Workers KV), under your iPhone's device ID. Your agent reads them with a connection key unique to your device. Anyone with that key can read the data, so keep it private.</li>
+      <li>Cloudflare encrypts this storage at rest. VitaVault does not add its own encryption on top, and this is not end-to-end encryption. Our server, VitaVault staff who hold the server's master key, and anyone who has your connection key can read your stored data.</li>
+      <li>How long it is kept: each day's summary is kept for 365 days after it was last uploaded. Your most recent summary, the list of dates you synced, and the record linking your device ID to your connection key are kept until you ask us to delete them or VitaVault Cloud storage ends.</li>
+      <li>Shared copies: until November 9, 2026, our server also wrote each upload to shared records that were not labeled with a device ID, and a newer upload from any user replaced them. Since November 9, 2026, nothing new is written to shared records. Shared records already written stay stored under the same time limits until we delete them.</li>
+    </ul>
+    <p><strong>Moving to your own server.</strong> When you move to your own server, VitaVault turns off the old connection on your iPhone after your server confirms its first full delivery. Copies already on VitaVault Cloud are not moved or deleted by moving.</p>
+    <p><strong>Disconnecting and deletion.</strong> Disconnecting stops new uploads but does not delete what is already stored. To have your VitaVault Cloud data deleted, email <a href="mailto:support@vitavault.io">support@vitavault.io</a>. Include your device ID if you have it; if not, tell us roughly when you connected and we'll find it. Never send your connection key. Your device ID is in Settings, About, Device ID. Once your agent has your data, that agent's own privacy terms also apply.</p>
+    <h2>AI features and scans</h2>
+    <p>AI features run only after you accept the AI consent prompt. One consent covers all AI features, and the prompt lists what they can send. You can turn it off at any time in Settings, Your Data &amp; Privacy, AI Data Processing.</p>
+    <p><strong>What each feature sends to our server:</strong></p>
+    <ul>
+      <li><em>Wellness Insights analysis:</em> daily health numbers for the date range you picked, your journal entries and daily check-ins for that range, your medication list and your lab results.</li>
+      <li><em>Wellness Insights chat:</em> your question, your medication list and your lab results.</li>
+      <li><em>Medication Analyst:</em> your question and your medication list.</li>
+      <li><em>Lab result explanations:</em> the lab result you opened.</li>
+      <li><em>Doctor Visit Prep questions (optional section):</em> your medication list and lab results. The rest of the report is made on your iPhone.</li>
+      <li><em>Dashboard insight:</em> once AI is allowed and you have AI access, a short summary of your health numbers when the Dashboard loads.</li>
+      <li><em>Lab scan:</em> the text your iPhone read from the report, which can include anything printed on it. The image stays on your iPhone. If you decline AI, the scan is read on your iPhone only.</li>
+      <li><em>Medication label scan:</em> the label photo.</li>
+    </ul>
+    <p><strong>Where it goes.</strong> Our server, which runs on Cloudflare Workers, passes the request to Claude, made by Anthropic. Claude is the only AI provider, and we do not use any other. Our server does not save the content of these requests or the label photos, and it does not write request content to its logs. Anthropic processes the requests under its API terms.</p>
+    <p><strong>Usage limits.</strong> To apply monthly AI limits, each AI and scan request also carries:</p>
+    <ul>
+      <li>the random install ID created by the app (the same ID VitaVault Cloud uses as your device ID, if you use VitaVault Cloud)</li>
+      <li>if you bought Premium or AI Insights, Apple's signed purchase record (product, transaction IDs, and purchase and expiry dates)</li>
+    </ul>
+    <p>Neither includes your name, email or Apple Account. Our server keeps only usage counters keyed to these IDs, plus counters keyed to your IP address if you have not bought Premium or AI Insights. If no valid install ID is supplied, the IP address is also used for longer-lived counters. The counters expire automatically (see the table below).</p>
+    <p>If you don't use AI features, scans or AI agent sync, no health data is sent to us or to any AI provider.</p>
+    <h2>Exports and Doctor Visit Prep</h2>
+    <p>When you export your health data (JSON or CSV), the file is saved on your iPhone, inside the VitaVault app. VitaVault keeps your 5 most recent exports there and removes older ones. Doctor Visit Prep reports are made on your iPhone. If you tap Share, the file goes only where you send it. It does not go to our server.</p>
+    <h2>Purchases</h2>
+    <p>Apple's App Store handles purchases and payment. VitaVault never receives your payment details. To check your AI access, the app sends Apple's signed purchase record to our server, as described under AI features above.</p>
+    <h2>What VitaVault keeps, and for how long</h2>
+    <div class="tbl"><table>
+      <tr><th>What</th><th>Kept by VitaVault?</th><th>How long</th></tr>
+      <tr><td>Data sent to your own server (Connect to your AI agent)</td><td>No. It goes straight from your iPhone to your server.</td><td>Not kept by VitaVault</td></tr>
+      <tr><td>Data sent to your webhook</td><td>No</td><td>Not kept by VitaVault</td></tr>
+      <tr><td>Medications, lab results, journal and check-ins in iCloud Sync</td><td>No. Stored in your own iCloud account.</td><td>Until you delete them</td></tr>
+      <tr><td>AI request content and medication label photos</td><td>No. Passed to Anthropic and not saved by our server.</td><td>Not kept by our server</td></tr>
+      <tr><td>VitaVault Cloud daily summaries (only iPhones connected before November 9, 2026)</td><td>Yes, on Cloudflare</td><td>365 days after each day was last uploaded</td></tr>
+      <tr><td>Your most recent VitaVault Cloud summary, and the list of dates you synced</td><td>Yes</td><td>Until you ask us to delete them or VitaVault Cloud storage ends</td></tr>
+      <tr><td>Shared VitaVault Cloud copies written before November 9, 2026</td><td>Yes</td><td>365 days for each date; the newest until we delete it</td></tr>
+      <tr><td>VitaVault Cloud registration (your device ID and connection key)</td><td>Yes</td><td>Until you ask us to delete it or VitaVault Cloud storage ends</td></tr>
+      <tr><td>AI usage counters keyed to your install ID or purchase</td><td>Yes</td><td>About 40 days, or until your paid period ends plus about a day, if that is later</td></tr>
+      <tr><td>First-use date for free AI queries</td><td>Yes</td><td>About 400 days</td></tr>
+      <tr><td>Rate-limit counters keyed to your IP address (if you have not bought Premium or AI Insights)</td><td>Yes</td><td>2 hours (hourly) and 26 hours (daily)</td></tr>
+      <tr><td>IP-based usage and first-use counters when no valid install ID is supplied</td><td>Yes</td><td>About 40 days for usage and 400 days for first use</td></tr>
+      <tr><td>Paywall counters (monthly totals, no ID of any kind)</td><td>Yes</td><td>About 400 days</td></tr>
+    </table></div>
+    <h2>Who else receives data</h2>
+    <p>We do not sell your data or use it for advertising. Data goes to these places, and only in the cases described above:</p>
+    <ul>
+      <li><strong>Cloudflare.</strong> Runs our server. Stores VitaVault Cloud data for iPhones already connected and the counters listed above. Cloudflare handles network data such as IP addresses under its own terms. We have not turned on request log storage for our server.</li>
+      <li><strong>Anthropic (Claude).</strong> Receives AI and scan requests when you use those features, and processes them under its API terms.</li>
+      <li><strong>Formspree.</strong> Processes the support form on vitavault.io/support, including deletion requests sent through it.</li>
+      <li><strong>Apple.</strong> Apple Health on your iPhone, your own iCloud when iCloud Sync is on, and the App Store for purchases.</li>
+      <li><strong>Your own server, webhook or agent.</strong> Only the ones you connect. Their own terms apply.</li>
+    </ul>
+    <p>The app contains no third-party analytics, advertising or crash-reporting code.</p>
+    <h2>No accounts, no tracking</h2>
+    <p>VitaVault does not require an account, email address or any personal information. We do not track you across other apps or websites, and the app has no advertising code. The app does send a few counts to our server:</p>
+    <ul>
+      <li>monthly totals of how often the upgrade screen is shown and used, and how often free or monthly AI limits are reached, with no ID attached</li>
+      <li>the per-install and per-purchase AI usage counts described above</li>
+    </ul>
     <h2>Data Deletion</h2>
-    <p>You can delete your data at any time from Settings, Delete All App Data.</p>
+    <p><strong>On your iPhone.</strong> Use Settings, Delete All App Data.</p>
     <ul>
-      <li><strong>Delete from This iPhone:</strong> removes your labs, medications, journal, check-ins, photos, exports and cached data from this iPhone, turns iCloud sync off on this iPhone, and keeps your iCloud copy.</li>
-      <li><strong>Also Delete from iCloud, then Delete Everywhere:</strong> VitaVault also deletes your labs, medications, journal and check-ins from your iCloud and from every device signed in to your Apple Account, and your other devices delete their photos and exports the next time they sync.</li>
+      <li><em>Delete from This iPhone</em> removes your labs, medications, journal, check-ins, photos, exports and cached data from this iPhone. It also turns iCloud Sync off on this iPhone and keeps your iCloud copy.</li>
+      <li><em>Also Delete from iCloud, then Delete Everywhere</em> also deletes your labs, medications, journal and check-ins from your iCloud and from every device signed in to your Apple Account. Your other devices delete their photos and exports the next time they sync.</li>
+      <li>Either way, Delete All App Data also turns off AI data processing, Connect to your AI agent and Other connections (VitaVault Cloud and webhook) on this iPhone, and removes their connection keys and tokens, so nothing is sent afterward.</li>
+      <li>This can't be undone. Apple Health data is never affected.</li>
     </ul>
-    <p>This can't be undone. Apple Health data is never affected. Data stored on VitaVault Cloud for AI agent sync is not removed by this; contact us to delete it.</p>
-
+    <p><strong>On your own server.</strong> Data you sent to your own server or webhook stays there until you delete it there. Disconnecting in VitaVault, or Delete All App Data, does not delete it.</p>
+    <p><strong>On VitaVault Cloud.</strong> Delete All App Data does not remove data stored on VitaVault Cloud, and there is no way to delete it from inside the app yet. To have your VitaVault Cloud data deleted, email <a href="mailto:support@vitavault.io">support@vitavault.io</a>. Include your device ID if you have it; if not, tell us roughly when you connected and we'll find it. Never send your connection key. Anyone who has it can read your VitaVault Cloud data, and we will never ask for it. You can ask us the same way to remove AI usage records linked to your iPhone. AI usage counters also expire on their own, as listed in the table above.</p>
     <h2>Children</h2>
     <p>VitaVault is not directed at children under 13 and does not knowingly collect data from children.</p>
-
     <h2>Changes</h2>
-    <p>We may update this policy from time to time. Any changes will be reflected on this page with an updated date.</p>
-
+    <p>We may update this policy from time to time. Any changes will appear on this page with a new date. Before VitaVault Cloud storage ends, and before we delete data stored on VitaVault Cloud, we will tell you in the app.</p>
     <h2>Contact</h2>
-    <p>Questions? <a href="/support/">Contact us through the support page</a>.</p>
+    <p>Questions or deletion requests: email <a href="mailto:support@vitavault.io">support@vitavault.io</a>, or use the support form at <a href="/support/">https://vitavault.io/support</a>. The support form is processed by Formspree, which receives what you type into it. Please don't include medical details in your message. Never include your connection key.</p>
+    <p>VitaVault is provided by Captain Intelligence LLC.</p>
   </div>
 </body>
 </html>
